@@ -17,7 +17,7 @@ Code for Our NAACL Findings 2024 paper "The Whole is Better than the Sum: Using 
 4. Evaluate ChatGPT's zero-shot ranking abilities on ML-1M dataset.
     ```bash
     cd LLMSRec_Syn/
-    python evaluate.py -m Rank_Aggregated/Rank_Nearest/Rank_Fiexed -d ML-1M
+    python evaluate.py -m Rank_Aggregated(ours)/Rank_Nearest/Rank_Fiexed -d ML-1M
     ```
 
 ## 🌟 Cite Us
