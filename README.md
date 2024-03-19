@@ -1,4 +1,4 @@
-# LLMSRec_Syn
+# LLMSRec_Syn (Updating)
 Code for Our NAACL Findings 2024 paper "The Whole is Better than the Sum: Using Aggregated Demonstrations in In-Context Learning for Sequential Recommendation"
 
 ## 🚀 Quick Start
