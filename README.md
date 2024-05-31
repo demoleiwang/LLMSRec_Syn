@@ -14,10 +14,10 @@ Code for Our NAACL Findings 2024 paper "The Whole is Better than the Sum: Using 
     ```bash
     pip install -r requirements.txt
     ```
-4. Evaluate ChatGPT's zero-shot ranking abilities on ML-1M dataset.
+4. Evaluate OpenAI GPT (GPT-4o)'s ranking abilities on ml-1m dataset.
     ```bash
     cd LLMSRec_Syn/
-    python evaluate.py -m Rank_Aggregated(ours)/Rank_Nearest/Rank_Fiexed -d ML-1M
+    python evaluate.py -m RankAggregated(ours)/RankNearest(baseline)/RankFiexed(baseline)/RankZero(Our zero-shot version) -d ml-1m
     ```
 
 ## 🌟 Cite Us

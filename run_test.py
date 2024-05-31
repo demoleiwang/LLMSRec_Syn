@@ -10,7 +10,7 @@ from trainer import SelectedUserTrainer
 from openai_parallel_toolkit import ParallelToolkit, Prompt
 
 
-def evaluate(model_name, dataset_name, pretrained_file, version, rep_num, num_data, platform, random_seed, **kwargs):
+def evaluate(model_name, dataset_name, pretrained_file, rep_num, num_data, platform, random_seed, **kwargs):
     # configurations initialization
     props = [f'props/{model_name}.yaml', f'props/{dataset_name}.yaml', 'props/overall.yaml']
     print(props)
@@ -45,15 +45,13 @@ def evaluate(model_name, dataset_name, pretrained_file, version, rep_num, num_da
 
     # variants
     config['rep_num'] = rep_num
-    if model_name not in ['SASRec'] and  version != '':
-        model.assign_version(version)
 
     logger.info(model)
 
     # trainer loading and initialization
     config['num_data'] = num_data
 
-    trainer = SelectedUserTrainer(config, model, dataset, version)
+    trainer = SelectedUserTrainer(config, model, dataset)
 
     ##### for zero-shot, acl 2024 short.
     if model_name in ["SASRec", "GRU4Rec", "BERT4Rec", "Pop"]:
@@ -76,11 +74,11 @@ def evaluate(model_name, dataset_name, pretrained_file, version, rep_num, num_da
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("-m", type=str, default="Rank", help="model name")
+    parser.add_argument("-m", type=str, default="RankAggregated", help="model name")
+    # [RankAggregated, RankFixed, RankNearest, RankZero]
+
     parser.add_argument('-d', type=str, default='ml-1m', help='dataset name') # [ml-1m, lastfm, Games]
     parser.add_argument('-p', type=str, default='', help='pre-trained model path')
-    parser.add_argument('-v', type=str, default='rank_aggregated', help='method name')
-    # [rank_aggregated, rank_fixed, rank_nearest, rank_zero]
 
     parser.add_argument('-r', type=str, default='0', help='repeat number')
     parser.add_argument('-n', type=int, default=5000, help='repeat number')
@@ -91,4 +89,4 @@ if __name__ == '__main__':
     args, unparsed = parser.parse_known_args()
     print(args)
 
-    evaluate(args.m, args.d, pretrained_file=args.p, version=args.v, rep_num=args.r, num_data=args.n, platform=args.pl, random_seed=args.sd)
+    evaluate(args.m, args.d, pretrained_file=args.p, rep_num=args.r, num_data=args.n, platform=args.pl, random_seed=args.sd)
