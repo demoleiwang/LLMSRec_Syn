@@ -25,7 +25,12 @@ Code for Our NAACL Findings 2024 paper "The Whole is Better than the Sum: Using 
 Please cite the following paper if you find our code helpful.
 
 ```bibtex
-
+@article{wang2024whole,
+  title={The Whole is Better than the Sum: Using Aggregated Demonstrations in In-Context Learning for Sequential Recommendation},
+  author={Wang, Lei and Lim, Ee-Peng},
+  journal={arXiv preprint arXiv:2403.10135},
+  year={2024}
+}
 ```
 
 The experiments are conducted using the open-source recommendation library [RecBole](https://github.com/RUCAIBox/RecBole) and [LLMRank](https://github.com/RUCAIBox/LLMRank).
