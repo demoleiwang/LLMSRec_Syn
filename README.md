@@ -3,19 +3,18 @@ Code for Our NAACL Findings 2024 paper "The Whole is Better than the Sum: Using 
 
 ## 🚀 Quick Start
 
-1. Write your own OpenAI API keys into [`LLMSRec_Syn/openai_api.yaml`](https://github.com/demoleiwang/LLMSRec_Syn/blob/master/llmrank/openai_api.yaml).
-2. Unzip dataset files.
+1. Unzip dataset files.
     ```bash
     cd LLMSRec_Syn/dataset/ml-1m/; unzip ml-1m.inter.zip
     cd LLMSRec_Syn/dataset/Games/; unzip Games.inter.zip
     ```
     For data preparation details, please refer to LLMRank's [[data-preparation]](https://github.com/RUCAIBox/LLMRank/blob/master/llmrank/dataset/data-preparation.md).
-3. Install dependencies.
+2. Install dependencies.
     ```bash
     pip install -r requirements.txt
     ```
-4. Insert your OpenAI key on line 20 of ./model/rank.py.
-5. Evaluate OpenAI GPT (GPT-3.5-turbo)'s ranking abilities on ml-1m (Games/lastfm) dataset.
+3. Insert your OpenAI key on line 20 of ./model/rank.py.
+4. Evaluate OpenAI GPT (GPT-3.5-turbo)'s ranking abilities on ml-1m (Games/lastfm) dataset.
     ```bash
     cd LLMSRec_Syn/
     python run_test.py -m RankAggregated(ours)/RankNearest(baseline)/RankFiexed(baseline) -d ml-1m
