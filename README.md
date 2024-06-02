@@ -18,7 +18,7 @@ Code for Our NAACL Findings 2024 paper "The Whole is Better than the Sum: Using 
 5. Evaluate OpenAI GPT (GPT-3.5-turbo)'s ranking abilities on ml-1m (Games/lastfm) dataset.
     ```bash
     cd LLMSRec_Syn/
-    python evaluate.py -m RankAggregated(ours)/RankNearest(baseline)/RankFiexed(baseline) -d ml-1m
+    python run_test.py -m RankAggregated(ours)/RankNearest(baseline)/RankFiexed(baseline) -d ml-1m
     ```
 
 ## Results
