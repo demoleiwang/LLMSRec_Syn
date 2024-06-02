@@ -1,0 +1,954 @@
+Sun 02 Jun 2024 14:25:42 INFO  
+General Hyper Parameters:
+gpu_id = 0
+use_gpu = True
+seed = 2020
+state = INFO
+reproducibility = True
+data_path = dataset/lastfm
+checkpoint_dir = saved
+show_progress = True
+save_dataset = False
+dataset_save_path = None
+save_dataloaders = False
+dataloaders_save_path = None
+log_wandb = False
+
+Training Hyper Parameters:
+epochs = 300
+train_batch_size = 4096
+learner = adam
+learning_rate = 0.001
+train_neg_sample_args = {'distribution': 'none', 'sample_num': 'none', 'alpha': 'none', 'dynamic': False, 'candidate_num': 0}
+eval_step = 1
+stopping_step = 10
+clip_grad_norm = None
+weight_decay = 0.0
+loss_decimal_place = 4
+
+Evaluation Hyper Parameters:
+eval_args = {'split': {'LS': 'valid_and_test'}, 'order': 'TO', 'group_by': 'user', 'mode': {'valid': 'full', 'test': 'full'}}
+repeatable = True
+metrics = ['Recall', 'NDCG']
+topk = [1, 5, 10, 20, 50]
+valid_metric = NDCG@10
+valid_metric_bigger = True
+eval_batch_size = 100
+metric_decimal_place = 4
+
+Dataset Hyper Parameters:
+field_separator = 	
+seq_separator =  
+USER_ID_FIELD = user_id
+ITEM_ID_FIELD = item_id
+RATING_FIELD = rating
+TIME_FIELD = timestamp
+seq_len = None
+LABEL_FIELD = label
+threshold = None
+NEG_PREFIX = neg_
+load_col = {'inter': ['user_id', 'item_id', 'timestamp']}
+unload_col = None
+unused_col = None
+additional_feat_suffix = None
+rm_dup_inter = None
+val_interval = None
+filter_inter_by_user_or_item = True
+user_inter_num_interval = [0,inf)
+item_inter_num_interval = [0,inf)
+alias_of_user_id = None
+alias_of_item_id = None
+alias_of_entity_id = None
+alias_of_relation_id = None
+preload_weight = None
+normalize_field = None
+normalize_all = None
+ITEM_LIST_LENGTH_FIELD = item_length
+LIST_SUFFIX = _list
+MAX_ITEM_LIST_LENGTH = 50
+POSITION_FIELD = position_id
+HEAD_ENTITY_ID_FIELD = head_id
+TAIL_ENTITY_ID_FIELD = tail_id
+RELATION_ID_FIELD = relation_id
+ENTITY_ID_FIELD = entity_id
+benchmark_filename = None
+
+Other Hyper Parameters: 
+worker = 0
+wandb_project = recbole
+shuffle = True
+require_pow = False
+enable_amp = False
+enable_scaler = False
+transform = None
+numerical_features = []
+discretization = None
+kg_reverse_r = False
+entity_kg_num_interval = [0,inf)
+relation_kg_num_interval = [0,inf)
+MODEL_TYPE = ModelType.SEQUENTIAL
+max_tokens = 512
+api_batch = 20
+temperature = 0.0
+async_dispatch = True
+boots = 0
+max_his_len = 10
+loss_type = CE
+selected_user_suffix = random
+recall_budget = 20
+has_gt = True
+fix_pos = -1
+platform = gpt-3.5-turbo
+num_demo_int = 5
+num_demo_out = 1
+sim = multivector
+num_data = 200
+MODEL_INPUT_TYPE = InputType.POINTWISE
+eval_type = EvaluatorType.RANKING
+single_spec = True
+local_rank = 0
+device = cpu
+valid_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+test_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+
+
+Sun 02 Jun 2024 14:25:42 INFO  2020, reproducibility: True
+Sun 02 Jun 2024 14:25:42 INFO  lastfm
+The number of users: 1143
+Average actions of users: 59.92644483362522
+The number of items: 11854
+Average actions of items: 5.7737281700835235
+The number of inters: 68436
+The sparsity of the dataset: 99.494904540678%
+Remain Fields: ['user_id', 'item_id', 'timestamp']
+Sun 02 Jun 2024 14:25:42 INFO  [Training]: train_batch_size = [4096] train_neg_sample_args: [{'distribution': 'none', 'sample_num': 'none', 'alpha': 'none', 'dynamic': False, 'candidate_num': 0}]
+Sun 02 Jun 2024 14:25:42 INFO  [Evaluation]: eval_batch_size = [100] eval_args: [{'split': {'LS': 'valid_and_test'}, 'order': 'TO', 'group_by': 'user', 'mode': {'valid': 'full', 'test': 'full'}}]
+Sun 02 Jun 2024 14:25:42 INFO  Avg. t = 11.772566222372195
+Sun 02 Jun 2024 14:25:42 INFO  RankAggregated(
+  (fake_fn): Linear(in_features=1, out_features=1, bias=True)
+)
+Trainable parameters: 2
+Sun 02 Jun 2024 14:25:44 INFO  Has ground truth.
+Sun 02 Jun 2024 14:25:44 INFO  Shuffle ground truth
+Sun 02 Jun 2024 14:25:46 INFO  Here are index from 0 to 20
+Sun 02 Jun 2024 14:25:46 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 14:25:46 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 14:25:48 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:48 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:48 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:48 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:48 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:48 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:48 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:48 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:48 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:48 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:48 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:48 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:48 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:48 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:48 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:48 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:48 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:48 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:48 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:48 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:48 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 14:25:48 INFO  Here are index from 20 to 40
+Sun 02 Jun 2024 14:25:48 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 14:25:48 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 14:25:48 INFO  Retrying request to /chat/completions in 0.973754 seconds
+Sun 02 Jun 2024 14:25:48 INFO  Retrying request to /chat/completions in 0.832474 seconds
+Sun 02 Jun 2024 14:25:48 INFO  Retrying request to /chat/completions in 0.877216 seconds
+Sun 02 Jun 2024 14:25:48 INFO  Retrying request to /chat/completions in 0.781742 seconds
+Sun 02 Jun 2024 14:25:48 INFO  Retrying request to /chat/completions in 0.865637 seconds
+Sun 02 Jun 2024 14:25:48 INFO  Retrying request to /chat/completions in 0.881117 seconds
+Sun 02 Jun 2024 14:25:48 INFO  Retrying request to /chat/completions in 0.989787 seconds
+Sun 02 Jun 2024 14:25:48 INFO  Retrying request to /chat/completions in 0.987665 seconds
+Sun 02 Jun 2024 14:25:48 INFO  Retrying request to /chat/completions in 0.772392 seconds
+Sun 02 Jun 2024 14:25:48 INFO  Retrying request to /chat/completions in 0.768854 seconds
+Sun 02 Jun 2024 14:25:48 INFO  Retrying request to /chat/completions in 0.945747 seconds
+Sun 02 Jun 2024 14:25:48 INFO  Retrying request to /chat/completions in 0.789342 seconds
+Sun 02 Jun 2024 14:25:48 INFO  Retrying request to /chat/completions in 0.826863 seconds
+Sun 02 Jun 2024 14:25:48 INFO  Retrying request to /chat/completions in 0.976613 seconds
+Sun 02 Jun 2024 14:25:48 INFO  Retrying request to /chat/completions in 0.755536 seconds
+Sun 02 Jun 2024 14:25:48 INFO  Retrying request to /chat/completions in 0.934256 seconds
+Sun 02 Jun 2024 14:25:48 INFO  Retrying request to /chat/completions in 0.760573 seconds
+Sun 02 Jun 2024 14:25:48 INFO  Retrying request to /chat/completions in 0.993434 seconds
+Sun 02 Jun 2024 14:25:48 INFO  Retrying request to /chat/completions in 0.865234 seconds
+Sun 02 Jun 2024 14:25:48 INFO  Retrying request to /chat/completions in 0.884024 seconds
+Sun 02 Jun 2024 14:25:51 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:51 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:51 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:51 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:51 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:51 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:51 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:51 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:51 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:51 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:51 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:51 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:51 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:51 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:51 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:51 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:51 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:51 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:51 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:52 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:52 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 14:25:52 INFO  Here are index from 40 to 60
+Sun 02 Jun 2024 14:25:52 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 14:25:52 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 14:25:52 INFO  Retrying request to /chat/completions in 0.923211 seconds
+Sun 02 Jun 2024 14:25:52 INFO  Retrying request to /chat/completions in 0.839691 seconds
+Sun 02 Jun 2024 14:25:52 INFO  Retrying request to /chat/completions in 0.885048 seconds
+Sun 02 Jun 2024 14:25:52 INFO  Retrying request to /chat/completions in 0.871151 seconds
+Sun 02 Jun 2024 14:25:52 INFO  Retrying request to /chat/completions in 0.845903 seconds
+Sun 02 Jun 2024 14:25:52 INFO  Retrying request to /chat/completions in 0.869400 seconds
+Sun 02 Jun 2024 14:25:52 INFO  Retrying request to /chat/completions in 0.830879 seconds
+Sun 02 Jun 2024 14:25:52 INFO  Retrying request to /chat/completions in 0.816531 seconds
+Sun 02 Jun 2024 14:25:52 INFO  Retrying request to /chat/completions in 0.857718 seconds
+Sun 02 Jun 2024 14:25:52 INFO  Retrying request to /chat/completions in 0.780738 seconds
+Sun 02 Jun 2024 14:25:52 INFO  Retrying request to /chat/completions in 0.772227 seconds
+Sun 02 Jun 2024 14:25:52 INFO  Retrying request to /chat/completions in 0.789312 seconds
+Sun 02 Jun 2024 14:25:52 INFO  Retrying request to /chat/completions in 0.818638 seconds
+Sun 02 Jun 2024 14:25:52 INFO  Retrying request to /chat/completions in 0.894259 seconds
+Sun 02 Jun 2024 14:25:52 INFO  Retrying request to /chat/completions in 0.844773 seconds
+Sun 02 Jun 2024 14:25:52 INFO  Retrying request to /chat/completions in 0.796093 seconds
+Sun 02 Jun 2024 14:25:52 INFO  Retrying request to /chat/completions in 0.927455 seconds
+Sun 02 Jun 2024 14:25:52 INFO  Retrying request to /chat/completions in 0.822054 seconds
+Sun 02 Jun 2024 14:25:52 INFO  Retrying request to /chat/completions in 0.788754 seconds
+Sun 02 Jun 2024 14:25:52 INFO  Retrying request to /chat/completions in 0.842975 seconds
+Sun 02 Jun 2024 14:25:55 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:55 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:55 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:55 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:55 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:55 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:55 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:55 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:55 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:55 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:55 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:55 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:55 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:55 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:55 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:55 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:55 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:55 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:55 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:56 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:56 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 14:25:56 INFO  Here are index from 60 to 80
+Sun 02 Jun 2024 14:25:56 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 14:25:56 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 14:25:56 INFO  Retrying request to /chat/completions in 0.977774 seconds
+Sun 02 Jun 2024 14:25:56 INFO  Retrying request to /chat/completions in 0.941284 seconds
+Sun 02 Jun 2024 14:25:56 INFO  Retrying request to /chat/completions in 0.940076 seconds
+Sun 02 Jun 2024 14:25:56 INFO  Retrying request to /chat/completions in 0.757095 seconds
+Sun 02 Jun 2024 14:25:56 INFO  Retrying request to /chat/completions in 0.799907 seconds
+Sun 02 Jun 2024 14:25:56 INFO  Retrying request to /chat/completions in 0.774837 seconds
+Sun 02 Jun 2024 14:25:56 INFO  Retrying request to /chat/completions in 0.988739 seconds
+Sun 02 Jun 2024 14:25:56 INFO  Retrying request to /chat/completions in 0.975543 seconds
+Sun 02 Jun 2024 14:25:56 INFO  Retrying request to /chat/completions in 0.985529 seconds
+Sun 02 Jun 2024 14:25:56 INFO  Retrying request to /chat/completions in 0.911758 seconds
+Sun 02 Jun 2024 14:25:56 INFO  Retrying request to /chat/completions in 0.779937 seconds
+Sun 02 Jun 2024 14:25:56 INFO  Retrying request to /chat/completions in 0.754912 seconds
+Sun 02 Jun 2024 14:25:56 INFO  Retrying request to /chat/completions in 0.787102 seconds
+Sun 02 Jun 2024 14:25:56 INFO  Retrying request to /chat/completions in 0.974075 seconds
+Sun 02 Jun 2024 14:25:56 INFO  Retrying request to /chat/completions in 0.843455 seconds
+Sun 02 Jun 2024 14:25:56 INFO  Retrying request to /chat/completions in 0.782390 seconds
+Sun 02 Jun 2024 14:25:56 INFO  Retrying request to /chat/completions in 0.877248 seconds
+Sun 02 Jun 2024 14:25:56 INFO  Retrying request to /chat/completions in 0.797486 seconds
+Sun 02 Jun 2024 14:25:56 INFO  Retrying request to /chat/completions in 0.915107 seconds
+Sun 02 Jun 2024 14:25:56 INFO  Retrying request to /chat/completions in 0.889607 seconds
+Sun 02 Jun 2024 14:25:58 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:58 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:58 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:58 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:58 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:58 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:58 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:58 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:58 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:58 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:59 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:59 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:59 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:59 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:59 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:59 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:59 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:59 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:59 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:59 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:25:59 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 14:25:59 INFO  Here are index from 80 to 100
+Sun 02 Jun 2024 14:25:59 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 14:25:59 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 14:25:59 INFO  Retrying request to /chat/completions in 0.949426 seconds
+Sun 02 Jun 2024 14:25:59 INFO  Retrying request to /chat/completions in 0.913024 seconds
+Sun 02 Jun 2024 14:25:59 INFO  Retrying request to /chat/completions in 0.870064 seconds
+Sun 02 Jun 2024 14:25:59 INFO  Retrying request to /chat/completions in 0.849945 seconds
+Sun 02 Jun 2024 14:25:59 INFO  Retrying request to /chat/completions in 0.793020 seconds
+Sun 02 Jun 2024 14:25:59 INFO  Retrying request to /chat/completions in 0.799778 seconds
+Sun 02 Jun 2024 14:25:59 INFO  Retrying request to /chat/completions in 0.846200 seconds
+Sun 02 Jun 2024 14:25:59 INFO  Retrying request to /chat/completions in 0.851431 seconds
+Sun 02 Jun 2024 14:25:59 INFO  Retrying request to /chat/completions in 0.838494 seconds
+Sun 02 Jun 2024 14:25:59 INFO  Retrying request to /chat/completions in 0.810884 seconds
+Sun 02 Jun 2024 14:25:59 INFO  Retrying request to /chat/completions in 0.761708 seconds
+Sun 02 Jun 2024 14:25:59 INFO  Retrying request to /chat/completions in 0.835381 seconds
+Sun 02 Jun 2024 14:25:59 INFO  Retrying request to /chat/completions in 0.936705 seconds
+Sun 02 Jun 2024 14:25:59 INFO  Retrying request to /chat/completions in 0.821244 seconds
+Sun 02 Jun 2024 14:25:59 INFO  Retrying request to /chat/completions in 0.983253 seconds
+Sun 02 Jun 2024 14:25:59 INFO  Retrying request to /chat/completions in 0.972270 seconds
+Sun 02 Jun 2024 14:25:59 INFO  Retrying request to /chat/completions in 0.771742 seconds
+Sun 02 Jun 2024 14:25:59 INFO  Retrying request to /chat/completions in 0.777087 seconds
+Sun 02 Jun 2024 14:25:59 INFO  Retrying request to /chat/completions in 0.770024 seconds
+Sun 02 Jun 2024 14:25:59 INFO  Retrying request to /chat/completions in 0.866071 seconds
+Sun 02 Jun 2024 14:26:01 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:01 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:01 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:01 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:02 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 14:26:02 INFO  Here are index from 100 to 120
+Sun 02 Jun 2024 14:26:02 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 14:26:02 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 14:26:02 INFO  Retrying request to /chat/completions in 0.943308 seconds
+Sun 02 Jun 2024 14:26:02 INFO  Retrying request to /chat/completions in 0.814114 seconds
+Sun 02 Jun 2024 14:26:02 INFO  Retrying request to /chat/completions in 0.899505 seconds
+Sun 02 Jun 2024 14:26:02 INFO  Retrying request to /chat/completions in 0.833934 seconds
+Sun 02 Jun 2024 14:26:02 INFO  Retrying request to /chat/completions in 0.930613 seconds
+Sun 02 Jun 2024 14:26:02 INFO  Retrying request to /chat/completions in 0.917320 seconds
+Sun 02 Jun 2024 14:26:02 INFO  Retrying request to /chat/completions in 0.888515 seconds
+Sun 02 Jun 2024 14:26:02 INFO  Retrying request to /chat/completions in 0.977493 seconds
+Sun 02 Jun 2024 14:26:02 INFO  Retrying request to /chat/completions in 0.867387 seconds
+Sun 02 Jun 2024 14:26:02 INFO  Retrying request to /chat/completions in 0.786130 seconds
+Sun 02 Jun 2024 14:26:02 INFO  Retrying request to /chat/completions in 0.897044 seconds
+Sun 02 Jun 2024 14:26:02 INFO  Retrying request to /chat/completions in 0.996672 seconds
+Sun 02 Jun 2024 14:26:02 INFO  Retrying request to /chat/completions in 0.964830 seconds
+Sun 02 Jun 2024 14:26:02 INFO  Retrying request to /chat/completions in 0.866220 seconds
+Sun 02 Jun 2024 14:26:02 INFO  Retrying request to /chat/completions in 0.994144 seconds
+Sun 02 Jun 2024 14:26:02 INFO  Retrying request to /chat/completions in 0.775381 seconds
+Sun 02 Jun 2024 14:26:02 INFO  Retrying request to /chat/completions in 0.950077 seconds
+Sun 02 Jun 2024 14:26:02 INFO  Retrying request to /chat/completions in 0.930001 seconds
+Sun 02 Jun 2024 14:26:02 INFO  Retrying request to /chat/completions in 0.871862 seconds
+Sun 02 Jun 2024 14:26:02 INFO  Retrying request to /chat/completions in 0.936576 seconds
+Sun 02 Jun 2024 14:26:05 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:05 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:05 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:05 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:05 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:05 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:05 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:05 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:05 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:05 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:05 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:05 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:05 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:05 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:05 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:05 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:05 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:05 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:05 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:06 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:06 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 14:26:06 INFO  Here are index from 120 to 140
+Sun 02 Jun 2024 14:26:06 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 14:26:06 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 14:26:06 INFO  Retrying request to /chat/completions in 0.958516 seconds
+Sun 02 Jun 2024 14:26:06 INFO  Retrying request to /chat/completions in 0.806634 seconds
+Sun 02 Jun 2024 14:26:06 INFO  Retrying request to /chat/completions in 0.939784 seconds
+Sun 02 Jun 2024 14:26:06 INFO  Retrying request to /chat/completions in 0.757738 seconds
+Sun 02 Jun 2024 14:26:06 INFO  Retrying request to /chat/completions in 0.887271 seconds
+Sun 02 Jun 2024 14:26:06 INFO  Retrying request to /chat/completions in 0.912816 seconds
+Sun 02 Jun 2024 14:26:06 INFO  Retrying request to /chat/completions in 0.843817 seconds
+Sun 02 Jun 2024 14:26:06 INFO  Retrying request to /chat/completions in 0.816340 seconds
+Sun 02 Jun 2024 14:26:06 INFO  Retrying request to /chat/completions in 0.824949 seconds
+Sun 02 Jun 2024 14:26:06 INFO  Retrying request to /chat/completions in 0.890350 seconds
+Sun 02 Jun 2024 14:26:06 INFO  Retrying request to /chat/completions in 0.839242 seconds
+Sun 02 Jun 2024 14:26:06 INFO  Retrying request to /chat/completions in 0.850130 seconds
+Sun 02 Jun 2024 14:26:06 INFO  Retrying request to /chat/completions in 0.904262 seconds
+Sun 02 Jun 2024 14:26:06 INFO  Retrying request to /chat/completions in 0.900200 seconds
+Sun 02 Jun 2024 14:26:06 INFO  Retrying request to /chat/completions in 0.853233 seconds
+Sun 02 Jun 2024 14:26:06 INFO  Retrying request to /chat/completions in 0.879368 seconds
+Sun 02 Jun 2024 14:26:06 INFO  Retrying request to /chat/completions in 0.779332 seconds
+Sun 02 Jun 2024 14:26:06 INFO  Retrying request to /chat/completions in 0.943692 seconds
+Sun 02 Jun 2024 14:26:06 INFO  Retrying request to /chat/completions in 0.965132 seconds
+Sun 02 Jun 2024 14:26:06 INFO  Retrying request to /chat/completions in 0.984098 seconds
+Sun 02 Jun 2024 14:26:09 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:09 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:09 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:09 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:09 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:09 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:09 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:09 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:09 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:09 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:09 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:09 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:09 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:09 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:09 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:09 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:09 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:09 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:10 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:10 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:10 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 14:26:10 INFO  Here are index from 140 to 160
+Sun 02 Jun 2024 14:26:10 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 14:26:10 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 14:26:10 INFO  Retrying request to /chat/completions in 0.823103 seconds
+Sun 02 Jun 2024 14:26:10 INFO  Retrying request to /chat/completions in 0.901457 seconds
+Sun 02 Jun 2024 14:26:10 INFO  Retrying request to /chat/completions in 0.864133 seconds
+Sun 02 Jun 2024 14:26:10 INFO  Retrying request to /chat/completions in 0.783759 seconds
+Sun 02 Jun 2024 14:26:10 INFO  Retrying request to /chat/completions in 0.899640 seconds
+Sun 02 Jun 2024 14:26:10 INFO  Retrying request to /chat/completions in 0.818818 seconds
+Sun 02 Jun 2024 14:26:10 INFO  Retrying request to /chat/completions in 0.818348 seconds
+Sun 02 Jun 2024 14:26:10 INFO  Retrying request to /chat/completions in 0.759646 seconds
+Sun 02 Jun 2024 14:26:10 INFO  Retrying request to /chat/completions in 0.758980 seconds
+Sun 02 Jun 2024 14:26:10 INFO  Retrying request to /chat/completions in 0.798370 seconds
+Sun 02 Jun 2024 14:26:10 INFO  Retrying request to /chat/completions in 0.868097 seconds
+Sun 02 Jun 2024 14:26:10 INFO  Retrying request to /chat/completions in 0.919785 seconds
+Sun 02 Jun 2024 14:26:10 INFO  Retrying request to /chat/completions in 0.799113 seconds
+Sun 02 Jun 2024 14:26:10 INFO  Retrying request to /chat/completions in 0.906794 seconds
+Sun 02 Jun 2024 14:26:10 INFO  Retrying request to /chat/completions in 0.962816 seconds
+Sun 02 Jun 2024 14:26:10 INFO  Retrying request to /chat/completions in 0.890425 seconds
+Sun 02 Jun 2024 14:26:10 INFO  Retrying request to /chat/completions in 0.932259 seconds
+Sun 02 Jun 2024 14:26:10 INFO  Retrying request to /chat/completions in 0.898022 seconds
+Sun 02 Jun 2024 14:26:10 INFO  Retrying request to /chat/completions in 0.906804 seconds
+Sun 02 Jun 2024 14:26:10 INFO  Retrying request to /chat/completions in 0.881485 seconds
+Sun 02 Jun 2024 14:26:13 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:13 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:13 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:13 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:13 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:13 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:13 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:13 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:13 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:13 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:13 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:13 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:13 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:13 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:13 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:13 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:13 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:14 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:14 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:14 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:14 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 14:26:14 INFO  Here are index from 160 to 180
+Sun 02 Jun 2024 14:26:14 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 14:26:14 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 14:26:14 INFO  Retrying request to /chat/completions in 0.885932 seconds
+Sun 02 Jun 2024 14:26:14 INFO  Retrying request to /chat/completions in 0.908533 seconds
+Sun 02 Jun 2024 14:26:14 INFO  Retrying request to /chat/completions in 0.946561 seconds
+Sun 02 Jun 2024 14:26:14 INFO  Retrying request to /chat/completions in 0.795588 seconds
+Sun 02 Jun 2024 14:26:14 INFO  Retrying request to /chat/completions in 0.836824 seconds
+Sun 02 Jun 2024 14:26:14 INFO  Retrying request to /chat/completions in 0.872860 seconds
+Sun 02 Jun 2024 14:26:14 INFO  Retrying request to /chat/completions in 0.860181 seconds
+Sun 02 Jun 2024 14:26:14 INFO  Retrying request to /chat/completions in 0.905721 seconds
+Sun 02 Jun 2024 14:26:14 INFO  Retrying request to /chat/completions in 0.938418 seconds
+Sun 02 Jun 2024 14:26:14 INFO  Retrying request to /chat/completions in 0.918157 seconds
+Sun 02 Jun 2024 14:26:14 INFO  Retrying request to /chat/completions in 0.905376 seconds
+Sun 02 Jun 2024 14:26:14 INFO  Retrying request to /chat/completions in 0.825710 seconds
+Sun 02 Jun 2024 14:26:15 INFO  Retrying request to /chat/completions in 0.909632 seconds
+Sun 02 Jun 2024 14:26:15 INFO  Retrying request to /chat/completions in 0.789705 seconds
+Sun 02 Jun 2024 14:26:15 INFO  Retrying request to /chat/completions in 0.887532 seconds
+Sun 02 Jun 2024 14:26:15 INFO  Retrying request to /chat/completions in 0.917011 seconds
+Sun 02 Jun 2024 14:26:15 INFO  Retrying request to /chat/completions in 0.992776 seconds
+Sun 02 Jun 2024 14:26:15 INFO  Retrying request to /chat/completions in 0.869970 seconds
+Sun 02 Jun 2024 14:26:15 INFO  Retrying request to /chat/completions in 0.845781 seconds
+Sun 02 Jun 2024 14:26:15 INFO  Retrying request to /chat/completions in 0.778979 seconds
+Sun 02 Jun 2024 14:26:17 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:17 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:17 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:17 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:17 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:17 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:17 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:17 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:17 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:17 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:17 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:17 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:17 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:17 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:17 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:18 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:18 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:18 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:18 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:18 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:18 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 14:26:18 INFO  Here are index from 180 to 200
+Sun 02 Jun 2024 14:26:18 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 14:26:18 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 14:26:18 INFO  Retrying request to /chat/completions in 0.884677 seconds
+Sun 02 Jun 2024 14:26:18 INFO  Retrying request to /chat/completions in 0.997516 seconds
+Sun 02 Jun 2024 14:26:18 INFO  Retrying request to /chat/completions in 0.864292 seconds
+Sun 02 Jun 2024 14:26:18 INFO  Retrying request to /chat/completions in 0.940782 seconds
+Sun 02 Jun 2024 14:26:18 INFO  Retrying request to /chat/completions in 0.785961 seconds
+Sun 02 Jun 2024 14:26:18 INFO  Retrying request to /chat/completions in 0.917588 seconds
+Sun 02 Jun 2024 14:26:18 INFO  Retrying request to /chat/completions in 0.965140 seconds
+Sun 02 Jun 2024 14:26:18 INFO  Retrying request to /chat/completions in 0.837633 seconds
+Sun 02 Jun 2024 14:26:18 INFO  Retrying request to /chat/completions in 0.874058 seconds
+Sun 02 Jun 2024 14:26:18 INFO  Retrying request to /chat/completions in 0.795679 seconds
+Sun 02 Jun 2024 14:26:18 INFO  Retrying request to /chat/completions in 0.834137 seconds
+Sun 02 Jun 2024 14:26:18 INFO  Retrying request to /chat/completions in 0.802115 seconds
+Sun 02 Jun 2024 14:26:18 INFO  Retrying request to /chat/completions in 0.758335 seconds
+Sun 02 Jun 2024 14:26:18 INFO  Retrying request to /chat/completions in 0.799089 seconds
+Sun 02 Jun 2024 14:26:18 INFO  Retrying request to /chat/completions in 0.851268 seconds
+Sun 02 Jun 2024 14:26:18 INFO  Retrying request to /chat/completions in 0.820970 seconds
+Sun 02 Jun 2024 14:26:18 INFO  Retrying request to /chat/completions in 0.903544 seconds
+Sun 02 Jun 2024 14:26:18 INFO  Retrying request to /chat/completions in 0.815355 seconds
+Sun 02 Jun 2024 14:26:18 INFO  Retrying request to /chat/completions in 0.810030 seconds
+Sun 02 Jun 2024 14:26:18 INFO  Retrying request to /chat/completions in 0.857121 seconds
+Sun 02 Jun 2024 14:26:20 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:21 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:21 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:21 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:21 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:21 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:21 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:21 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:21 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:21 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:21 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:21 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:21 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:21 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:21 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:21 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:21 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:21 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:21 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:21 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:26:21 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Panic! At the Disco]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Panic! At the Disco', 'Matchbox Twenty', 'The Good Life', 'The Charade', 'Old Crow Medicine Show', 'Benny Ibarra', 'Richard Hell and the Voidoids', 'Viper', 'The Vibrators', 'Bo Kaspers Orkester', 'Marti Brom', 'Charlie Clouser', 'Isis Gee', 'Sexy Sushi', 'Die Sektor', 'Cattle Decapitation', 'Hashisheen', 'Bill Haley and the Comets', 'T-Bone Walker', 'David Axelrod']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Bon Iver]: Ranks 3
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Patrick Wolf', 'Laurent Wolf', 'Equilibrium', 'Bon Iver', 'Rob Dougan', 'Solar Fake', 'The Armada', 'Klimt 1918', 'Luxúria', 'Bob Seger & the Silver Bullet Band', 'blink-182', 'Alpha Quadrant', 'Woody Guthrie', 'Flight of the Conchords', 'Gramofocas', 'resident hero', 'Novembre', 'Shirley Bassey', 'Poison', 'Brooks & Dunn']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Cavalera Conspiracy]: Ranks 3
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Armor for Sleep', 'Sevendust', 'The Academy Is...', 'Cavalera Conspiracy', 'B.B. King & Eric Clapton', 'Delia Derbyshire', 'Luc Ferrari', 'Trost', 'Just Surrender', 'Yagya', 'Stillife', 'Exxasens', 'Marcy Playground', 'Awa-Klash', 'The Drifters', "Shakespear's Sister", 'Francis Lai', 'Varius Manx', 'Tribraco']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Editors]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Editors', 'Damien Rice', 'Lisa Hannigan', 'Nicole Scherzinger', 'Tantric', 'The Midnight Beast', 'Belie My Burial', 'Patti Scialfa', 'Aleks Syntek', 'Supernova', 'Sanctus Real', 'Joey Negro', 'Elvira', 'Ларик Сурапов', 'Headhunter', 'HealeyIsland', 'Devourment', 'Banda Eva', 'Ill Niño', 'Traff!c']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Angra]: Ranks 5
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Luna', 'Thomas Dybdahl', 'Buffalo Daughter', 'The Soundlovers', 'Mamma Mia!', 'Angra', 'Phil Vassar', 'Nashville Pussy', 'Volta Do Mar', 'Prurient', 'Leighton Meester', 'The Soft Pink Truth', 'Akira Yamaoka', 'Man Overboard', 'Decence', 'mclusky', 'Bullets and Octane', 'Kylie Minogue', 'Ween', 'Original Broadway Cast']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [pornophonique]: Ranks 16
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['MGMT', 'The Antlers', 'The Raveonettes', 'Vitalic', 'UnSun', 'Fantasia', 'Wagon Christ', 'Azad', 'Vanessa da Mata', 'Kevin Johansen', 'Edyta Górniak', 'The Allman Brothers Band', 'Kara', 'The Left Rights', 'Audible', 'Maladroit', 'pornophonique', 'Sema', 'Ideя Fix', 'Dunham Van Durham']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Ólafur Arnalds]: Ranks 9
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Tim Hecker', 'Nick Cave and the Bad Seeds', 'John Frusciante', 'Bill Frisell', 'The Kinks', 'Stone Temple Pilots', 'Soulthrow', 'The Lemonheads', 'Bullet for My Valentine', 'Ólafur Arnalds', 'Angels & Airwaves', 'Raccoo-oo-oon', 'ZARD', 'Paula Abdul', 'The Little Hands of Asphalt', 'Wallis Bird', 'Anvil', 'Смысловые Галлюцинации', 'Robert Pattinson', 'Glejs']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Deichkind]: Ranks 1
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['The Smiths', 'Deichkind', 'Leonard Cohen', 'Chicane', 'Ordo Rosarius Equilibrio', 'Cat Power', 'Moneen', 'Burnt Friedman & Jaki Liebezeit', 'Z Prochek', 'Clint Black', 'David Fonseca', 'Dirty Pretty Things', 'Riccardo Cocciante', 'Andre 3000', '7000$', 'Limp Bizkit', 'Hello Saferide', 'The Rocket Summer', 'Dierks Bentley', 'Pitch Black']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Dinosaur Pile-Up]: Ranks 2
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['A', 'The Raconteurs', 'Dinosaur Pile-Up', 'Masterplan', 'Jack Off Jill', 'Uncle Dave Macon', 'Charlie Brown Jr.', "Leaves' Eyes", 'Roger Sanchez', 'Cell', 'Star One', 'Pig & Dan', 'Cobra Starship', 'Bachman-Turner Overdrive', 'Nina Gordon', 'Los Pericos', 'skins', 'Cajun Dance Party']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Eirik Hansen og Ove Randow]: Ranks 12
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['2002', 'Cocoon', "The La's", 'M. Pokora', 'Leo Brouwer', 'Sylvain Chauveau', 'Riccardo Cocciante', 'J.R. Writer', 'Skin', 'Desmond Child', 'Jets to Brazil', 'Yasemin Mori', 'Eirik Hansen og Ove Randow', 'Cantodiscanto', 'The Wagner logic', 'Panna Fredda', 'Roberto Carlos', 'Hayley Williams', 'Maserati', 'Dana Glover']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Vanessa da Mata]: Ranks 5
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['IAMX', 'McAlmont & Butler', 'The Soft Boys', 'Eskmo', 'War From a Harlots Mouth', 'Vanessa da Mata', 'Oddział Zamknięty', 'PMtoday', 'Orchid', 'The Shroud', 'Rolfe Kent', 'Virgin', 'Impellitteri', 'Faust Again', 'Lightning Bolt', 'Meg', 'Maldita', 'Sean Paul', 'Rippingtons', 'Peter Brötzmann']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [La Roux]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['La Roux', 'Twin Shadow', 'Kylie Minogue', 'Stereolab', 'Chicane', 'Phil Vassar', 'Powderfinger', 'This Is Hell', 'Metal Church', 'Ordo Rosarius Equilibrio', 'The Pains of Being Pure at Heart', 'Bochum Welt', 'Drumcorps', 'The Twins', 'O Jardim das Horas', 'Joe Budden', 'Leighton Meester', 'Bloody Dead and Sexy', 'Illusion of Light', 'Roupa Nova']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Marilyn Manson]: Ranks 2
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Paul Oakenfold', 'Wheatus', 'Marilyn Manson', 'Billy Bragg and The Blokes', 'Apollo Brown', 'Dulce María', 'Aghora', 'Cyber Whore meets Krachmaschine', 'Flotsam and Jetsam', 'Fikret Kızılok', 'Aggro Santos', 'The Pioneers', 'Doubting Thomas', 'ГДР', 'NEVERSMILE', 'CjClip', 'Zezé Di Camargo & Luciano', 'Hi:BRiD', 'Wast3', 'Кипелов']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Tom Waits]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Tom Waits', 'Chicane', 'Charly García', 'The Juliana Theory', 'Less Than Jake', 'Mr Hudson & The Library', 'Afromental', 'Pidżama Porno', 'Saia Rodada', 'Rome', 'Willie Nelson', 'Cheiro de Amor', 'Vital Remains', 'Future World Music', 'Corona', 'Disgorge', 'Sodom', 'Primordial', 'Tila Tequila', 'The Ascendicate']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Walls of Jericho]: Ranks 3
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Page & Plant', 'Akron/Family', 'Ulver', 'Walls of Jericho', 'Mr Hudson & The Library', 'Future World Music', 'Chicane', 'Afromental', 'The Moody Blues', 'Blue Zoo', 'Damageplan', 'Jets to Brazil', 'Charly García', 'Noisecontrollers', 'The Ascendicate', 'Saia Rodada', 'Siouxsie and the Banshees', 'Aqua', 'Cheiro de Amor']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [The Script]: Ranks 1
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Lily Allen', 'The Script', 'Eminem', 'Busted', 'Michael Gray', 'Karima Francis', 'Martina Topley-Bird', 'The Tunics', 'Feindflug', 'Eternal Tears of Sorrow', 'Venetian Snares', 'SONOIO', 'Tobias Bernstrup', 'Preemptive Strike 0.1', 'Hush', 'Javier Navarrete', 'Robin Skouteris', 'Söhne Mannheims', 'Joan Manuel Serrat', 'The Narcicyst']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [The Kinks]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['The Kinks', 'blink-182', 'The Microphones', 'Cyndi Lauper', 'Michael Giacchino', 'Jonny Lang', 'Femi Kuti', 'Mecano', 'Dance Gavin Dance', 'Prophetic Dream', 'Stanfour', 'Alexz Johnson', 'Brooks & Dunn', 'Roger Ridley', 'Jessie James', 'Under the Influence of Giants', 'Hora', 'Kopflast', 'The Perishers', '℃-ute']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Luke Vibert]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Luke Vibert', 'TOKiMONSTA', 'Buckethead', 'Karlheinz Stockhausen', 'The Postal Service', 'Killing Joke', 'Edyta Górniak', 'Gerry Mulligan', 'Sean Kingston', 'Ennio Morricone', 'Agent Orange', 'Silent Descent', 'Los Tres', 'Jason Walker', 'Apostle of Hustle', 'Digital Summer', 'LaFee', 'Willy DeVille', 'Bush', 'I']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Tool]: Ranks 2
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Anarbor', 'Girl Talk', 'Tool', 'Cartel', 'Mates of State', 'Neneh Cherry', 'Zombie Ghost Train', 'Mono Inc.', 'Kreator', 'Lindsay Lohan', '中島美嘉', 'The Meteors', 'Pizzicato Five', 'Gray Strawberries', 'Schock', 'Hillsong', "Lil' Scrappy", 'Why?', 'P24', 'Tanghetto']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Patrick Stump]: Ranks 8
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['The xx', 'Lights Out Asia', 'Orgy', 'Deadlock', 'Neon', 'DJ Antoine', 'Krezip', 'Foreigner', 'Patrick Stump', 'Echo Image', 'Cameron Mizell', 'Lego Feet', 'Shirley Bassey', 'Keith Urban', 'Garotos Podres', 'Luxúria', 'The Buggles', 'Кино', 'The Pussycat Dolls', 'Deep Purple']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [David Guetta]: Ranks 2
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['The Birthday Massacre', 'Arch Enemy', 'David Guetta', 'Alisa Jones', 'Simon Curtis', 'Alexia', 'Zhong Chi', 'New Musik', 'Au Revoir Simone', 'Gang Gang Dance', 'Don Henley', 'Los Auténticos Decadentes', 'Alyson Stoner', 'Hex Rx', 'Farid Farjad', 'Sabonetes', 'Petra', 'Atom and His Package']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Melanie Fiona]: Ranks 2
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['The Script', 'U2', 'Melanie Fiona', 'Take That', 'Thousand Foot Krutch', 'Deftones', 'Asobi Seksu', 'The Departure', 'Sonny Rollins', 'The American Dollar', 'Swallow the Sun', 'SCSI-9', 'The Skatalites', 'Cledus T. Judd', 'Diante do Trono', 'O.C.', 'Beseech', 'Vineyard Music', 'Kronos', "Drewsif Stalin's Musical Endeavors"]]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Green Day]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Green Day', 'Nada Surf', 'Cory Monteith', 'drake and lil wayne', 'The Automatic', 'Petey Pablo', 'Diana Ross and The Supremes', 'Ornette Coleman', 'Zoot Woman', 'Eek-A-Mouse', 'DatA', 'The Paul Butterfield Blues Band', 'People Under the Stairs', 'Treat', 'Odd Nosdam', 'Paul Schwartz', 'Noemi', 'Os Seminovos', 'Humble Pie', 'Bikini Kill']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Brooke Fraser]: Ranks 19
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Darkthrone', 'Akira Yamaoka', 'Solar Fake', 'Rue du Soleil', 'Luxúria', 'Mice Parade', 'Cameron Mizell', 'Mark Farina', 'Brooks & Dunn', 'Krezip', 'Phoenix', 'Innerpartysystem', 'Flicts', 'South Park', 'Steppenwolf', 'Bachelor Girl', 'Alpha Quadrant', 'Lego Feet', 'Timbuk 3', 'Brooke Fraser']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Ekhymosis]: Ranks 6
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Ashlee Simpson', 'Flight of the Conchords', 'DJ Antoine', 'Shirley Bassey', 'Ke$ha', 'Patrick Wolf', 'Ekhymosis', 'Luxúria', 'Equilibrium', 'Rob Dougan', 'Novembre', 'Black Heaven', 'Klimt 1918', 'Foreigner', 'The Buggles', 'Mukeka Di Rato', 'Alpha Quadrant', 'Solar Fake', 'Zeplin', 'Lego Feet']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Nocturnal Depression]: Ranks 1
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Wolves in the Throne Room', 'Nocturnal Depression', 'Chuck Berry', 'Poison', 'Donovan', 'Symarip', 'Generation X', 'The Pussycat Dolls', 'Kings of Convenience', 'E-Craft', 'Dave Koz', 'Keith Urban', 'Cage the Elephant', 'Tristeza', 'Gökhan Kırdar', 'Wander Wildner', 'Jim Sturgess', 'Ryan Tedder', 'Robin Skouteris', 'Peja']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Keri Hilson]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Keri Hilson', 'Matt & Kim', 'Chicane', 'Sabrina', 'Simple Minds', 'Phildel', 'Amber Pacific', 'John Scofield', 'Mike Patton', 'Paul Westerberg', 'The Chameleons', 'Ceremony', 'Uniklubi', 'Alexander V.Mogilco', 'Sonny Black & Frank White', 'Random Number', 'Ryan Tedder', '分島花音', 'The Mount Fuji Doomjazz Corporation', 'Fukkk Offf']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Benjamin Francis Leftwich]: Ranks 14
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Sneaker Pimps', 'Blur', 'STS9', 'Dikta', 'The Alan Parsons Project', 'Agua de Annique', 'Gotye', 'Keith Urban', 'Throwing Muses', 'Mescalito', 'Dennis Wilson', 'Madvillain', 'Cannibal Ox', 'Haujobb', 'Benjamin Francis Leftwich', 'Sam Cooke & the Soul Stirrers', 'Timo Maas', 'Hardneja Sertacore', 'The Pussycat Dolls', 'Dinosaur Jr.']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Violet Indiana]: Ranks 4
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['pg.lost', 'Cocoon', '2002', 'Sylvain Chauveau', 'Violet Indiana', 'Los Straitjackets', 'Matt Pond PA', 'Yasemin Mori', 'Roberto Carlos', 'Varius Manx', 'Riccardo Cocciante', 'Desmond Child', 'M. Pokora', 'Avant', 'Dvar', 'Panna Fredda', 'Dana Glover', 'Soft Machine', 'Leo Brouwer', 'Samael']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Kasabian]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Kasabian', 'The xx', 'Voxtrot', 'Cut Chemist', 'Luna', 'Chicane', 'Seal', 'blink-182', 'Orgy', 'Napalm Death', 'Michael Gray', 'Doro', 'Pretty Poison', 'Echo Image', 'Locanda delle Fate', "Z'EV", 'ＶａｎｅｓｓＡ', 'DOGinTheパラレルワールドオーケストラ', 'dJ mAx dReamer', 'Brooks & Dunn']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Lil Mama]: Ranks 4
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Pia Toscano', 'Jewel', 'God Help the Girl', 'Dj.M', 'Lil Mama', 'Astrobrite', 'Titus Andronicus', 'Xavier Rudd', 'Imperia', 'Allen/Lande', 'Eskmo', 'Ill Niño', 'Operation Ivy', 'Seven Percent Solution', 'Uakti', 'Catch 22', 'Les Jumeaux', 'Soundtracks', 'REO Speedwagon', 'Head']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Riverside]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Riverside', 'Rob Dougan', 'Luxúria', 'Ashlee Simpson', 'Solar Fake', 'Alcian Blue', 'Suara', 'And', 'Little Grey Girlfriend', 'Rue du Soleil', 'Foreigner', 'Afromental', 'Patrick Wolf', 'Ke$ha', 'Come Undone', 'Alpha Quadrant', 'Linton Kwesi Johnson', 'Claude VonStroke', 'Lego Feet', 'Кино']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Massive Attack]: Ranks 1
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Leonard Cohen', 'Massive Attack', 'Alice in Chains', 'Static-X', 'Great White', 'The Outfield', 'Fluke', 'Thousand Foot Krutch', 'Die Ärzte', 'Buckethead', 'Fresno', 'M. Pokora', 'Mark Snow', 'Los Tres', 'Patti Scialfa', 'Karlheinz Stockhausen', 'Coroner', 'Carlos Barbosa-Lima', 'Doomsday Refreshment Committee']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Janelle Monáe]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Janelle Monáe', 'Phoenix', 'blink-182', 'Judas Priest', 'Grendel', 'Loco Dice', 'Funkstörung', 'Suara', 'South Park', 'Mark Farina', 'Panzer AG', 'Alcian Blue', 'Rue du Soleil', 'Afromental', 'Luxúria', 'And', 'Come Undone', 'Little Grey Girlfriend', 'Lego Feet', 'Lily Allen']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Britney Spears]: Ranks 1
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['VV Brown', 'Britney Spears', 'David Sylvian', 'Bad Company', 'Locksley', '3OH!3', 'Jessy Matador', 'Kim Carnes', 'Dog Fashion Disco', 'Gojira', 'Idiot Pilot', 'M. Pokora', 'Chester French', 'Kabah', 'Phil Wickham', 'U2', 'Пикник', 'Nuclear Rabbit', 'means', 'Netsky']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Glee Cast]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Glee Cast', 'Elliot Minor', 'Pet Shop Boys', 'Heather Dale', 'Galneryus', 'Kaya', 'Umaturman', 'Matthew Morrison', 'Salad', 'Lujuria', 'Jaime Camil', 'Tommy Sparks', 'C-Bool', 'Free', 'Asia Minor', 'Rascal Flatts', 'Crispin Hellion Glover', 'Brenna MacCrimmon', 'Chromatics', 'Cristina Branco']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [skins]: Ranks 18
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Skunk Anansie', 'Suara', 'No Use for a Name', 'Heidi Montag', 'Gramophonedzie', 'Ke$ha', 'Fokus', 'MBrother', 'Luxúria', 'Технология', 'AFX', 'DFC', 'General Patton vs. The X-Ecutioners', 'Pzychobitch', 'Dawn of Ashes', 'Laurent Garnier', 'Linton Kwesi Johnson', 'Little Grey Girlfriend', 'skins', 'Johnny Hollow']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Carrie Underwood]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Carrie Underwood', 'Firehouse', 'Boney neM', 'Dark Phenomenon', 'Static-X', 'Zero Boys', 'Vincent Atmicus', 'Martin Solveig', 'The Mothers of Invention', 'Loop Guru', 'Kotipelto', 'David Bustamante', 'Forest Swords', 'Henryk Górecki', 'Andrea Corr', 'Thom Hell', 'Cotton Mather', 'The Heartbreakers', 'Will Smith', 'Carpenters']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Christina Aguilera]: Ranks 2
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['The Duke Spirit', 'Róisín Murphy', 'Christina Aguilera', 'New York Dolls', 'Dark Tranquillity', 'Fangoria', 'Gökhan Kırdar', 'This Will Destroy You', 'Rain Tree Crow', 'USA for Africa', 'Wander Wildner', 'Peja', 'Under Byen', 'Bad Brains', 'Robin Skouteris', 'Free the Robots', 'Rotersand', 'Antonio Vivaldi', 'Japan']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [The National]: Ranks 1
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['blink-182', 'The National', 'Darkthrone', 'Claude VonStroke', 'Luxúria', 'Alcian Blue', 'Suara', 'Linton Kwesi Johnson', 'And', 'Rue du Soleil', 'Brooks & Dunn', 'Afromental', 'Little Grey Girlfriend', 'Patrick Wolf', 'Spektralized', 'South Park', 'Lego Feet', 'Come Undone', 'Slum Village', 'The Cult']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Fyfe Dangerfield]: Ranks 11
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Novembre', 'Amplifier', 'Patrick Wolf', 'Laurent Wolf', 'The Cult', 'Little Grey Girlfriend', 'Luxúria', 'Lego Feet', 'The Dreamside', 'Shirley Bassey', 'Suara', 'Fyfe Dangerfield', 'Pezet', 'Linton Kwesi Johnson', 'Spektralized', 'Noctura', 'Burzum', 'The Pussycat Dolls', 'And']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Aerosmith]: Ranks 7
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Stormlord', 'Thrones', 'Avalanch', 'Vixen', 'Breathe Carolina', 'Switchblade Symphony', 'Albert Collins', 'Aerosmith', 'Let 3', 'Urge Overkill', 'Mephisto Walz', 'The Shroud', 'Enrico Ruggeri', 'Volcano Choir', 'Violet Indiana', 'Espers', 'Mary Elizabeth McGlynn', 'Marin Marais', 'Magna Canta', 'Nâdiya']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Vlada Tomova]: Ranks 10
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Karima Francis', 'Modern English', 'Asia', 'The Pussycat Dolls', 'Mitchel Musso', 'Blur', 'Keith Urban', 'Söhne Mannheims', 'The Tunics', 'Robin Skouteris', 'Vlada Tomova', 'Cannibal Ox', 'Haujobb', 'Joan Manuel Serrat', 'Tarot', 'Logan', 'Tobias Bernstrup', 'The Narcicyst', 'Юта', 'Soma Sonic']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Underoath]: Ranks 4
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['The Last Goodnight', 'New Order', 'The Twilight Sad', 'David Sylvian', 'Underoath', 'Venetian Snares', 'Edguy', 'Dub Incorporation', 'Feindflug', 'General Patton vs. The X-Ecutioners', 'Peja', 'Traveling Wilburys', 'Pretty Poison', 'Ke$ha', 'Robin Skouteris', 'Preemptive Strike 0.1', 'Hevia', 'Frank Jorge', 'BTR', 'The Feelies']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [frYars]: Ranks 5
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Vangelis', 'The Police', 'Eminem', 'ДДТ', 'Agonoize', 'frYars', 'Luxúria', 'Laurent Wolf', 'Afromental', 'Ashlee Simpson', 'Linton Kwesi Johnson', 'Alcian Blue', 'And', 'Little Grey Girlfriend', 'Shirley Bassey', 'Suara', 'Come Undone', 'Lego Feet', 'Darkthrone', 'Lowe']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Hush]: Ranks 18
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['blink-182', 'Laurent Wolf', 'Deep Purple', 'Orgy', 'Foreigner', 'Novembre', 'The Buggles', 'Brooks & Dunn', 'Şivan Perwer', 'Klein & Mbo', 'Afromental', 'Garotos Podres', 'Echo Image', 'Krezip', 'Cameron Mizell', 'Mark Farina', 'Luxúria', 'Alcian Blue', 'Hush', 'Come Undone']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Circa Survive]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Circa Survive', 'Mogwai', 'Kalmah', 'New York Dolls', 'Anders Manga', 'Rotersand', 'Eisblume', 'The Whitest Boy Alive', 'Los Brincos', 'cut.rate.box', 'Ben Harper & The Innocent Criminals', 'Alex Beaupain', 'The Bolshoi', 'Japan', 'Mark Snow', 'Milk & Sugar', 'LA COCHINA', 'Christian Eigner', 'Eminem', 'Tom Novy']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [The-Dream]: Ranks 3
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Deadlock', 'Phoenix', 'The Cult', 'The-Dream', 'Grendel', 'Lights Out Asia', 'Panzer AG', '福原美穂', 'Lego Feet', 'Laurent Wolf', 'Generation X', 'Mike Stocksdale', 'Kylie Minogue', 'Mark Farina', 'Neon', 'Flicts', 'Luxúria', 'ДДТ', 'Burzum', 'The Pussycat Dolls']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Rebecca Black]: Ranks 4
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Eminem', 'Lily Allen', 'Electric Light Orchestra', 'Panzer AG', 'Rebecca Black', 'Grendel', 'Michael Giacchino', 'Frank Jorge', 'Phoenix', 'Timbuk 3', 'The Pepper Pots', 'Robin Skouteris', 'Chapterhouse', 'Girlschool', 'Lauryn Hill', 'The English Beat', 'DragonForce', 'Peja', 'Eddie Izzard', 'Gökhan Kırdar']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Katy Hudson]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Katy Hudson', 'The Parallel Project', 'Alphaville', 'Skye', 'Visage', 'Robert Johnson', 'Crippled Black Phoenix', 'Arcana', "L'Âme Immortelle", 'Loss of a Child', 'dJ mAx dReamer', 'Dark Funeral', 'Ted Nugent', 'Jagjit Singh', 'This Beautiful Republic', 'DOGinTheパラレルワールドオーケストラ', 'It Bites', 'ＶａｎｅｓｓＡ', 'Robin Skouteris']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [The Black Angels]: Ranks 9
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Devlin', 'Quietdrive', '+44', 'Blowsight', 'Kargo', 'Aghora', 'Monstrum', 'Fanny Lú', 'Marlene Kuntz', 'The Black Angels', 'Emilie Simon', 'Sultan Selim III', 'Jamie T', 'ГДР', 'Kish Mauve', 'Talamasca', 'Kym Marsh', 'Further Seems Forever', 'Dope Stars Inc.', 'blah blah tin']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Mirror]: Ranks 13
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Phoenix', 'Kylie Minogue', 'Laurent Wolf', 'Solar Fake', 'Equilibrium', 'Flight of the Conchords', 'Klimt 1918', 'Akira Yamaoka', 'ДДТ', 'Shirley Bassey', 'The Cult', 'Bob Seger & the Silver Bullet Band', 'Alpha Quadrant', 'Mirror', 'Luxúria', 'resident hero', 'Garotos Podres', 'Woody Guthrie', 'Poison', 'Trash Fashion']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Silbermond]: Ranks 14
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Aimee Mann', 'Sylvain Chauveau', 'Robbie Williams', '2002', 'Cantodiscanto', 'Panna Fredda', 'Yasemin Mori', 'Cocoon', 'Riccardo Cocciante', 'Leo Brouwer', 'The Wagner logic', 'Maserati', 'Lone', 'Dana Glover', 'Silbermond', 'Desmond Child', 'Five for Fighting', 'Roberto Carlos', 'Less Than Jake', 'Jurassic 5']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Diana]: Ranks 3
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [["Jane's Addiction", 'The Libertines', 'Q-Tip', 'Diana', 'Candice Alley', 'The Morning Light', 'Amanda Jenssen', 'Stromkern', 'Hot Pink Karma', 'Breach The Void', 'The Kilimanjaro Darkjazz Ensemble', 'Opéra de nuit', 'Faces', 'Charlie Feathers', 'Peter Gun', 'Ya Boy', 'Beto Quintanilla', 'D12', 'W.K.?', 'Паровоз На Резиновом Ходу']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Juju]: Ranks 17
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Akira Yamaoka', 'Nils Petter Molvær', 'Exodus', 'Phoenix', 'Lily Allen', 'Chicane', 'Silvio Rodríguez', 'Parálisis Permanente', 'John Waite', 'Voxtrot', 'Girlschool', 'The Alarm', 'VFSix feat. S.C.E.', 'Panzer AG', 'ＶａｎｅｓｓＡ', 'Grendel', "Z'EV", 'Juju', 'Kaskade', 'DOGinTheパラレルワールドオーケストラ']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Елена]: Ranks 19
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Emil Bulls', 'Equilibrium', 'Low Shoulder', 'Akron/Family', 'Leafblade', 'Shantel', 'X-Ray Dog', 'Boyz II Men', 'Chicane', 'Page & Plant', 'Manacá', 'Jets to Brazil', 'Ty Segall', 'Ministério Adoração e Vida', "Plain White T's", 'Run Level Zero', 'heidi.', 'The Human League', '高橋幸宏', 'Елена']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Diabolical Masquerade]: Ranks 1
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Ihsahn', 'Diabolical Masquerade', 'Russian Circles', 'Arakain', 'Sleetgrout', '盧巧音', 'Brett Anderson', 'Bajm', 'Jenny Berggren', '少女-ロリヰタ-23区', 'Pride & Glory', 'Silent Circle', '茅原実里', 'Miranda Cosgrove', 'Hank Thompson', 'U2', 'Mattafix', '13th Floor Elevators', 'Pat Boone']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Slum Village]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Slum Village', 'Thrice', 'Deftones', 'Prong', 'Mother Mother', 'Secret Chiefs 3', 'Orchestral Manoeuvres in the Dark', 'Lisa Hannigan', 'Black Eyed Peas', 'Patti Scialfa', 'Stavento', 'Alice Donut', 'Fozzy', 'U2', 'Carlos Barbosa-Lima', 'Kruder & Dorfmeister', 'Banda Eva', 'Blitz', 'Straylight Run', 'Aaliyah']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [The B-52's]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [["The B-52's", 'Enchant', 'The Dead Weather', 'Pat Benatar', 'The Knife', 'Lovex', 'Silvio Rodríguez', 'Single File', 'LA COCHINA', 'Enam', 'The Courteeners', 'Velvet Acid Christ', 'A Smile from the Trenches', 'Dale Hawkins', 'Louis Jordan and His Tympany Five', 'The Silk Demise', 'S.O.M.A.', 'Auburn', 'Chylińska']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Timbaland]: Ranks 7
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Roxy Music', 'French Teen Idol', 'Chicane', 'Soulsearcher', 'Cut Chemist', "L'Âme Immortelle", 'Arcana', 'Timbaland', 'Gondwana', 'Funeral for a Friend', 'Five Star', 'The Parallel Project', 'Locanda delle Fate', 'dJ mAx dReamer', 'DOGinTheパラレルワールドオーケストラ', 'Sadus', 'Brainstorm', 'ＶａｎｅｓｓＡ', "Flamin' Groovies", 'Negative']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Ana Flávia]: Ranks 3
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Mice Parade', 'Patrick Wolf', 'Solar Fake', 'Ana Flávia', 'Brooks & Dunn', 'Innerpartysystem', 'Krezip', 'Bachelor Girl', 'Cameron Mizell', 'Woody Guthrie', 'Akira Yamaoka', 'Laurent Wolf', 'Garotos Podres', 'Şivan Perwer', 'Self Against City', 'Shirley Bassey', 'Poison', 'Slum Village', 'Кино', 'The Cult']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Escape The Fate]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Escape The Fate', 'This Will Destroy You', 'Dropkick Murphys', 'Agalloch', 'Blutengel', 'Róisín Murphy', 'The Duke Spirit', 'Akira Yamaoka', 'The Smiths', 'USA for Africa', 'Free the Robots', 'Fangoria', 'Antonio Vivaldi', 'Under Byen', 'El Último Ke Zierre', 'Gökhan Kırdar', 'Rain Tree Crow', 'Robin Skouteris', 'Peja', 'Frank Jorge']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Stereophonics]: Ranks 2
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Limp Bizkit', 'Amaral', 'Stereophonics', 'Commodores', 'New York Dolls', 'Go:Audio', 'Chicane', 'Alien Vampires', 'Eisblume', 'Amduscia', 'Gregor Tresher', 'Tonikom', 'Robin Skouteris', 'Just Jack', 'Capella De Ministrers', 'Japan', 'Sieben', 'Gramofocas', 'Tom Novy', 'Exodus']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Gorillaz]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Gorillaz', 'Patrick Wolf', 'Tom Novy', 'Steve Angello & Sebastian Ingrosso', 'Akira Yamaoka', 'Vama Veche', 'Luxúria', 'Mark Snow', 'Estatic Fear', 'Spektralized', 'Hardneja Sertacore', 'Darkthrone', 'Brooks & Dunn', 'Dunham Van Durham', 'The Vanishing', "L'elan Vital", 'Dies Irae', 'Milk & Sugar', 'Steppenwolf', 'Slum Village']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Metallica]: Ranks 1
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['There Will Be Fireworks', 'Metallica', 'Magnet', 'The Puppini Sisters', 'Lady Antebellum', 'Souad Massi', 'Yellow Magic Orchestra', 'Kodek', 'Francis and the Lights', '4 Strings', 'Tangerine Dream', 'Mara Aranda & Solatge', 'An Obscure Signal', 'Susan Tedeschi', 'Masta Ace', 'Rev Theory', 'Duffy', 'Cock and Ball Torture', 'Kyn3ticXR']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Ray Charles]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Ray Charles', 'Nena', 'The Kinks', 'Gilberto Santa Rosa', 'Nando Reis', 'Edyta Górniak', 'Octavio Suñé', 'Hypnogaja', 'Blotted Science', 'Arabesque', 'LoveHateHero', 'Neon Trees', 'The Pipettes', 'Biosphere', 'LaFee', 'Jason Walker', 'Бригадный Подряд', 'Anaal Nathrakh', 'Killing Joke']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Radio Silence]: Ranks 10
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Black Lab', 'Fightstar', 'Tuxedomoon', 'Ska-P', 'Alison Moyet', 'The Bouncing Souls', '311', "Jack's Mannequin", 'Boney M.', 'WIZO', 'Radio Silence', 'Sixtoo', 'Stephan Bodzin', 'Nabyla Maan', 'Diddy', 'Eat Your Make-Up', 'Isis', 'БиС', 'Squeeze']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Frank Zappa]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Frank Zappa', 'Wall of Voodoo', 'Luxúria', 'Кино', 'Deep Purple', 'Orgy', 'DJ Antoine', 'Little Grey Girlfriend', 'Akira Yamaoka', 'Flight of the Conchords', 'Equilibrium', 'Noctura', 'Echo Image', 'Status Quo', 'Klimt 1918', 'Suara', 'Fokus', 'Shirley Bassey', 'DFC', 'The xx']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Eros Ramazzotti]: Ranks 1
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Tori Amos', 'Eros Ramazzotti', 'Matt Nathanson', 'Fugazi', 'The Zombies', 'Agoria', 'Dick Dale', 'Washed Out', 'Jay-Z and Linkin Park', 'Paris Hilton', 'Xavier Cugat', 'Wonkavision', 'Head', 'Cristina Mel', 'The Bouncing Souls', 'Curiosity Killed the Cat', 'Amber Pacific', 'Marc Almond', 'Matthew Dear', 'Tender Trap']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [The Velvet Underground]: Ranks 4
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Antimatter', 'Chicane', 'Black Label Society', 'Jim Croce', 'The Velvet Underground', 'Lily Allen', 'John Zorn', 'Ke$ha', 'Secret Secret Dino Club', 'Papercuts', "Plain White T's", 'Bedouin Soundclash', 'Tommy Emmanuel', 'Elvira Nikolaisen', 'Page & Plant', 'Six Feet Under', 'Disgorge', 'Håkon Kornstad', 'Cheiro de Amor', 'mind.in.a.box']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Bow Wow Wow]: Ranks 3
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Neon', 'Laurent Wolf', 'Lights Out Asia', 'Bow Wow Wow', 'Klein & Mbo', 'Spektralized', 'Lego Feet', 'Deadlock', 'Garotos Podres', 'Shirley Bassey', 'Deep Purple', 'Brooks & Dunn', 'Cameron Mizell', 'Krezip', 'Foreigner', 'blink-182', 'Woody Guthrie', 'Slum Village']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [L.A. Guns]: Ranks 1
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Marilyn Manson', 'L.A. Guns', 'Alice in Chains', 'Phildel', 'Chicane', 'Hilltop Hoods', 'Stoneface & Terminal', 'Toro y Moi', 'John Scofield', 'Paul Westerberg', 'Cosmosis', 'Ceremony', 'Alexander V.Mogilco', 'The Mount Fuji Doomjazz Corporation', 'Random Number', 'Sonny Black & Frank White', 'Ennio Morricone', '分島花音', 'Robin Williams', 'Massacration']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Ken Hensley]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Ken Hensley', 'McAlmont & Butler', 'Meredith Brooks', 'The Script', 'Digital Summer', 'Ibrahim Ferrer', 'Quietdrive', 'UnsraW', 'Satanic Warmaster', 'The Ace Cats', '茅原実里', 'Les Anges De La Nuit', "Luca Turilli's Dreamquest", "K'naan", 'Eliana', 'Giusy Ferreri', 'Elissa', 'Leilah Moreno', 'The Cast Of Buffy The Vampire Slayer', 'Dick Dale and His Del-Tones']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Gentle Giant]: Ranks 5
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Sieben', 'Ruxpin', 'AFX', 'Rotersand', 'DOGinTheパラレルワールドオーケストラ', 'Gentle Giant', 'New Order', 'The Birthday Massacre', 'Eternal Tears of Sorrow', 'Sigue Sigue Sputnik', 'ＶａｎｅｓｓＡ', 'Brittany Murphy & Paul Oakenfold', 'cut.rate.box', 'Los Auténticos Decadentes', 'dJ mAx dReamer', 'Busted', 'Go:Audio', 'Exodus', 'Milk & Sugar', 'Seal']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Neon Trees]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Neon Trees', 'Eminem', 'The Smiths', 'Róisín Murphy', 'Dark Tranquillity', 'Julie London', 'Bush', 'Martina Topley-Bird', 'LA COCHINA', 'Maria del Mar Bonet', 'Raindancer', 'Astonvilla', 'A Silver Mt. Zion', 'Eisblume', 'Thunderball', 'Faster Pussycat', 'Tom Novy', 'Ceramic Hello', 'Wynardtage', 'The Tunics']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Liquido]: Ranks 10
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['The Beach Boys', 'Skin', 'Museo Rosenbach', 'Richard Walters', 'Ry Cooder', 'Niyaz', 'STS9', 'Steve Roach', 'Dana Glover', "The La's", 'Liquido', 'Q and Not U', 'Calcinha Preta', 'Dorival Caymmi', 'M. Pokora', 'Lackluster', 'Latterman', 'Go Betty Go', "Christina Aguilera, Lil' Kim, Mya & Pink", 'Volcano Choir']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [The Dangerous Summer]: Ranks 19
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['The Rembrandts', 'Black Sabbath', 'Francis Cabrel', 'Matt Pond PA', 'Campo di Marte', 'Los Straitjackets', 'Far East Movement', 'Cocoon', 'Sylvain Chauveau', 'Dvar', 'Riccardo Cocciante', 'Leo Brouwer', 'Avant', 'Desmond Child', 'Dana Glover', 'Rachel Stevens', 'Yasemin Mori', 'pg.lost', 'Roberto Carlos', 'The Dangerous Summer']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Chicks on Speed]: Ranks 12
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Grouper', 'Schiller', 'Nicole Atkins', 'Сны Моего Неба', 'The Coasters', 'Lhasa', 'Candlebox', 'Grandaddy', 'The Ordinary Boys', 'Xandria', 'RBD', 'Solex', 'Chicks on Speed', 'Tom Zé', 'Franco de Vita', 'Devics', 'LaVern Baker', 'Trap Them', 'George Michael', 'The Manges']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Florence + the Machine]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Florence + the Machine', 'Aimee Mann', 'Girls Aloud', '2002', 'Five for Fighting', 'Black Sabbath', 'Less Than Jake', 'Dana Glover', 'Sylvain Chauveau', 'Cocoon', 'Jurassic 5', 'Maserati', 'Panna Fredda', 'Yasemin Mori', 'The Wagner logic', 'Cantodiscanto', 'Leo Brouwer', 'Riccardo Cocciante', 'Roberto Carlos', 'Desmond Child']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Lynyrd Skynyrd]: Ranks 1
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Judas Priest', 'Lynyrd Skynyrd', 'At the Gates', 'Evans Blue', 'No Use for a Name', 'Grendel', 'Mike Stocksdale', 'Panzer AG', 'Laurent Garnier', 'Flicts', 'Luxúria', 'General Patton vs. The X-Ecutioners', 'Fantastic Plastic Machine', 'Phoenix', '福原美穂', 'Gramophonedzie', 'MBrother', 'blink-182', 'Kylie Minogue', 'Lego Feet']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Bruno Mars]: Ranks 15
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Grizzly Bear', 'Roxy Music', 'Shapeshifters', 'Chicane', 'The Books', 'Anvil', 'Funeral for a Friend', 'Terminal Choice', 'Santa Hates You', 'Shora', 'Ruxpin', 'DOGinTheパラレルワールドオーケストラ', 'Brittany Murphy & Paul Oakenfold', 'Napalm Death', 'dJ mAx dReamer', 'Bruno Mars', 'Si', 'ＶａｎｅｓｓＡ', "Flamin' Groovies", 'The Young Veins']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Black Sabbath]: Ranks 1
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['New Order', 'Black Sabbath', 'Coil', 'Darkest Hour', 'The Birthday Massacre', 'Rain Tree Crow', 'This Will Destroy You', 'The Duke Spirit', 'Dawn of Ashes', 'Free the Robots', 'Wander Wildner', 'Zélia Duncan', 'Alesha Dixon', 'Pzychobitch', 'Robin Skouteris', 'The Last Goodnight', 'Peja', 'BTR', 'Bad Brains']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [M83]: Ranks 1
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Elane', 'M83', 'Orianthi', 'The Twilight Sad', 'Lights of Euphoria', 'Dead by Sunrise', 'Julian Casablancas', 'Serebro', 'Zeki Müren', 'Renato Carosone', 'Yolanda Be Cool & DCUP', 'Company Flow', 'Sam Tsui', 'Smolik', 'Francis and the Lights', 'I Would Set Myself on Fire for You', 'Naked Eyes', 'Disarmonia Mundi', 'B.G.K.', 'عمر دياب']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Yolanda Be Cool]: Ranks 1
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Ke$ha', 'Yolanda Be Cool', 'Faster Pussycat', 'Just Jack', 'Alien Vampires', 'Amduscia', 'Fenix TX', 'Crippled Black Phoenix', 'Robin Skouteris', 'Dark Tranquillity', 'DOGinTheパラレルワールドオーケストラ', 'Parálisis Permanente', 'Laurent Garnier', 'Lily Allen', 'Chicane', 'The Alarm', 'Tristeria', 'ＶａｎｅｓｓＡ', 'dJ mAx dReamer', 'YACHT']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [The Pretty Reckless]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['The Pretty Reckless', 'Black Sabbath', 'Aimee Mann', 'Five for Fighting', '2002', 'Rachel Stevens', 'Yasemin Mori', 'Cocoon', 'Roberto Carlos', 'Desmond Child', 'Sylvain Chauveau', 'Cantodiscanto', 'Jurassic 5', 'Riccardo Cocciante', 'Dana Glover', 'The Wagner logic', 'Maserati', 'Less Than Jake', 'Panna Fredda']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [7 Year Bitch]: Ranks 12
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Kings of Convenience', 'Deep Purple', 'E-Craft', 'Library Tapes', 'Wolves in the Throne Room', 'Bob Seger & the Silver Bullet Band', 'The Buggles', 'Foreigner', 'Smoke City', 'The Armada', 'Noctura', 'resident hero', '7 Year Bitch', 'Gramofocas', 'Self Against City', 'Little Grey Girlfriend', 'Submersed', 'Solerrain', 'Say Hi', 'The Pussycat Dolls']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [The Horrors]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['The Horrors', 'Deadlock', 'Novembre', 'Akira Yamaoka', 'Luxúria', 'Neon', 'Krezip', 'Slum Village', 'Garotos Podres', 'Spektralized', 'Lights Out Asia', 'Mark Farina', 'Klein & Mbo', 'Burzum', 'Laurent Wolf', 'Lego Feet', 'Brooks & Dunn', 'Generation X', 'Cameron Mizell', 'Steppenwolf']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Seether]: Ranks 3
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Lily Allen', 'blink-182', 'Vangelis', 'Seether', 'Krezip', 'Laurent Wolf', 'The Police', 'Darkthrone', 'Deadlock', 'Neon', 'ДДТ', 'Agonoize', 'Porta', 'Cameron Mizell', 'Garotos Podres', 'Shirley Bassey', 'Lowe', 'Klimt 1918', 'Lego Feet', 'Luxúria']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [David Archuleta]: Ranks 1
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Ke$ha', 'David Archuleta', 'Dropkick Murphys', 'White Lies', 'Japan', 'Fangoria', 'Ryan Tedder', 'Donovan', 'Blutengel', 'The Whitest Boy Alive', 'Jim Sturgess', 'El Último Ke Zierre', 'Gökhan Kırdar', 'Robin Skouteris', 'Cage the Elephant', 'Windir', 'Symarip', 'Wander Wildner', 'Peja', 'Tristeza']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [TeddyLoid]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['TeddyLoid', 'Luxúria', 'Deadlock', 'Laurent Wolf', 'Lights Out Asia', 'Klein & Mbo', 'Echo Image', 'Neon', 'Garotos Podres', 'Cameron Mizell', 'Wall of Voodoo', 'South Park', 'Brooks & Dunn', 'Mark Farina', 'Orgy', 'blink-182', 'Status Quo', 'Deep Purple']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Foreigner]: Ranks 1
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Black Sabbath', 'Foreigner', 'Lily Allen', 'The Wallflowers', 'Keith Sweat', 'Grant Green', 'Norman Brown', "Sérgio Mendes & Brasil '66", 'Faith Hill', 'Happy Mondays', 'Leighton Meester', 'Daniela Mercury', 'Attack In Black', 'Bill Frisell', 'The Black Box Revelation', 'Fernandinho', 'Los Auténticos Decadentes', 'Pestilence', 'Cross Examination', 'Neil on Impression']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Deep Purple]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Deep Purple', 'YOB', 'Godsmack', 'Scale The Summit', 'Mac Miller', 'Vitalic', 'Strep', 'Jets to Brazil', 'A Smile from the Trenches', 'Algernon Cadwallader', 'One Morning Left', 'Skeletal Family', 'dEUS', 'Borko', 'Jawbreaker', 'Kodek', 'Das Racist', 'Özgün Akay', 'Bonanza Banzai', 'Dsh! Dsh!']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Beach House]: Ranks 13
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Ella Fitzgerald', 'Alex Ubago', 'Carole King', 'Lovex', 'OBK', 'Marco Masini', 'Leoni', 'Elysian Fields', 'City In The Sea', 'Mice Parade', 'Bertine Zetlitz', 'Jan Garbarek Group', 'I Monster', 'Beach House', 'Dakota', 'Zomby', 'Stealers Wheel', 'Charlie Daniels Band', "Martin O'Donnell & Michael Salvatori", 'Алла Пугачёва']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Adymus]: Ranks 5
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['The Books', 'Martina Topley-Bird', 'Oliver Koletzki', 'Tom Novy', 'Dikta', 'Adymus', 'Santa Hates You', 'Mescalito', 'Darkest Hour', 'Terminal Choice', 'Brooks & Dunn', 'blink-182', 'The Vanishing', 'Vama Veche', 'Hardneja Sertacore', 'Estatic Fear', 'Accept', 'Saxon Shore', 'Dunham Van Durham', 'Bush']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [New Found Glory]: Ranks 1
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Tame Impala', 'New Found Glory', 'French Kicks', 'Hillsong United', 'Callejón', 'Sunday Girl', 'Ercan Irmak', 'Mujuice', 'Haemorrhage', 'Rita Lee & Tutti Frutti', 'Jay-Z and Linkin Park', 'Kumm', 'Mystikal', 'Advent', 'Ray', 'Esem', 'Faun Fables', 'access']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [O-HUM]: Ranks 2
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Niyaz', 'Ry Cooder', 'O-HUM', 'Volcano Choir', 'Yasemin Mori', 'M. Pokora', 'Riccardo Cocciante', 'Varius Manx', 'Steve Roach', 'Latterman', 'Cocoon', 'Museo Rosenbach', 'Desmond Child', 'Two Lone Swordsmen', "Christina Aguilera, Lil' Kim, Mya & Pink", 'Roberto Carlos', 'Dana Glover', 'Leo Brouwer', 'Soft Machine', 'Hayley Williams']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [God Is an Astronaut]: Ranks 16
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['New Years Day', 'Yashin', 'Midnight Oil', 'Amerie', 'Cadaveria', 'Bomba Estéreo', 'Edurne', 'Orbital', 'And One', 'DJ Spooky', '石井妥師', 'Lejla Jusic', 'Roberto Vecchioni', 'The Dave Brubeck Quartet', 'Gramofocas', 'Keaver & Brause', 'God Is an Astronaut', 'Skepticism', 'SADS', 'Zac Brown Band']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Sandy Leah]: Ranks 1
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['2002', 'Sandy Leah', 'Far East Movement', 'Yasemin Mori', 'Leo Brouwer', 'Desmond Child', 'Sylvain Chauveau', 'The Rembrandts', 'Riccardo Cocciante', 'Girls Aloud', 'Black Sabbath', 'Cantodiscanto', 'Maserati', 'Panna Fredda', 'Cocoon', 'The Wagner logic', 'Less Than Jake', 'Roberto Carlos', 'Jurassic 5', 'Dana Glover']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [KMFDM]: Ranks 1
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Feindflug', 'KMFDM', 'Róisín Murphy', 'Chicane', 'Fangoria', 'New Order', 'Exodus', 'Martina Topley-Bird', 'Loss of a Child', 'ＶａｎｅｓｓＡ', 'Eternal Tears of Sorrow', 'dJ mAx dReamer', 'Chris de Burgh', 'Jagjit Singh', 'Ruxpin', 'DOGinTheパラレルワールドオーケストラ', 'Ke$ha', 'Los Auténticos Decadentes', 'Locanda delle Fate', 'Busted']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Leilah Moreno]: Ranks 8
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Scatman John', 'Christian Death', 'Mr. Mister', 'Paolo Meneguzzi', 'Shitdisco', 'Mount Kimbie', 'Betraying The Martyrs', 'Hardcore Superstar', 'Leilah Moreno', 'Alkistis Protopsalti', 'Bushido', 'Angel Witch', 'Terry Poison', 'TSA', 'Moondog', 'The Dead Weather', 'Mobb Deep', 'Paul Westerberg', 'Ilan Eshkeri', 'Cock and Ball Torture']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Lipstick]: Ranks 18
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Sick Sick Sinners', 'Reuben', 'Perkele', 'Georges Brassens', 'Gilberto Gil', 'UNKLE', 'Espen Lind', 'Dmitri Shostakovich', 'Holly Miranda', 'John Legend', 'Gustavo Cerati', 'Bedhead', 'Prince and the New Power Generation', 'LS Jack', 'Reba McEntire', 'Sea Wolf', 'Yalçın Gül', 'Disco Inferno', 'Lipstick', 'The Milo']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Gossip]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Gossip', 'Jenny Berggren', 'Boyz II Men', 'Aqua', 'Talking Heads', 'Lee Ryan', 'Eminem', 'Elize', 'YUKI', 'This Empty Flow', 'Terranova', 'The Servant', 'Alyson Stoner', 'One Last Hero', 'Obscura', 'Illicit Love Parade', 'Witch Hunt', 'Saud Al-Shuraim', '高橋幸宏', 'Seize']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Solution .45]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Solution .45', 'Vital Remains', 'Disgorge', 'Hex Rx', 'Future World Music', 'Fat Segal', 'Afromental', 'The Smiths', 'Chicane', 'Less Than Jake', 'Phil Vassar', 'Mr Hudson & The Library', 'Charly García', 'The Twins', 'Rome', 'Saia Rodada', 'CPM 22', 'Cheiro de Amor', 'The Ascendicate']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Tinie Tempah]: Ranks 6
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['The Horrors', 'Clem Snide', 'Secret Lives of the Freemasons', 'Eberg', 'The Wallflowers', 'Beverley Knight', 'Tinie Tempah', 'Tricky', 'Tanzwut', 'Auto-Auto', 'Piero Umiliani', 'Janio Lora', 'Derrick Morgan', 'KRec', 'Kate Winslet', 'Kayamaré', 'Trina', 'Huey Lewis & The News', "Paps 'N' Skar", 'The Nitty Gritty Dirt Band']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Angel X]: Ranks 17
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Rob Dougan', 'The Buggles', 'Foreigner', 'Smoke City', 'Wolves in the Throne Room', 'Sneaker Pimps', 'Amplifier', 'Kings of Convenience', 'The Dreamside', 'Little Grey Girlfriend', 'E-Craft', 'Suara', 'Fokus', 'Noctura', 'Luxúria', 'Pezet', 'The Pussycat Dolls', 'Angel X', 'Submersed']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [U2]: Ranks 19
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['The Birthday Massacre', 'New Order', 'Grizzly Bear', 'Wynardtage', 'Dark Tranquillity', 'Faster Pussycat', 'A Silver Mt. Zion', 'Söhne Mannheims', 'Javier Navarrete', 'Mark Snow', 'The Echoing Green', 'Karima Francis', 'Robin Skouteris', 'The Tunics', 'Tobias Bernstrup', 'ILS', 'Skye', 'Joan Manuel Serrat', 'The Narcicyst', 'U2']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Converge]: Ranks 1
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Fort Minor', 'Converge', 'Vision Divine', 'Winger', 'Tygers of Pan Tang', 'In the Midst of Lions', 'Seize', 'Evermore', 'Rocky', 'Roxy Music', 'Sigue Sigue Sputnik', 'Reffer', 'F.R. David', 'Myah Marie', 'Pussycat Dolls', '"Lisa ""Left Eye"" Lopes"', 'Marc Antoine', 'Blood Ruby', 'Percy Faith', 'Корни']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Umbrellas]: Ranks 9
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['blink-182', 'The Cult', 'Poison', 'Bob Seger & the Silver Bullet Band', 'DJ Antoine', 'Slum Village', 'Woody Guthrie', 'Novembre', 'Library Tapes', 'Umbrellas', 'Klein & Mbo', 'Luxúria', 'Gramofocas', 'Lego Feet', 'Say Hi', 'Spektralized', 'resident hero', 'Solerrain', 'Little Grey Girlfriend', 'Kylie Minogue']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Carrie]: Ranks 17
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Phoenix', 'Krezip', 'Woody Guthrie', 'The Cult', 'Akira Yamaoka', 'Pezet', 'DJ Antoine', 'Shirley Bassey', 'Panzer AG', 'Garotos Podres', 'Klimt 1918', 'Cameron Mizell', 'Luxúria', 'The Dreamside', 'Alpha Quadrant', 'Lego Feet', 'Brooks & Dunn', 'Carrie', 'Кино']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Vanna]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Vanna', 'Elliot Minor', 'Adele', 'Lily Allen', 'Sleeping at Last', 'Marry Me Jane', 'The Pussycat Dolls', 'Flo Rida', 'Jessica Sutta', 'Black Star', 'Jimmy Cliff', 'Tilly and the Wall', 'Men at Work', 'Smolik', '℃-ute', 'Hora', 'Kopflast', 'Curved Air', 'Mercenary', 'Prophetic Dream']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Flying Lotus]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Flying Lotus', 'Kaliber 44', 'TRAX', 'Cryo', 'Doves', 'Eighteen Visions', 'Nouvelle Vague', 'hitomi', 'Novaspace', 'Kari Jobe', 'Claude Kelly', 'Joe Jackson', 'Lucy and The Popsonics', 'The Ditty Bops', 'Uzi & Ari', 'Trouble', 'happysad', 'Hasil Adkins', 'Blood Command']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Jimmy Needham]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Jimmy Needham', 'The Band Perry', 'Chicane', 'Esthero', 'Classix Nouveaux', 'Christina Milian', 'Stereolab', 'Joy Division', 'Meshuggah', 'Z Prochek', 'Cidadão Quem', 'Times New Viking', 'Riccardo Cocciante', 'Kidcrash', 'Deadsy', 'The Kovenant', 'Lucy and The Popsonics', 'Snot', 'Kardinal Offishall', 'Chad & Jeremy']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Good Charlotte]: Ranks 1
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Judas Priest', 'Good Charlotte', 'Lily Allen', 'The Police', 'Ke$ha', 'Mark Farina', 'Lights Out Asia', 'Cameron Mizell', 'Krezip', 'Laurent Wolf', 'Deadlock', 'Agonoize', 'Lowe', 'Neon', 'Timbuk 3', 'Girlschool', 'Luxúria', 'South Park', 'Garotos Podres', 'Lego Feet']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [The All-American Rejects]: Ranks 13
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['The Police', 'Lily Allen', 'Laurent Wolf', 'Mark Farina', 'Suara', 'Pezet', 'Luxúria', 'South Park', 'Timbuk 3', 'Akira Yamaoka', 'Grendel', 'Panzer AG', 'The Dreamside', 'The All-American Rejects', 'Steppenwolf', 'Girlschool', 'Little Grey Girlfriend', 'Fokus', 'DFC', 'Amplifier']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Yann Tiersen]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Yann Tiersen', 'Jeff Beck', 'Chicane', 'New Order', 'David Sanborn', 'Soulsearcher', 'Children Within', 'Fort Minor', 'Cut Chemist', 'Nachtmahr', 'Los Auténticos Decadentes', 'Locanda delle Fate', 'French Teen Idol', 'Wet Wet Wet', 'ＶａｎｅｓｓＡ', 'DOGinTheパラレルワールドオーケストラ', 'Gondwana', 'Немоляев-Селезнев', 'dJ mAx dReamer', 'Yeah Yeah Yeahs']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Nickelback]: Ranks 4
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Black Sabbath', 'Fluke', 'Daft Punk', 'Static-X', 'Nickelback', 'Eluvium', 'Erik Satie', 'Tomaso Giovanni Albinoni', 'Raised Fist', 'Hangar', 'Johnny Thunders', 'Xentrix', 'Bachman-Turner Overdrive', 'Necro', 'Richard Cheese', 'Gretchen Wilson', 'Harel Skaat', 'Joaquín Rodrigo', 'www.djrobsonmichel.com', 'Elektric Music']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Scandal]: Ranks 19
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Girls Aloud', 'Finger Eleven', 'Stevie Ray Vaughan', 'P.O.D.', 'The Doors', 'Europe', 'Babes in Toyland', 'Alice Coltrane', 'Norman Brown', 'Esthero', 'Kanye West', 'Master Tempo', 'Slaughter', 'Veruca Salt', 'Madlib', 'Zonaria', 'Gerald Garcia', 'Chester French', 'Pitchshifter', 'Scandal']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Nicki Minaj]: Ranks 1
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Faber Drive', 'Nicki Minaj', 'Timati', 'Sonny Moore', '2 Brothers on the 4th Floor', 'Audio Bullys', 'Dew-Scented', 'Adam Green', 'Orlando Julius', 'Frank Marino', 'Al Jarreau', 'NLT', 'Folkearth', 'Propagandhi', 'Animassacre', 'Chicas', 'Планка', 'Triumph', 'Fistt']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Midnight Juggernauts]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Midnight Juggernauts', 'You Me At Six', 'old boy', 'autoKratz', 'Amerie', 'Glee Cast', 'Krypteria', 'Mukeka Di Rato', 'Bomba Estéreo', 'Peyman Yazdanian', 'Francesco Guccini', 'Blancmange', 'Montrose', 'Keaver & Brause', 'Lejla Jusic', 'Elis', 'David Lynch', 'Stephanie Mills', 'Паровоз На Резиновом Ходу', 'Tony Bennett']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Kingdom]: Ranks 5
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Stereolab', 'Dinosaur Jr.', 'Blueboy', 'Sneaker Pimps', 'The Alan Parsons Project', 'Kingdom', 'Noctura', 'Akira Yamaoka', 'Agua de Annique', 'Jamelia', 'Mukeka Di Rato', 'The Armada', 'Luxúria', 'E-Craft', 'Black Heaven', 'Madvillain', 'Zeplin', 'Cass McCombs', 'Wolves in the Throne Room', 'Kings of Convenience']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Tokio Hotel]: Ranks 2
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Puscifer', 'The Police', 'Tokio Hotel', 'Luxúria', 'Vama Veche', 'Agonoize', 'Steve Angello & Sebastian Ingrosso', 'Lowe', 'Dunham Van Durham', 'Cathedral', 'Hardneja Sertacore', 'Milk & Sugar', 'Tom Novy', 'Estatic Fear', 'The Vanishing', "L'elan Vital", 'Biohazard', 'Dies Irae', 'blink-182', 'Heidi Montag']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [She Wants Revenge]: Ranks 3
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Celldweller', 'Hopesfall', 'Bayside', 'She Wants Revenge', 'Control Machete', 'Clan of Xymox', 'Normalsi', 'Mercyful Fate', 'Bonded By Blood', 'Ornette Coleman', 'Willy DeVille', 'Don McLean', 'Carlene Carter', 'Tomaso Giovanni Albinoni', 'Northcape', 'Kelis', 'Sanctus Real', 'Haji & Emanuel', 'Cary Brothers', 'Unearth']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Secret Secret Dino Club]: Ranks 2
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['2002', 'The Beach Boys', 'Secret Secret Dino Club', 'Less Than Jake', 'Sylvain Chauveau', 'Yasemin Mori', 'M. Pokora', 'Dana Glover', 'Panna Fredda', 'Mutya Buena', 'The Wagner logic', 'Riccardo Cocciante', 'Desmond Child', 'Cocoon', 'Roberto Carlos', 'The Rutles', 'Leo Brouwer', 'Cantodiscanto', 'Maserati', 'Jurassic 5']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Edge of Sanity]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Edge of Sanity', 'Agonoize', 'Ruxpin', 'Men at Work', 'VFSix feat. S.C.E.', 'DOGinTheパラレルワールドオーケストラ', 'Silvio Rodríguez', 'Lowe', 'Brendan Benson', 'Happy Mondays', 'blink-182', 'General Patton vs. The X-Ecutioners', 'Ashlee Simpson', 'Thievery Corporation', 'Jagjit Singh', 'Chicane', 'The Police', 'ＶａｎｅｓｓＡ', 'Pretty Poison', 'Loss of a Child']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Daft Punk]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Daft Punk', '808 State', 'Mercy Mercedes', 'Goldmund', 'Gotye', 'Lunatica', 'Nvblado', 'Hopes Die Last', 'The Gloria Record', 'Us, From Outside', '16Volt', 'Blue Angel', 'Prem Joshua', 'Judy Garland', 'Stephanie McIntosh', 'A Thorn for Every Heart', 'Hi:BRiD', 'Shirley Rumsey', 'Nugo Sebil', 'Rufio']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Little Boots]: Ranks 1
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['The Pussycat Dolls', 'Little Boots', 'DJ Antoine', 'Keith Urban', 'Status Quo', 'Deep Purple', 'Krezip', 'Library Tapes', 'Wall of Voodoo', 'Luxúria', 'Cameron Mizell', 'Mike Stocksdale', 'Spektralized', 'Say Hi', 'Submersed', 'Garotos Podres', 'Klein & Mbo', 'Slum Village', 'Solerrain']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Cesária Évora]: Ranks 3
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Alcest', 'Megadeth', 'Ducktails', 'Cesária Évora', 'Bitcrush', 'Love Bites', 'A Day to Remember', 'Black Heaven', 'Static Cycle', 'Brendon Urie', 'The Sleepy Jackson', 'Munchausen By Proxy', 'Dayglo Abortions', 'Nim Vind', 'Kat Graham', 'Ada', '7раса', 'Ундервуд', 'Primus']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Luigi Boccherini]: Ranks 9
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Chicane', 'Jody Wisternoff', 'Mark Farina', 'Mice Parade', 'Robin Skouteris', 'Snap!', 'Limp Bizkit', 'MBrother', 'Japan', 'Luigi Boccherini', 'Amaral', 'Tonikom', 'Capella De Ministrers', 'Gramofocas', 'General Patton vs. The X-Ecutioners', 'Pzychobitch', 'Coil', 'DJ Food', 'Dawn of Ashes', 'Jona Lewie']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Avril Lavigne]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Avril Lavigne', 'Less Than Jake', 'Take That', 'Jurassic 5', 'Aimee Mann', 'Roberto Carlos', 'Riccardo Cocciante', 'Freemasons', '2002', 'Sylvain Chauveau', 'The Wagner logic', 'Maserati', 'Yasemin Mori', 'Panna Fredda', 'Leo Brouwer', 'Cantodiscanto', 'Dana Glover', 'Cocoon', 'Five for Fighting']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Belle and Sebastian]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Belle and Sebastian', 'The Birthday Massacre', 'Martina Topley-Bird', 'Japan', 'Alien Vampires', 'The Vanishing', 'Amduscia', 'Estatic Fear', 'General Patton vs. The X-Ecutioners', 'The Narcicyst', 'Joan Manuel Serrat', 'Just Jack', 'Karima Francis', 'Robin Skouteris', 'Söhne Mannheims', 'Tom Novy', 'Hush', 'Pretty Poison', 'The Tunics', 'John Murphy']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Lykke Li]: Ranks 7
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['David Sylvian', 'Gregory Isaacs', 'Peja', 'Gökhan Kırdar', 'Luz Verde', 'Ashlee Simpson', 'Foo Fighters', 'Lykke Li', 'The Last Goodnight', 'Robin Skouteris', 'Frank Jorge', 'Marissa Nadler', 'Bad Brains', 'At the Gates', 'Just Jack', 'Agonoize', 'Cinderella', 'The Twilight Sad', 'Lowe', 'Ke$ha']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [鷺巣詩郎]: Ranks 2
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Japan', '福原美穂', '鷺巣詩郎', 'Manga', '川井憲次', 'Amduscia', 'Alien Vampires', 'Puscifer', 'Laurent Garnier', 'Fort Minor', 'John Waite', 'Just Jack', 'Fenix TX', 'Mike Stocksdale', 'Thievery Corporation', 'Lego Feet', 'Cathedral', 'Flicts', 'Luxúria']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Karate High School]: Ranks 10
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Sneaker Pimps', 'Echo Image', 'Orgy', 'Noctura', 'Autolux', 'Smoke City', 'The xx', 'Deep Purple', 'Wall of Voodoo', 'Flight of the Conchords', 'Karate High School', 'Submersed', 'Mike Stocksdale', 'Akira Yamaoka', 'Luxúria', 'Status Quo', 'Equilibrium', 'Flicts', '福原美穂', 'Lego Feet']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Anna Abreu]: Ranks 7
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Hi:BRiD', 'The Vines', 'Spiderbait', 'White Denim', 'Messer Chups', 'Elliott Yamin', 'Milk Inc.', 'Anna Abreu', 'Agent Steel', 'Phillip Boa & The Voodooclub', 'Twin Atlantic', 'Audio Adrenaline', 'Крихітка Цахес', 'Éowyn', 'Digimortal', 'I Hear Sirens', 'Shulman', 'Бекчоро', '七瀬光', 'The Fiery Furnaces']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [The Used]: Ranks 5
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Paloma Faith', 'Sheryl Crow', 'Anouk', 'Fettes Brot', 'MC Lars', 'The Used', 'Chicago Afrobeat Project', 'Jamelia', 'SOiL', 'Monolith', 'Michael Gray', 'Tiefschwarz', 'Liquid Mind', 'Insite', 'Crazy Loop', 'Tina Dickow', 'The Crimson Ghosts', 'Jessica Andrews', 'Faderhead', 'Unexpect']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [CPM 22]: Ranks 6
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Phoenix', 'Ashlee Simpson', 'blink-182', 'Burzum', 'Grendel', 'Biohazard', 'CPM 22', 'Linton Kwesi Johnson', 'Luxúria', 'Afromental', 'Panzer AG', 'Steppenwolf', 'Claude VonStroke', 'Rue du Soleil', 'Suara', 'And', 'Little Grey Girlfriend', 'Alcian Blue', 'Come Undone', 'Lego Feet']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [T-Pain]: Ranks 1
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['blink-182', 'T-Pain', 'Ashlee Simpson', 'The Police', 'National Product', 'Gramophonedzie', 'Mice Parade', 'Bachelor Girl', 'Innerpartysystem', 'Mike Stocksdale', 'And', 'Claude VonStroke', 'Agonoize', 'Lowe', '福原美穂', 'Funkstörung', 'Luxúria', 'Puscifer', 'Loco Dice']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Shakira]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Shakira', 'Eminem', 'Ashlee Simpson', 'Krezip', 'Vangelis', 'Equilibrium', 'ДДТ', 'Porta', 'Agonoize', 'Luxúria', 'The Police', 'Mike Stocksdale', 'Darkthrone', 'Lowe', 'Flight of the Conchords', 'Cameron Mizell', 'Shirley Bassey', 'Garotos Podres', 'Klimt 1918', 'Lego Feet']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Radical Face]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Radical Face', 'American Football', "Plain White T's", 'Cynic', 'Talking Heads', 'Green Carnation', 'Deadmau5 & Wolfgang Gartner', 'Nasum', 'Yves Larock', 'Guy Sebastian', 'Der Blutharsch', 'Cheiro de Amor', 'Inmigrantes', 'Syrian', 'Chicane', "Zimmer's Hole", 'MBrother', 'Cross Examination', 'Telex', 'Jimmy Barnes']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Majid Bekkas]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Majid Bekkas', 'Cahit Berkay', 'Maria Peszek', 'Metric', 'Keith Urban', 'Janne Da Arc', 'Kamelot', 'The Hold Steady', 'Savage', 'Ministério Adoração e Vida', 'The Juliana Theory', 'Death by Kite', 'Tyrone Andrew', 'Psyched Up Janis', 'Sp7', 'Ze Smetana', 'PENS', 'Boyd Rice and Friends', 'The Pussycat Dolls', 'Zooey Deschanel']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [T.I.]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['T.I.', 'Hooverphonic', 'Goldfinger', 'Martin L. Gore', 'Wale', 'Bond', 'Dysphoria', 'Seigmen', 'Hatebreed', 'Rose Funeral', 'Calyx & Teebee', 'Frontside', 'The Dave Brubeck Quartet', 'All About Eve', 'Angry Samoans', 'Hande Yener', 'Bumblefoot', 'We Are the Fallen', '劉德華', 'Wuffles']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Hole]: Ranks 19
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Ke$ha', 'Thunderball', 'Darkest Hour', 'Mogwai', 'The Whitest Boy Alive', 'Fangoria', 'Joy Division', 'Julie London', 'Ceramic Hello', 'Skye', 'Astonvilla', 'Blutengel', 'The Tunics', 'Slaughter', 'Maria del Mar Bonet', 'Michael Gray', 'LA COCHINA', 'Nasser Cheshmazar', 'Accept', 'Hole']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Antonio Vivaldi]: Ranks 16
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Innerpartysystem', 'blink-182', 'Fantastic Plastic Machine', 'Rue du Soleil', 'Seba', 'Dikta', 'Spektralized', 'Claude VonStroke', 'Girlschool', 'Klein & Mbo', 'Mescalito', 'Garotos Podres', 'Krezip', 'Timbuk 3', 'Brooks & Dunn', 'South Park', 'Antonio Vivaldi', 'Steppenwolf', 'Slum Village', 'Cameron Mizell']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Самое Большое Простое Число]: Ranks 19
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Electric Light Orchestra', 'Lily Allen', 'Phoenix', 'blink-182', 'Bad Brains', 'Donovan', 'Cathedral', 'Grendel', 'Symarip', 'Tristeza', 'John Waite', 'The Last Goodnight', 'Panzer AG', 'Cage the Elephant', 'Jim Sturgess', 'Peja', 'Robin Skouteris', 'Wander Wildner', 'Gökhan Kırdar', 'Самое Большое Простое Число']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Obie Trice]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Obie Trice', 'Sneaker Pimps', 'Rob Dougan', 'Orgy', 'The xx', 'Equilibrium', 'Klimt 1918', 'Garotos Podres', 'Mike Stocksdale', 'The Buggles', 'Luxúria', 'Foreigner', 'Brooks & Dunn', 'Akira Yamaoka', 'Flight of the Conchords', 'Cameron Mizell', 'Submersed', 'Krezip', 'Lego Feet', 'Echo Image']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Wanessa]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Wanessa', 'Bachelor Girl', 'Luxúria', 'John Murphy', 'Funkstörung', 'Claude VonStroke', 'Rotersand', 'Innerpartysystem', 'And', 'New Order', 'cut.rate.box', 'AFX', 'Limp Bizkit', 'Mike Stocksdale', 'Gramophonedzie', '福原美穂', 'Mice Parade', 'Технология', 'Loco Dice', 'Lego Feet']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Skyfire]: Ranks 2
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Windir', 'At the Gates', 'Skyfire', 'Cinderella', 'Electric Light Orchestra', 'Tristeza', 'Grendel', 'Phoenix', 'Ryan Tedder', 'Panzer AG', 'blink-182', 'Wander Wildner', 'Symarip', 'Robin Skouteris', 'Cage the Elephant', 'Jim Sturgess', 'Gökhan Kırdar', 'Peja', 'Donovan', 'Kylie Minogue']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Peter Baumann]: Ranks 11
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Tiamat', 'The Baseballs', 'Lyfe Jennings', 'Chico Buarque', 'Virgin Black', 'Maroon', 'The Black Dahlia Murder', 'Alex Metric', 'Cranes', 'Summoning', 'S.I.N.A', 'Peter Baumann', 'Oumou Sangare', 'Daedelus', 'Rookie Of The Year', 'Destruction', 'Inner Place', 'Odd Nosdam', 'The Dead Texan', 'Elysian Fields']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Ebba Grцn]: Ranks 12
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Skepticism', 'Bomba Estéreo', 'Jean-Michel Jarre', 'America', 'Brainstorm', 'Hinder', 'Afterhours', 'Vince Watson', 'Thomas Newman', 'Bear vs. Shark', 'Natalia Lesz', 'Elize', 'Ebba Grцn', 'Lejla Jusic', 'Preschool Tea Party Massacre', 'Ten Sharp', 'Franz Joseph Haydn', 'Gramofocas', 'Lisa Miskovsky', 'Jonah33']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Starkey]: Ranks 8
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Dead Can Dance', 'Anna Ternheim', 'Chiodos', 'A Wilhelm Scream', 'Closure', 'Cal Tjader', 'Yes', 'Guadalupe Pineda', 'Starkey', 'Delia Derbyshire', 'Afroman', 'Joe Jackson', 'Cadence Weapon', '8 Bit Weapon', 'Tuia E Os Transmissores', 'Pussycat Dolls', 'Goatsnake', 'Boy Kill Boy', 'Flica', 'Kasabian']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Eugeniusz Bodo]: Ranks 15
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Ozric Tentacles', 'Halo Manash', 'Cadence Weapon', 'Yeasayer', 'The Danse Society', 'Jody Wisternoff', 'Goatsnake', 'Howard Shore', 'Dubioza Kolektiv', 'Trauma', 'Closure', 'Bad Astronaut', 'The Isley Brothers', 'Kenny Wayne Shepherd Band', 'Xscape', 'Eugeniusz Bodo', 'Peter Gun', 'Dick Dale and His Del-Tones', 'Trash Fashion', 'Spring Awakening Original Broadway Cast']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Hot Chocolate]: Ranks 19
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Club 8', 'Andrew Bird', 'Dan Mangan', 'Bonobo', 'Chris Salvatore', 'Hana Pestle', 'Wild Strawberries', 'Dilated Peoples', 'Guilty Simpson', 'Ikimono-Gakari', 'Glasvegas', 'Eyeless in Gaza', 'Fernanda Takai', 'Sentidos Opuestos', 'Prince and the New Power Generation', 'Papoose', 'Iyaz', 'Zion', '李玟', 'Hot Chocolate']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Debauchery]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Debauchery', 'Orgy', 'Eisbrecher', 'The Dreamside', 'Lights Out Asia', 'Laurent Wolf', 'Akira Yamaoka', 'The xx', 'Garotos Podres', 'Lego Feet', 'Echo Image', 'Cameron Mizell', 'Krezip', 'Mark Farina', 'Sebastian Bach', 'Jamelia', 'Pezet', 'The Vines', 'Luxúria', 'Noctura']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Yes]: Ranks 1
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [["King's X", 'Yes', 'Fito Páez', 'Cannibal Ox', 'Amanda Blank', 'Bullets and Octane', 'Jim Brickman', 'Warrel Dane', 'Hank Mobley', 'Isis Gee', 'Akurat', 'The Melodians', 'Cannonball Adderley', 'Showbread', 'Wendy Carlos', 'Curren$y', 'Lc5', '4minute', 'Jammer', 'strom noir']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [O. Children]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['O. Children', 'The Handsome Family', 'Black', 'Die Art', 'Mor ve Ötesi', 'Tsunami Bomb', 'Pzychobitch', 'Tracktor Bowling', 'Yezda Urfa', 'Prism', 'Inachus', "Scarlett O'Hara", 'David Bustamante', 'Boby Lapointe', 'Guru Josh Project', 'Estelle', 'Pink Turns Blue', 'Elvira', 'Patsy Cline']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Tiga]: Ranks 18
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['And', 'Grendel', 'Luxúria', 'Mark Farina', 'Pezet', 'Preemptive Strike 0.1', 'Rue du Soleil', 'Cathedral', 'Coil', 'Little Grey Girlfriend', 'Lego Feet', 'National Product', 'Amplifier', 'Puscifer', 'Ke$ha', 'Ashlee Simpson', 'Linton Kwesi Johnson', 'Suara', 'Tiga', 'The Dreamside']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Broken Bells]: Ranks 1
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['The Birthday Massacre', 'Broken Bells', 'Chicane', 'New Order', 'Blood Ruby', 'Vision Divine', 'Cascada', 'Robert Johnson', 'Die Fantastischen Vier', 'Busta Rhymes', 'Pussycat Dolls', 'Rocky', 'Marc Antoine', 'Cruel Hand', 'Reffer', 'Tygers of Pan Tang', 'Корни', 'Dario Marianelli', 'Bronski Beat', 'The Band Perry']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Chickenhawk]: Ranks 10
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['The Radio Dept.', 'Chicane', 'Oscar Peterson Trio', 'Pete Rock & C.L. Smooth', 'David Fonseca', 'John Legend', 'Pseudo Echo', 'Headhunterz', 'Armandinho', 'Demons & Wizards', 'Chickenhawk', 'Method Man & Redman', 'Aural Planet', 'Noctura', 'Keke Palmer', 'Fernandinho', 'Lorrie Morgan', 'The Locomotives', 'Choking Victim', 'Kid606']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Pink]: Ranks 1
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Venetian Snares', 'Pink', 'Limp Bizkit', 'New Order', 'Bad Brains', 'This Will Destroy You', 'Lloyd Banks', 'Feindflug', 'At the Gates', 'General Patton vs. The X-Ecutioners', 'Zélia Duncan', 'Rain Tree Crow', 'Gökhan Kırdar', 'Free the Robots', 'Hevia', 'Robin Skouteris', 'Preemptive Strike 0.1', 'Frank Jorge', 'Peja', 'The Duke Spirit']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [天門]: Ranks 18
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Flunk', 'SHINee', 'Boris Brejcha', 'Giorgos Papadopoulos', 'SE7EN', 'Tommy Lee', 'Phil Wickham', 'The Mothers of Invention', 'Ef', 'Lee DeWyze', 'Artymove', '60 minut na godzinę', 'Yum!Yum!ORANGE', 'Ideя Fix', 'Deru', 'Spastic Ink', 'Flicts', 'Tribraco', '天門', 'Shitdisco']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Lostprophets]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Lostprophets', 'Tarot', 'Static-X', 'The Ghost of a Thousand', 'Zero Boys', 'Autograph', 'Bedouin Soundclash', 'HammerFall', 'ATB', 'Composition Of Sound', 'Smak', 'Angela Aki', 'Loop Guru', 'Cotton Mather', 'Soundtracks', 'David Bustamante', 'The Easybeats', 'Hayden Panettiere', 'Vince Taylor', 'Värttinä']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Emilie Autumn]: Ranks 14
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Fenix TX', 'Cinderella', 'At the Gates', 'Manga', 'Coil', 'Pzychobitch', 'Dawn of Ashes', 'Laurent Garnier', 'Johnny Hollow', 'Thievery Corporation', 'Mike Stocksdale', '福原美穂', '川井憲次', 'Luxúria', 'Emilie Autumn', 'Ke$ha', 'John Murphy', 'Flicts', 'The Smiths']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [The Album Leaf]: Ranks 1
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Marnie Stern', 'The Album Leaf', 'Dr. Dre', 'Aural Vampire', 'KT Wanderlust', 'Darkbuster', 'Antoine Dufour', 'All About Eve', 'F.R. David', 'Tread', 'Fragma', 'The Joystick', 'God Or Julie', 'Pasobionic', 'Hi:BRiD', '6.Cadde', 'Versant', 'Наив', 'yade', 'The Bar-Kays']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Daughtry]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Daughtry', 'Psyclon Nine', 'Children of Bodom', 'The Moldy Peaches', 'Cargo', 'Red Red Groovy', 'Mad Sin', 'S Club 7', 'Drowning Pool', 'Brian Eno & David Byrne', 'Chicane', 'Faun Fables', 'Hubert Kah', 'Electrik Red', 'Ландыши', 'Kyle Andrews', 'Ellen Allien & Apparat', 'Проверочная Линейка', 'The Breath of Life', 'Ultraje a Rigor']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Mark Snow]: Ranks 14
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Boyce Avenue', 'Solar Fake', 'DJ Sammy', 'Nicholas Hooper', 'Alexander V.Mogilco', 'Allison Iraheta', "Ol' Dirty Bastard", 'Frenzal Rhomb', 'Cornelius', 'The Beautiful Girls', 'Zomby', 'Trampled Under Foot', 'Eddie Bo', 'Sopor Aeternus & The Ensemble of Shadows', 'Mark Snow', 'Michael Learns to Rock', 'Ash', 'Johnny Horton', 'Burning the Masses', 'Diyana']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Blackfoot]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Blackfoot', 'Joe Purdy', 'DJ Shadow', 'Beyond the Void', 'The Only Ones', 'Tim Finn', 'DJ Sammy', '1997', 'Otep', 'Alien Sex Fiend', 'Inna', 'Anneli Drecker', 'toe', 'Oliver Shanti & Friends', 'Ewelina Flinta', 'Cortes', 'Charlie Feathers', 'Cephalic Carnage', 'Everything Is Made in China']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Menomena]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Menomena', 'Elliott Smith', 'The xx', 'Flipsyde', 'Orgy', 'Akira Yamaoka', 'Echo Image', 'La Vida Bohème', 'Gökhan Kırdar', 'Noctura', 'Robin Skouteris', 'El Grupo Nuevo de Omar Rodriguez Lopez', 'Idina Menzel', 'Frank Jorge', 'Flowers From the Man Who Shot Your Cousin', 'Los Paranoias', 'Peja', 'Generation X', 'Burzum']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Dave Gahan]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Dave Gahan', 'Patrick Wolf', 'Rob Dougan', 'Krezip', 'Sneaker Pimps', 'Luxúria', 'Solar Fake', 'Klimt 1918', 'Mike Stocksdale', 'Equilibrium', 'Foreigner', 'The Buggles', 'Cameron Mizell', 'Brooks & Dunn', 'Alpha Quadrant', 'Flight of the Conchords', 'Garotos Podres', 'blink-182', 'Lego Feet', 'Submersed']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Kazuhito Yamashita]: Ranks 13
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Gazpacho', 'Suffocation', 'Nei Lisboa', 'Blood Stain Child', 'MZ.412', 'Inquisition', 'Lullacry', 'The Ascendicate', 'Dolphin', 'Aggro Santos', 'Pogodno', 'Saxon', 'Surkin', 'Kazuhito Yamashita', 'Annie Lennox', 'Negra Li', 'Hayedeh', 'Hannah Montana', 'Return to Forever']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [장근석]: Ranks 17
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Leighton Meester', 'blink-182', 'Stina Nordenstam', 'Lao Che', 'Shinedown', 'Gal Costa', 'Indios Bravos', 'Skank', 'Zabranjeno Pušenje', 'Anamanaguchi', 'Ricchi e Poveri', 'Boyd Rice and Friends', 'Mezquita', 'Holy Moses', 'Negură Bunget', 'Something for Kate', 'Narciso Yepes', '장근석', 'Heidi Montag']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Taking Back Sunday]: Ranks 2
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Less Than Jake', 'Five for Fighting', 'Taking Back Sunday', 'Aimee Mann', '2002', 'Girls Aloud', 'Sylvain Chauveau', 'Freemasons', 'Desmond Child', 'Dana Glover', 'Yasemin Mori', 'Cocoon', 'Maserati', 'Cantodiscanto', 'Panna Fredda', 'Riccardo Cocciante', 'The Wagner logic', 'Leo Brouwer', 'Roberto Carlos']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Absu]: Ranks 4
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Wolves in the Throne Room', 'Akira Yamaoka', 'Autolux', 'The Dreamside', 'Absu', 'Luxúria', 'Smoke City', 'The Vines', 'E-Craft', 'Noctura', 'Suara', 'Eisbrecher', 'DJ Antoine', 'Kings of Convenience', 'Linton Kwesi Johnson', 'Little Grey Girlfriend', 'Evergreen Terrace', 'Pezet', 'And', 'Lego Feet']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Hüsker Dü]: Ranks 19
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Deftones', 'P.O.D.', 'Jewel', 'The 69 Eyes', 'Dishwalla', 'Nemesea', 'Great Big Sea', 'The Other Two', 'Iyaz', 'Nature Living', 'Sanctus Real', 'Intermix', 'The McClymonts', 'Primal Fear', 'Dangerous Muse', '8mm', 'Triumph', 'Junior Senior', 'John Cage', 'Hüsker Dü']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Oliver Koletzki]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Oliver Koletzki', 'Chapterhouse', 'Bar 9', 'Steve Vai', 'The Animals', 'Jazmine Sullivan', 'Lester Flatt & Earl Scruggs', 'Noel Gallagher', 'Betraying The Martyrs', 'Karjalan Sissit', 'The Vegas Wake Up', 'Karapaks', 'Z Prochek', 'Yamandú Costa', 'shirane', 'The Review Board', 'Jesus on Extasy', 'Harry Belafonte', "You Love Her Coz She's Dead", 'Massari']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Queen + Paul Rodgers]: Ranks 15
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Blutengel', 'David Sylvian', 'Dark Tranquillity', 'Funkadelic', 'Japan', 'El Cuarteto de Nos', 'Faster Pussycat', 'The Twilight Sad', 'Robin Skouteris', 'Marissa Nadler', 'Black Milk', 'The Melodians', 'Audio Bullys', 'Limp Bizkit', 'The Last Goodnight', 'Queen + Paul Rodgers', 'Peja', 'Raindancer', 'BTR', 'Frank Jorge']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Dayglo Abortions]: Ranks 13
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Beastie Boys', 'Dropkick Murphys', 'Chicane', 'Julio Iglesias', 'Cut Chemist', 'Akira Yamaoka', 'Gondwana', 'Soulsearcher', 'French Teen Idol', 'Noctura', 'ILS', 'The Echoing Green', 'Locanda delle Fate', 'Dayglo Abortions', 'ＶａｎｅｓｓＡ', 'Mecano', 'dJ mAx dReamer', 'Немоляев-Селезнев', 'Blutengel', 'DOGinTheパラレルワールドオーケストラ']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Voivod]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Voivod', 'Godflesh', 'U2', 'P.O.D.', 'Premiata Forneria Marconi', 'Alison Krauss', 'Kanye West', 'Bad English', 'Morphine', 'Chinese Man', 'Hawksley Workman', 'Antonis Remos', 'Bif Naked', 'Norman Brown', 'Pixie Lott', 'Proem', 'Алиса', 'Gerald Garcia', 'Glejs', "Disney's Friends For Change"]]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Daughter Darling]: Ranks 2
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Claude VonStroke', 'Luxúria', 'Daughter Darling', 'Flicts', 'Mike Stocksdale', 'Fokus', 'National Product', 'Gramophonedzie', 'Alpha Quadrant', 'Loco Dice', 'Phoenix', 'Empyrium', 'Set Fire to Flames', 'Girlschool', 'Panzer AG', '福原美穂', 'Bushido', 'Steppenwolf', 'blink-182', 'Kylie Minogue']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [50 Cent]: Ranks 16
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Puscifer', 'Grendel', 'Phoenix', 'Eminem', 'Innerpartysystem', 'Gramophonedzie', 'Mike Stocksdale', 'Ashlee Simpson', 'Panzer AG', 'Funkstörung', 'Loco Dice', 'Bachelor Girl', 'Claude VonStroke', '福原美穂', 'Luxúria', 'Mice Parade', '50 Cent', 'And', 'Технология', 'Lego Feet']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Moya Brennan]: Ranks 1
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Niyaz', 'Moya Brennan', 'Laura Pausini', 'Ry Cooder', 'Dana Glover', 'Museo Rosenbach', 'Volcano Choir', 'Richard Walters', 'Calcinha Preta', 'The Band', 'Jets to Brazil', 'Skank', 'Sarah Connor', 'Two Lone Swordsmen', 'STS9', 'J.R. Writer', 'Dorival Caymmi', 'Go Betty Go', 'Steve Roach', 'Q and Not U']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Gerry Mulligan]: Ranks 11
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Museo Rosenbach', 'Skin', 'Volcano Choir', 'Ry Cooder', 'Niyaz', 'Riccardo Cocciante', 'Yasemin Mori', 'Leo Brouwer', 'Roberto Carlos', 'Samael', 'Steve Roach', 'Gerry Mulligan', 'Lackluster', 'Desmond Child', 'Dana Glover', 'Latterman', 'Cocoon', "The La's", 'M. Pokora', "Christina Aguilera, Lil' Kim, Mya & Pink"]]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Altar of Plagues]: Ranks 1
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Deaf Center', 'Altar of Plagues', 'Madvillain', 'Funckarma', 'Liquid Liquid', 'Slum Village', 'Technotronic', 'Blueboy', 'The Buggles', 'Keith Urban', 'Foreigner', 'Robin Skouteris', 'The Pussycat Dolls', 'Klein & Mbo', 'Missing Persons', 'Chicane', 'ＶａｎｅｓｓＡ', 'dJ mAx dReamer', 'DOGinTheパラレルワールドオーケストラ']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Gwen Stefani]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Gwen Stefani', 'Aimee Mann', 'Five for Fighting', 'Cocoon', 'Take That', 'Sylvain Chauveau', 'Roberto Carlos', '2002', 'Yasemin Mori', 'Maserati', 'Desmond Child', 'Lone', 'Riccardo Cocciante', 'Jurassic 5', 'Dana Glover', 'Cantodiscanto', 'The Wagner logic', 'Leo Brouwer', 'Panna Fredda', 'Less Than Jake']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [System of a Down]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['System of a Down', 'Orgy', 'Wall of Voodoo', 'Novembre', 'Echo Image', 'Akira Yamaoka', 'The xx', 'Say Hi', 'Little Grey Girlfriend', 'Solerrain', 'Library Tapes', 'DJ Antoine', 'Fokus', 'Luxúria', 'Brooks & Dunn', 'Shirley Bassey', 'Deep Purple', 'Status Quo', 'DFC', 'Suara']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Jerrod Niemann]: Ranks 11
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Lindsey Buckingham', 'Marianne Faithfull', 'Fink', 'Davut Güloğlu', 'Lucio Battisti', 'The Derek Trucks Band', 'Seelenluft', 'ironfield', 'Samson', 'Cloetta Paris', 'Living Sacrifice', 'Jerrod Niemann', 'MUTAGEN', 'Daft Punk', 'The Strangeloves', 'Disney', 'David Lynch', 'Валерий Леонтьев', 'Native Deen', 'deadmau5']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Bane]: Ranks 18
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Ayria', 'Extremoduro', 'Viktor Vaughn', 'ATB', 'Mathias Grassow', 'BOAT', 'Bryan Adams', 'Mary Elizabeth McGlynn', 'Rio en Medio', 'The Manges', 'Bun B', 'Andrew Sixty', 'Slowdive', 'The Locomotives', 'TOKIO', 'Otto von Schirach', 'BT', '鷺巣詩郎', 'Bane', 'BoA']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Diana Krall]: Ranks 17
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Steven Halpern', 'The Moody Blues', 'Christina Perri', 'Ashlee Simpson', 'Yves Larock', 'Bedouin Soundclash', 'Telex', 'Snot', 'Alkaline Trio', 'Strapping Young Lad', 'mind.in.a.box', 'The Kovenant', 'Disgorge', 'The Sarcastic Dharma Society', 'Cheiro de Amor', "Cap'n Jazz", 'Alice Nine', 'Diana Krall']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Liquid Liquid]: Ranks 3
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Cannibal Ox', 'Seba', 'Haujobb', 'Liquid Liquid', 'Equilibrium', 'Deep Purple', 'Mescalito', 'Sic Alps', 'Wall of Voodoo', 'DJ Antoine', 'Shirley Bassey', 'Evergreen Terrace', 'Neon', 'The Pussycat Dolls', 'Keith Urban', 'Cameron Mizell', 'Krezip', 'Status Quo', 'Blur', 'DFC']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Andreea Banica]: Ranks 9
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['The xx', 'DJ Antoine', 'The Pussycat Dolls', 'Echo Image', 'Little Grey Girlfriend', 'Say Hi', 'Orgy', 'Woody Guthrie', 'Bob Seger & the Silver Bullet Band', 'Andreea Banica', 'The Cult', 'Library Tapes', 'Gramofocas', 'resident hero', 'Noctura', 'The Armada', 'Кино', 'Solerrain', 'Poison', 'Self Against City']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Sam Cooke]: Ranks 3
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Gaia Consort', 'Anvil', 'Ozzy Osbourne', 'Sam Cooke', 'The Police', 'The Melodians', 'Ayreon', 'The Young Veins', 'El Cuarteto de Nos', 'Keith Urban', 'Robin Skouteris', 'Lowe', 'Pestilence', 'Peja', 'Agonoize', 'We vs. Death', 'Frank Jorge', 'BTR', 'The Pussycat Dolls', 'Robin Williams']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Faith Evans]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Faith Evans', 'Cheyenne Kimball', 'James Morrison', 'Poe', 'Frédéric Chopin', 'Augustus Pablo', 'Mudvayne', 'Room Eleven', 'Arcade Fire', 'Vinicio Capossela', 'Loretta Lynn', '14 Bis', 'Peter Godwin', 'Anvil', 'Смоки Мо', 'Electrik Red', '楊千嬅', 'Altera Forma', 'DJ Sharpnel', 'Venom']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Bishop Allen]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Bishop Allen', 'Fujiya & Miyagi', 'Kelis', 'Joe Walsh', 'Kettcar', 'Eliza Doolittle', 'Anthrax', 'iwrestledabearonce', 'Ojos de Brujo', 'Jacques Higelin', 'Almamegretta', 'Young Money', 'Metin & Kemal Kahraman', 'Cock Sparrer', 'Kyo', 'Patricia Rivera', "Houria Aïchi & L'Hijâz'Car", 'Soulsearcher', 'Tony Gatlif']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Owen Pallett]: Ranks 14
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Grendel', 'blink-182', 'Phoenix', 'The Evpatoria Report', 'Ozzy Osbourne', 'The English Beat', 'Doro', 'Pretty Ricky', 'Funkadelic', 'Eddie Izzard', 'Brooks & Dunn', 'Panzer AG', 'Wander Wildner', 'The Pepper Pots', 'Owen Pallett', 'Peja', 'Robin Skouteris', 'Pretty Poison', 'Gökhan Kırdar', 'Atheist']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Escape The Fate]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Escape The Fate', 'New Order', 'Thievery Corporation', 'Los Auténticos Decadentes', 'General Patton vs. The X-Ecutioners', 'Happy Mondays', 'Alien Vampires', 'Set Fire to Flames', 'Amduscia', 'Just Jack', 'Robin Skouteris', 'Trans-X', 'Chicane', 'Ke$ha', 'Scraps of Tape', 'Savino', 'DOGinTheパラレルワールドオーケストラ', 'ＶａｎｅｓｓＡ', 'dJ mAx dReamer', 'Pretty Poison']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [QARPA]: Ranks 3
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Novembre', 'Grendel', 'Equilibrium', 'QARPA', 'Luxúria', 'Panzer AG', 'Phoenix', 'Mike Stocksdale', 'Garotos Podres', 'Krezip', 'Cameron Mizell', 'Flight of the Conchords', 'DJ Antoine', 'Klimt 1918', 'Ke$ha', 'Steppenwolf', 'Lego Feet', 'Generation X']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Rihanna]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Rihanna', 'blink-182', 'Patrick Wolf', 'Woody Guthrie', 'Flight of the Conchords', 'Lego Feet', 'Cameron Mizell', 'Shirley Bassey', 'Equilibrium', 'Mike Stocksdale', 'Krezip', 'ДДТ', 'Kylie Minogue', 'Klimt 1918', 'The Cult', 'Solar Fake', 'Luxúria', 'Garotos Podres', 'Alpha Quadrant', 'Poison']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Glen Hansard & Markéta Irglová]: Ranks 3
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Jon Hopkins', 'Chicane', 'Mark Farina', 'Glen Hansard & Markéta Irglová', 'Men at Work', 'Shannon', 'Solar Fake', 'Ashlee Simpson', '.38 Special', 'Gregor Tresher', 'Darkthrone', 'Alpha Quadrant', 'Robin Skouteris', 'Capella De Ministrers', 'Gramofocas', 'Nasser Cheshmazar', 'Patrick Wolf', 'Austin TV', 'Ke$ha', 'Tonikom']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Haste the Day]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Haste the Day', 'Novembre', 'Poison', 'The Pussycat Dolls', 'Skye', 'Grizzly Bear', 'Tobias Bernstrup', 'Spektralized', 'Klein & Mbo', 'The Narcicyst', 'Woody Guthrie', 'Karima Francis', 'Rob Dougan', 'Söhne Mannheims', 'Javier Navarrete', 'Joan Manuel Serrat', 'The Tunics', 'Robin Skouteris', 'Slum Village', 'Kylie Minogue']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [ZAZ]: Ranks 1
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Hans Zimmer', 'ZAZ', 'Patti Scialfa', 'Angels & Airwaves', 'Chiclete Com Banana', 'LaFee', 'The Midnight Beast', 'Something Corporate', 'Sanctus Real', 'Extreme', 'Willow Smith', 'Aleks Syntek', 'Headhunter', 'Belie My Burial', 'Dannii Minogue', 'Elvira', 'Ларик Сурапов', 'Devourment', 'Tantric', 'HealeyIsland']]
+Sun 02 Jun 2024 14:26:21 INFO  Ground-truth [Girls Aloud]: Ranks 0
+Sun 02 Jun 2024 14:26:21 INFO  Ranking List [['Girls Aloud', 'Less Than Jake', 'The Rembrandts', 'Sylvain Chauveau', 'Yasemin Mori', 'M. Pokora', 'Desmond Child', 'Varius Manx', 'Hayley Williams', 'Dana Glover', 'Cocoon', '2002', 'Riccardo Cocciante', 'Roberto Carlos', 'Panna Fredda', 'Cantodiscanto', 'The Wagner logic', 'Leo Brouwer', 'Maserati', 'Jurassic 5']]
+Sun 02 Jun 2024 14:26:21 INFO  SAVE DONE! Path: dataset/lastfm/output_files/final11_gpt-3.5-turbo_lastfm_RankAggregated_output_2020.json
+Sun 02 Jun 2024 14:26:21 INFO  recall@1 - 0.31	recall@5 - 0.64	recall@10 - 0.75	recall@20 - 1.0	recall@50 - 1.0	ndcg@1 - 0.31	ndcg@5 - 0.4865	ndcg@10 - 0.522	ndcg@20 - 0.5838	ndcg@50 - 0.5838

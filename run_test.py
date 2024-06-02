@@ -9,7 +9,7 @@ from utils import get_model
 from trainer import SelectedUserTrainer
 
 
-def evaluate(model_name, dataset_name, pretrained_file, rep_num, num_data, **kwargs):
+def evaluate(model_name, dataset_name, pretrained_file, **kwargs):
     # configurations initialization
     props = [f'props/{model_name}.yaml', f'props/{dataset_name}.yaml', 'props/overall.yaml']
     print(props)
@@ -41,12 +41,7 @@ def evaluate(model_name, dataset_name, pretrained_file, rep_num, num_data, **kwa
         model.load_state_dict(checkpoint['state_dict'], strict=False)
         model.load_other_parameter(checkpoint.get("other_parameter"))
 
-    # variants
-    config['rep_num'] = rep_num
-
     logger.info(model)
-
-    config['num_data'] = num_data
 
     trainer = SelectedUserTrainer(config, model, dataset)
 
@@ -69,14 +64,13 @@ def evaluate(model_name, dataset_name, pretrained_file, rep_num, num_data, **kwa
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("-m", type=str, default="RankAggregated", help="model name")
+    parser.add_argument("-m", type=str, default="RankZero", help="model name")
     # [RankAggregated, RankFixed, RankNearest, RankZero]
 
     parser.add_argument('-d', type=str, default='ml-1m', help='dataset name') # [ml-1m, lastfm, Games]
     parser.add_argument('-p', type=str, default='', help='pre-trained model path')
 
-    parser.add_argument('-r', type=str, default='0', help='repeat number')
-    parser.add_argument('-n', type=int, default=5000, help='repeat number')
+    parser.add_argument('-n', type=int, default=200, help='number of ')
 
     parser.add_argument('-pl', type=str, default="gpt-3.5-turbo", help='openai engine') # [gpt-4o, gpt-3.5-turbo]
     # parser.add_argument('-key', type=str, default="", help='openai key') # [
@@ -88,9 +82,10 @@ if __name__ == '__main__':
     config_dict = {
         "platform": args.pl,
         "seed": args.sd,
-        'num_demo_int': 5,
+        'num_demo_int': 2,
         'num_demo_out': 1,
         'sim': "multivector", # openaiemb
+        'num_data': args.n
     }
 
-    evaluate(args.m, args.d, pretrained_file=args.p, rep_num=args.r, num_data=args.n, **config_dict)
+    evaluate(model_name=args.m, dataset_name=args.d, pretrained_file=args.p, **config_dict)

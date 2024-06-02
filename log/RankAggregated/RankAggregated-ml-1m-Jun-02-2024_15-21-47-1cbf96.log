@@ -1,0 +1,158 @@
+Sun 02 Jun 2024 15:21:47 INFO  
+General Hyper Parameters:
+gpu_id = 0
+use_gpu = True
+seed = 2020
+state = INFO
+reproducibility = True
+data_path = dataset/ml-1m
+checkpoint_dir = saved
+show_progress = True
+save_dataset = False
+dataset_save_path = None
+save_dataloaders = False
+dataloaders_save_path = None
+log_wandb = False
+
+Training Hyper Parameters:
+epochs = 300
+train_batch_size = 4096
+learner = adam
+learning_rate = 0.001
+train_neg_sample_args = {'distribution': 'none', 'sample_num': 'none', 'alpha': 'none', 'dynamic': False, 'candidate_num': 0}
+eval_step = 1
+stopping_step = 10
+clip_grad_norm = None
+weight_decay = 0.0
+loss_decimal_place = 4
+
+Evaluation Hyper Parameters:
+eval_args = {'split': {'LS': 'valid_and_test'}, 'order': 'TO', 'group_by': 'user', 'mode': {'valid': 'full', 'test': 'full'}}
+repeatable = True
+metrics = ['Recall', 'NDCG']
+topk = [1, 5, 10, 20, 50]
+valid_metric = NDCG@10
+valid_metric_bigger = True
+eval_batch_size = 100
+metric_decimal_place = 4
+
+Dataset Hyper Parameters:
+field_separator = 	
+seq_separator =  
+USER_ID_FIELD = user_id
+ITEM_ID_FIELD = item_id
+RATING_FIELD = rating
+TIME_FIELD = timestamp
+seq_len = None
+LABEL_FIELD = label
+threshold = None
+NEG_PREFIX = neg_
+load_col = {'inter': ['user_id', 'item_id', 'timestamp']}
+unload_col = None
+unused_col = None
+additional_feat_suffix = None
+rm_dup_inter = None
+val_interval = None
+filter_inter_by_user_or_item = True
+user_inter_num_interval = [0,inf)
+item_inter_num_interval = [0,inf)
+alias_of_user_id = None
+alias_of_item_id = None
+alias_of_entity_id = None
+alias_of_relation_id = None
+preload_weight = None
+normalize_field = None
+normalize_all = None
+ITEM_LIST_LENGTH_FIELD = item_length
+LIST_SUFFIX = _list
+MAX_ITEM_LIST_LENGTH = 50
+POSITION_FIELD = position_id
+HEAD_ENTITY_ID_FIELD = head_id
+TAIL_ENTITY_ID_FIELD = tail_id
+RELATION_ID_FIELD = relation_id
+ENTITY_ID_FIELD = entity_id
+benchmark_filename = None
+
+Other Hyper Parameters: 
+worker = 0
+wandb_project = recbole
+shuffle = True
+require_pow = False
+enable_amp = False
+enable_scaler = False
+transform = None
+numerical_features = []
+discretization = None
+kg_reverse_r = False
+entity_kg_num_interval = [0,inf)
+relation_kg_num_interval = [0,inf)
+MODEL_TYPE = ModelType.SEQUENTIAL
+max_tokens = 512
+api_batch = 20
+temperature = 0.0
+async_dispatch = True
+boots = 0
+max_his_len = 10
+loss_type = CE
+selected_user_suffix = random
+recall_budget = 20
+has_gt = True
+fix_pos = -1
+platform = gpt-3.5-turbo
+num_demo_int = 5
+num_demo_out = 1
+sim = multivector
+num_data = 20
+MODEL_INPUT_TYPE = InputType.POINTWISE
+eval_type = EvaluatorType.RANKING
+single_spec = True
+local_rank = 0
+device = cpu
+valid_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+test_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+
+
+Sun 02 Jun 2024 15:21:47 INFO  2020, reproducibility: True
+Sun 02 Jun 2024 15:21:48 INFO  ml-1m
+The number of users: 6041
+Average actions of users: 165.5975165562914
+The number of items: 3707
+Average actions of items: 269.88909875876953
+The number of inters: 1000209
+The sparsity of the dataset: 95.53358229599758%
+Remain Fields: ['user_id', 'item_id', 'timestamp']
+Sun 02 Jun 2024 15:21:53 INFO  [Training]: train_batch_size = [4096] train_neg_sample_args: [{'distribution': 'none', 'sample_num': 'none', 'alpha': 'none', 'dynamic': False, 'candidate_num': 0}]
+Sun 02 Jun 2024 15:21:53 INFO  [Evaluation]: eval_batch_size = [100] eval_args: [{'split': {'LS': 'valid_and_test'}, 'order': 'TO', 'group_by': 'user', 'mode': {'valid': 'full', 'test': 'full'}}]
+Sun 02 Jun 2024 15:21:53 INFO  Avg. t = 16.958996493121123
+Sun 02 Jun 2024 15:21:53 INFO  RankAggregated(
+  (fake_fn): Linear(in_features=1, out_features=1, bias=True)
+)
+Trainable parameters: 2
+Sun 02 Jun 2024 15:21:55 INFO  Has ground truth.
+Sun 02 Jun 2024 15:21:55 INFO  Shuffle ground truth
+Sun 02 Jun 2024 15:21:55 INFO  Here are index from 0 to 20
+Sun 02 Jun 2024 15:21:55 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 15:21:55 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 15:21:57 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:21:57 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:21:57 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:21:57 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:21:57 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:21:57 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:21:57 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:21:58 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:21:58 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:21:58 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:21:58 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:21:58 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:21:58 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:21:58 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:21:58 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:21:58 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:21:58 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:21:58 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:21:58 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:21:59 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:21:59 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 15:21:59 INFO  SAVE DONE! Path: dataset/ml-1m/output_files/final11_gpt-3.5-turbo_ml-1m_RankAggregated_output_2020.json
+Sun 02 Jun 2024 15:21:59 INFO  recall@1 - 0.1	recall@5 - 0.55	recall@10 - 0.9	recall@20 - 1.0	recall@50 - 1.0	ndcg@1 - 0.1	ndcg@5 - 0.3421	ndcg@10 - 0.458	ndcg@20 - 0.4823	ndcg@50 - 0.4823

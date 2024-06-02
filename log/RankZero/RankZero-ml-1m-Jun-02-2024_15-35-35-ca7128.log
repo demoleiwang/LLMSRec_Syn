@@ -1,0 +1,604 @@
+Sun 02 Jun 2024 15:35:35 INFO  
+General Hyper Parameters:
+gpu_id = 0
+use_gpu = True
+seed = 2020
+state = INFO
+reproducibility = True
+data_path = dataset/ml-1m
+checkpoint_dir = saved
+show_progress = True
+save_dataset = False
+dataset_save_path = None
+save_dataloaders = False
+dataloaders_save_path = None
+log_wandb = False
+
+Training Hyper Parameters:
+epochs = 300
+train_batch_size = 4096
+learner = adam
+learning_rate = 0.001
+train_neg_sample_args = {'distribution': 'none', 'sample_num': 'none', 'alpha': 'none', 'dynamic': False, 'candidate_num': 0}
+eval_step = 1
+stopping_step = 10
+clip_grad_norm = None
+weight_decay = 0.0
+loss_decimal_place = 4
+
+Evaluation Hyper Parameters:
+eval_args = {'split': {'LS': 'valid_and_test'}, 'order': 'TO', 'group_by': 'user', 'mode': {'valid': 'full', 'test': 'full'}}
+repeatable = True
+metrics = ['Recall', 'NDCG']
+topk = [1, 5, 10, 20, 50]
+valid_metric = NDCG@10
+valid_metric_bigger = True
+eval_batch_size = 100
+metric_decimal_place = 4
+
+Dataset Hyper Parameters:
+field_separator = 	
+seq_separator =  
+USER_ID_FIELD = user_id
+ITEM_ID_FIELD = item_id
+RATING_FIELD = rating
+TIME_FIELD = timestamp
+seq_len = None
+LABEL_FIELD = label
+threshold = None
+NEG_PREFIX = neg_
+load_col = {'inter': ['user_id', 'item_id', 'timestamp']}
+unload_col = None
+unused_col = None
+additional_feat_suffix = None
+rm_dup_inter = None
+val_interval = None
+filter_inter_by_user_or_item = True
+user_inter_num_interval = [0,inf)
+item_inter_num_interval = [0,inf)
+alias_of_user_id = None
+alias_of_item_id = None
+alias_of_entity_id = None
+alias_of_relation_id = None
+preload_weight = None
+normalize_field = None
+normalize_all = None
+ITEM_LIST_LENGTH_FIELD = item_length
+LIST_SUFFIX = _list
+MAX_ITEM_LIST_LENGTH = 50
+POSITION_FIELD = position_id
+HEAD_ENTITY_ID_FIELD = head_id
+TAIL_ENTITY_ID_FIELD = tail_id
+RELATION_ID_FIELD = relation_id
+ENTITY_ID_FIELD = entity_id
+benchmark_filename = None
+
+Other Hyper Parameters: 
+worker = 0
+wandb_project = recbole
+shuffle = True
+require_pow = False
+enable_amp = False
+enable_scaler = False
+transform = None
+numerical_features = []
+discretization = None
+kg_reverse_r = False
+entity_kg_num_interval = [0,inf)
+relation_kg_num_interval = [0,inf)
+MODEL_TYPE = ModelType.SEQUENTIAL
+max_tokens = 512
+api_batch = 10
+temperature = 0.0
+async_dispatch = True
+boots = 0
+max_his_len = 10
+loss_type = CE
+selected_user_suffix = random
+recall_budget = 20
+has_gt = True
+fix_pos = -1
+platform = gpt-3.5-turbo
+num_demo_int = 2
+num_demo_out = 1
+sim = multivector
+num_data = 200
+MODEL_INPUT_TYPE = InputType.POINTWISE
+eval_type = EvaluatorType.RANKING
+single_spec = True
+local_rank = 0
+device = cpu
+valid_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+test_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+
+
+Sun 02 Jun 2024 15:35:35 INFO  2020, reproducibility: True
+Sun 02 Jun 2024 15:35:36 INFO  ml-1m
+The number of users: 6041
+Average actions of users: 165.5975165562914
+The number of items: 3707
+Average actions of items: 269.88909875876953
+The number of inters: 1000209
+The sparsity of the dataset: 95.53358229599758%
+Remain Fields: ['user_id', 'item_id', 'timestamp']
+Sun 02 Jun 2024 15:35:42 INFO  [Training]: train_batch_size = [4096] train_neg_sample_args: [{'distribution': 'none', 'sample_num': 'none', 'alpha': 'none', 'dynamic': False, 'candidate_num': 0}]
+Sun 02 Jun 2024 15:35:42 INFO  [Evaluation]: eval_batch_size = [100] eval_args: [{'split': {'LS': 'valid_and_test'}, 'order': 'TO', 'group_by': 'user', 'mode': {'valid': 'full', 'test': 'full'}}]
+Sun 02 Jun 2024 15:35:42 INFO  Avg. t = 16.958996493121123
+Sun 02 Jun 2024 15:35:42 INFO  RankZero(
+  (fake_fn): Linear(in_features=1, out_features=1, bias=True)
+)
+Trainable parameters: 2
+Sun 02 Jun 2024 15:35:43 INFO  Has ground truth.
+Sun 02 Jun 2024 15:35:43 INFO  Shuffle ground truth
+Sun 02 Jun 2024 15:35:43 INFO  Here are index from 0 to 10
+Sun 02 Jun 2024 15:35:43 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 15:35:43 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 15:35:45 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:45 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:45 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:45 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:45 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:45 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:46 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:46 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:47 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:47 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:47 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 15:35:47 INFO  Here are index from 10 to 20
+Sun 02 Jun 2024 15:35:47 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 15:35:47 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 15:35:47 INFO  Retrying request to /chat/completions in 0.845083 seconds
+Sun 02 Jun 2024 15:35:47 INFO  Retrying request to /chat/completions in 0.956369 seconds
+Sun 02 Jun 2024 15:35:47 INFO  Retrying request to /chat/completions in 0.807881 seconds
+Sun 02 Jun 2024 15:35:47 INFO  Retrying request to /chat/completions in 0.763577 seconds
+Sun 02 Jun 2024 15:35:47 INFO  Retrying request to /chat/completions in 0.881460 seconds
+Sun 02 Jun 2024 15:35:47 INFO  Retrying request to /chat/completions in 0.766590 seconds
+Sun 02 Jun 2024 15:35:47 INFO  Retrying request to /chat/completions in 0.864254 seconds
+Sun 02 Jun 2024 15:35:47 INFO  Retrying request to /chat/completions in 0.845634 seconds
+Sun 02 Jun 2024 15:35:47 INFO  Retrying request to /chat/completions in 0.885544 seconds
+Sun 02 Jun 2024 15:35:47 INFO  Retrying request to /chat/completions in 0.939985 seconds
+Sun 02 Jun 2024 15:35:50 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:50 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:50 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:50 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:50 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:50 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:51 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:51 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:51 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:52 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:52 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 15:35:52 INFO  Here are index from 20 to 30
+Sun 02 Jun 2024 15:35:52 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 15:35:52 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 15:35:52 INFO  Retrying request to /chat/completions in 0.947604 seconds
+Sun 02 Jun 2024 15:35:52 INFO  Retrying request to /chat/completions in 0.832442 seconds
+Sun 02 Jun 2024 15:35:52 INFO  Retrying request to /chat/completions in 0.848869 seconds
+Sun 02 Jun 2024 15:35:52 INFO  Retrying request to /chat/completions in 0.882128 seconds
+Sun 02 Jun 2024 15:35:52 INFO  Retrying request to /chat/completions in 0.973754 seconds
+Sun 02 Jun 2024 15:35:52 INFO  Retrying request to /chat/completions in 0.832474 seconds
+Sun 02 Jun 2024 15:35:52 INFO  Retrying request to /chat/completions in 0.877216 seconds
+Sun 02 Jun 2024 15:35:52 INFO  Retrying request to /chat/completions in 0.781742 seconds
+Sun 02 Jun 2024 15:35:52 INFO  Retrying request to /chat/completions in 0.865637 seconds
+Sun 02 Jun 2024 15:35:52 INFO  Retrying request to /chat/completions in 0.881117 seconds
+Sun 02 Jun 2024 15:35:55 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:55 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:55 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:55 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:55 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:56 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:56 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:56 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:56 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:56 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:56 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 15:35:56 INFO  Here are index from 30 to 40
+Sun 02 Jun 2024 15:35:56 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 15:35:56 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 15:35:56 INFO  Retrying request to /chat/completions in 0.989787 seconds
+Sun 02 Jun 2024 15:35:56 INFO  Retrying request to /chat/completions in 0.987665 seconds
+Sun 02 Jun 2024 15:35:56 INFO  Retrying request to /chat/completions in 0.772392 seconds
+Sun 02 Jun 2024 15:35:56 INFO  Retrying request to /chat/completions in 0.768854 seconds
+Sun 02 Jun 2024 15:35:56 INFO  Retrying request to /chat/completions in 0.945747 seconds
+Sun 02 Jun 2024 15:35:56 INFO  Retrying request to /chat/completions in 0.789342 seconds
+Sun 02 Jun 2024 15:35:56 INFO  Retrying request to /chat/completions in 0.826863 seconds
+Sun 02 Jun 2024 15:35:56 INFO  Retrying request to /chat/completions in 0.976613 seconds
+Sun 02 Jun 2024 15:35:56 INFO  Retrying request to /chat/completions in 0.755536 seconds
+Sun 02 Jun 2024 15:35:56 INFO  Retrying request to /chat/completions in 0.934256 seconds
+Sun 02 Jun 2024 15:35:59 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:59 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:59 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:59 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:59 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:59 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:35:59 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:00 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:00 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:00 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:00 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 15:36:00 INFO  Here are index from 40 to 50
+Sun 02 Jun 2024 15:36:00 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 15:36:00 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 15:36:00 INFO  Retrying request to /chat/completions in 0.760573 seconds
+Sun 02 Jun 2024 15:36:00 INFO  Retrying request to /chat/completions in 0.993434 seconds
+Sun 02 Jun 2024 15:36:00 INFO  Retrying request to /chat/completions in 0.865234 seconds
+Sun 02 Jun 2024 15:36:00 INFO  Retrying request to /chat/completions in 0.884024 seconds
+Sun 02 Jun 2024 15:36:00 INFO  Retrying request to /chat/completions in 0.923211 seconds
+Sun 02 Jun 2024 15:36:00 INFO  Retrying request to /chat/completions in 0.839691 seconds
+Sun 02 Jun 2024 15:36:00 INFO  Retrying request to /chat/completions in 0.885048 seconds
+Sun 02 Jun 2024 15:36:00 INFO  Retrying request to /chat/completions in 0.871151 seconds
+Sun 02 Jun 2024 15:36:00 INFO  Retrying request to /chat/completions in 0.845903 seconds
+Sun 02 Jun 2024 15:36:00 INFO  Retrying request to /chat/completions in 0.869400 seconds
+Sun 02 Jun 2024 15:36:03 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:03 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:03 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:03 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:03 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:03 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:03 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:03 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:04 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:04 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:04 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 15:36:04 INFO  Here are index from 50 to 60
+Sun 02 Jun 2024 15:36:04 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 15:36:04 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 15:36:04 INFO  Retrying request to /chat/completions in 0.830879 seconds
+Sun 02 Jun 2024 15:36:04 INFO  Retrying request to /chat/completions in 0.816531 seconds
+Sun 02 Jun 2024 15:36:04 INFO  Retrying request to /chat/completions in 0.857718 seconds
+Sun 02 Jun 2024 15:36:04 INFO  Retrying request to /chat/completions in 0.780738 seconds
+Sun 02 Jun 2024 15:36:04 INFO  Retrying request to /chat/completions in 0.772227 seconds
+Sun 02 Jun 2024 15:36:04 INFO  Retrying request to /chat/completions in 0.789312 seconds
+Sun 02 Jun 2024 15:36:04 INFO  Retrying request to /chat/completions in 0.818638 seconds
+Sun 02 Jun 2024 15:36:04 INFO  Retrying request to /chat/completions in 0.894259 seconds
+Sun 02 Jun 2024 15:36:04 INFO  Retrying request to /chat/completions in 0.844773 seconds
+Sun 02 Jun 2024 15:36:04 INFO  Retrying request to /chat/completions in 0.796093 seconds
+Sun 02 Jun 2024 15:36:07 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:07 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:08 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:08 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:08 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:08 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:08 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:08 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:08 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:08 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:08 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 15:36:08 INFO  Here are index from 60 to 70
+Sun 02 Jun 2024 15:36:08 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 15:36:08 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 15:36:08 INFO  Retrying request to /chat/completions in 0.927455 seconds
+Sun 02 Jun 2024 15:36:08 INFO  Retrying request to /chat/completions in 0.822054 seconds
+Sun 02 Jun 2024 15:36:08 INFO  Retrying request to /chat/completions in 0.788754 seconds
+Sun 02 Jun 2024 15:36:08 INFO  Retrying request to /chat/completions in 0.842975 seconds
+Sun 02 Jun 2024 15:36:08 INFO  Retrying request to /chat/completions in 0.977774 seconds
+Sun 02 Jun 2024 15:36:08 INFO  Retrying request to /chat/completions in 0.941284 seconds
+Sun 02 Jun 2024 15:36:08 INFO  Retrying request to /chat/completions in 0.940076 seconds
+Sun 02 Jun 2024 15:36:08 INFO  Retrying request to /chat/completions in 0.757095 seconds
+Sun 02 Jun 2024 15:36:08 INFO  Retrying request to /chat/completions in 0.799907 seconds
+Sun 02 Jun 2024 15:36:08 INFO  Retrying request to /chat/completions in 0.774837 seconds
+Sun 02 Jun 2024 15:36:11 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:11 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:11 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:11 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:11 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:11 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:11 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:12 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:12 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:12 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:12 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 15:36:12 INFO  Here are index from 70 to 80
+Sun 02 Jun 2024 15:36:12 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 15:36:12 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 15:36:12 INFO  Retrying request to /chat/completions in 0.988739 seconds
+Sun 02 Jun 2024 15:36:12 INFO  Retrying request to /chat/completions in 0.975543 seconds
+Sun 02 Jun 2024 15:36:12 INFO  Retrying request to /chat/completions in 0.985529 seconds
+Sun 02 Jun 2024 15:36:12 INFO  Retrying request to /chat/completions in 0.911758 seconds
+Sun 02 Jun 2024 15:36:12 INFO  Retrying request to /chat/completions in 0.779937 seconds
+Sun 02 Jun 2024 15:36:12 INFO  Retrying request to /chat/completions in 0.754912 seconds
+Sun 02 Jun 2024 15:36:12 INFO  Retrying request to /chat/completions in 0.787102 seconds
+Sun 02 Jun 2024 15:36:12 INFO  Retrying request to /chat/completions in 0.974075 seconds
+Sun 02 Jun 2024 15:36:12 INFO  Retrying request to /chat/completions in 0.843455 seconds
+Sun 02 Jun 2024 15:36:12 INFO  Retrying request to /chat/completions in 0.782390 seconds
+Sun 02 Jun 2024 15:36:15 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:15 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:15 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:15 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:15 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:15 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:15 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:15 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:15 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:16 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:16 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 15:36:16 INFO  Here are index from 80 to 90
+Sun 02 Jun 2024 15:36:16 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 15:36:16 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 15:36:16 INFO  Retrying request to /chat/completions in 0.877248 seconds
+Sun 02 Jun 2024 15:36:16 INFO  Retrying request to /chat/completions in 0.797486 seconds
+Sun 02 Jun 2024 15:36:16 INFO  Retrying request to /chat/completions in 0.915107 seconds
+Sun 02 Jun 2024 15:36:16 INFO  Retrying request to /chat/completions in 0.889607 seconds
+Sun 02 Jun 2024 15:36:16 INFO  Retrying request to /chat/completions in 0.949426 seconds
+Sun 02 Jun 2024 15:36:16 INFO  Retrying request to /chat/completions in 0.913024 seconds
+Sun 02 Jun 2024 15:36:16 INFO  Retrying request to /chat/completions in 0.870064 seconds
+Sun 02 Jun 2024 15:36:16 INFO  Retrying request to /chat/completions in 0.849945 seconds
+Sun 02 Jun 2024 15:36:16 INFO  Retrying request to /chat/completions in 0.793020 seconds
+Sun 02 Jun 2024 15:36:16 INFO  Retrying request to /chat/completions in 0.799778 seconds
+Sun 02 Jun 2024 15:36:18 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:18 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:19 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:19 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:19 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:19 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:19 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:19 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:19 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:19 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:19 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 15:36:19 INFO  Here are index from 90 to 100
+Sun 02 Jun 2024 15:36:19 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 15:36:19 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 15:36:19 INFO  Retrying request to /chat/completions in 0.846200 seconds
+Sun 02 Jun 2024 15:36:19 INFO  Retrying request to /chat/completions in 0.851431 seconds
+Sun 02 Jun 2024 15:36:19 INFO  Retrying request to /chat/completions in 0.838494 seconds
+Sun 02 Jun 2024 15:36:19 INFO  Retrying request to /chat/completions in 0.810884 seconds
+Sun 02 Jun 2024 15:36:19 INFO  Retrying request to /chat/completions in 0.761708 seconds
+Sun 02 Jun 2024 15:36:19 INFO  Retrying request to /chat/completions in 0.835381 seconds
+Sun 02 Jun 2024 15:36:19 INFO  Retrying request to /chat/completions in 0.936705 seconds
+Sun 02 Jun 2024 15:36:19 INFO  Retrying request to /chat/completions in 0.821244 seconds
+Sun 02 Jun 2024 15:36:19 INFO  Retrying request to /chat/completions in 0.983253 seconds
+Sun 02 Jun 2024 15:36:19 INFO  Retrying request to /chat/completions in 0.972270 seconds
+Sun 02 Jun 2024 15:36:22 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:22 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:22 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:23 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:23 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:23 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:23 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:23 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:23 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:23 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:23 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 15:36:23 INFO  Here are index from 100 to 110
+Sun 02 Jun 2024 15:36:23 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 15:36:23 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 15:36:23 INFO  Retrying request to /chat/completions in 0.771742 seconds
+Sun 02 Jun 2024 15:36:23 INFO  Retrying request to /chat/completions in 0.777087 seconds
+Sun 02 Jun 2024 15:36:23 INFO  Retrying request to /chat/completions in 0.770024 seconds
+Sun 02 Jun 2024 15:36:23 INFO  Retrying request to /chat/completions in 0.866071 seconds
+Sun 02 Jun 2024 15:36:23 INFO  Retrying request to /chat/completions in 0.943308 seconds
+Sun 02 Jun 2024 15:36:23 INFO  Retrying request to /chat/completions in 0.814114 seconds
+Sun 02 Jun 2024 15:36:23 INFO  Retrying request to /chat/completions in 0.899505 seconds
+Sun 02 Jun 2024 15:36:23 INFO  Retrying request to /chat/completions in 0.833934 seconds
+Sun 02 Jun 2024 15:36:23 INFO  Retrying request to /chat/completions in 0.930613 seconds
+Sun 02 Jun 2024 15:36:23 INFO  Retrying request to /chat/completions in 0.917320 seconds
+Sun 02 Jun 2024 15:36:26 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:26 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:26 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:26 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:26 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:26 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:26 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:26 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:26 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:27 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:27 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 15:36:27 INFO  Here are index from 110 to 120
+Sun 02 Jun 2024 15:36:27 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 15:36:27 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 15:36:27 INFO  Retrying request to /chat/completions in 0.888515 seconds
+Sun 02 Jun 2024 15:36:27 INFO  Retrying request to /chat/completions in 0.977493 seconds
+Sun 02 Jun 2024 15:36:27 INFO  Retrying request to /chat/completions in 0.867387 seconds
+Sun 02 Jun 2024 15:36:27 INFO  Retrying request to /chat/completions in 0.786130 seconds
+Sun 02 Jun 2024 15:36:27 INFO  Retrying request to /chat/completions in 0.897044 seconds
+Sun 02 Jun 2024 15:36:27 INFO  Retrying request to /chat/completions in 0.996672 seconds
+Sun 02 Jun 2024 15:36:27 INFO  Retrying request to /chat/completions in 0.964830 seconds
+Sun 02 Jun 2024 15:36:27 INFO  Retrying request to /chat/completions in 0.866220 seconds
+Sun 02 Jun 2024 15:36:27 INFO  Retrying request to /chat/completions in 0.994144 seconds
+Sun 02 Jun 2024 15:36:27 INFO  Retrying request to /chat/completions in 0.775381 seconds
+Sun 02 Jun 2024 15:36:29 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:29 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:29 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:30 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:30 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:30 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:30 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:30 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:31 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:32 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:32 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 15:36:32 INFO  Here are index from 120 to 130
+Sun 02 Jun 2024 15:36:32 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 15:36:32 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 15:36:32 INFO  Retrying request to /chat/completions in 0.950077 seconds
+Sun 02 Jun 2024 15:36:32 INFO  Retrying request to /chat/completions in 0.930001 seconds
+Sun 02 Jun 2024 15:36:32 INFO  Retrying request to /chat/completions in 0.871862 seconds
+Sun 02 Jun 2024 15:36:32 INFO  Retrying request to /chat/completions in 0.936576 seconds
+Sun 02 Jun 2024 15:36:32 INFO  Retrying request to /chat/completions in 0.958516 seconds
+Sun 02 Jun 2024 15:36:32 INFO  Retrying request to /chat/completions in 0.806634 seconds
+Sun 02 Jun 2024 15:36:32 INFO  Retrying request to /chat/completions in 0.939784 seconds
+Sun 02 Jun 2024 15:36:32 INFO  Retrying request to /chat/completions in 0.757738 seconds
+Sun 02 Jun 2024 15:36:32 INFO  Retrying request to /chat/completions in 0.887271 seconds
+Sun 02 Jun 2024 15:36:32 INFO  Retrying request to /chat/completions in 0.912816 seconds
+Sun 02 Jun 2024 15:36:35 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:35 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:35 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:35 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:35 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:35 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:35 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:36 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:36 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:37 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:37 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 15:36:37 INFO  Here are index from 130 to 140
+Sun 02 Jun 2024 15:36:37 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 15:36:37 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 15:36:37 INFO  Retrying request to /chat/completions in 0.843817 seconds
+Sun 02 Jun 2024 15:36:37 INFO  Retrying request to /chat/completions in 0.816340 seconds
+Sun 02 Jun 2024 15:36:37 INFO  Retrying request to /chat/completions in 0.824949 seconds
+Sun 02 Jun 2024 15:36:37 INFO  Retrying request to /chat/completions in 0.890350 seconds
+Sun 02 Jun 2024 15:36:37 INFO  Retrying request to /chat/completions in 0.839242 seconds
+Sun 02 Jun 2024 15:36:37 INFO  Retrying request to /chat/completions in 0.850130 seconds
+Sun 02 Jun 2024 15:36:37 INFO  Retrying request to /chat/completions in 0.904262 seconds
+Sun 02 Jun 2024 15:36:37 INFO  Retrying request to /chat/completions in 0.900200 seconds
+Sun 02 Jun 2024 15:36:37 INFO  Retrying request to /chat/completions in 0.853233 seconds
+Sun 02 Jun 2024 15:36:37 INFO  Retrying request to /chat/completions in 0.879368 seconds
+Sun 02 Jun 2024 15:36:40 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:40 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:40 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:40 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:40 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:40 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:40 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:40 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:41 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:41 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:41 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 15:36:41 INFO  Here are index from 140 to 150
+Sun 02 Jun 2024 15:36:41 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 15:36:41 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 15:36:41 INFO  Retrying request to /chat/completions in 0.779332 seconds
+Sun 02 Jun 2024 15:36:41 INFO  Retrying request to /chat/completions in 0.943692 seconds
+Sun 02 Jun 2024 15:36:41 INFO  Retrying request to /chat/completions in 0.965132 seconds
+Sun 02 Jun 2024 15:36:41 INFO  Retrying request to /chat/completions in 0.984098 seconds
+Sun 02 Jun 2024 15:36:41 INFO  Retrying request to /chat/completions in 0.823103 seconds
+Sun 02 Jun 2024 15:36:41 INFO  Retrying request to /chat/completions in 0.901457 seconds
+Sun 02 Jun 2024 15:36:41 INFO  Retrying request to /chat/completions in 0.864133 seconds
+Sun 02 Jun 2024 15:36:41 INFO  Retrying request to /chat/completions in 0.783759 seconds
+Sun 02 Jun 2024 15:36:41 INFO  Retrying request to /chat/completions in 0.899640 seconds
+Sun 02 Jun 2024 15:36:41 INFO  Retrying request to /chat/completions in 0.818818 seconds
+Sun 02 Jun 2024 15:36:44 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:44 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:44 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:44 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:44 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:44 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:44 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:44 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:44 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:45 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:45 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 15:36:45 INFO  Here are index from 150 to 160
+Sun 02 Jun 2024 15:36:45 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 15:36:45 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 15:36:45 INFO  Retrying request to /chat/completions in 0.818348 seconds
+Sun 02 Jun 2024 15:36:45 INFO  Retrying request to /chat/completions in 0.759646 seconds
+Sun 02 Jun 2024 15:36:45 INFO  Retrying request to /chat/completions in 0.758980 seconds
+Sun 02 Jun 2024 15:36:45 INFO  Retrying request to /chat/completions in 0.798370 seconds
+Sun 02 Jun 2024 15:36:45 INFO  Retrying request to /chat/completions in 0.868097 seconds
+Sun 02 Jun 2024 15:36:45 INFO  Retrying request to /chat/completions in 0.919785 seconds
+Sun 02 Jun 2024 15:36:45 INFO  Retrying request to /chat/completions in 0.799113 seconds
+Sun 02 Jun 2024 15:36:45 INFO  Retrying request to /chat/completions in 0.906794 seconds
+Sun 02 Jun 2024 15:36:45 INFO  Retrying request to /chat/completions in 0.962816 seconds
+Sun 02 Jun 2024 15:36:45 INFO  Retrying request to /chat/completions in 0.890425 seconds
+Sun 02 Jun 2024 15:36:48 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:48 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:48 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:48 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:48 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:48 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:48 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:48 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:49 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:51 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:51 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 15:36:51 INFO  Here are index from 160 to 170
+Sun 02 Jun 2024 15:36:51 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 15:36:51 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 15:36:51 INFO  Retrying request to /chat/completions in 0.932259 seconds
+Sun 02 Jun 2024 15:36:51 INFO  Retrying request to /chat/completions in 0.898022 seconds
+Sun 02 Jun 2024 15:36:51 INFO  Retrying request to /chat/completions in 0.906804 seconds
+Sun 02 Jun 2024 15:36:51 INFO  Retrying request to /chat/completions in 0.881485 seconds
+Sun 02 Jun 2024 15:36:51 INFO  Retrying request to /chat/completions in 0.885932 seconds
+Sun 02 Jun 2024 15:36:51 INFO  Retrying request to /chat/completions in 0.908533 seconds
+Sun 02 Jun 2024 15:36:51 INFO  Retrying request to /chat/completions in 0.946561 seconds
+Sun 02 Jun 2024 15:36:51 INFO  Retrying request to /chat/completions in 0.795588 seconds
+Sun 02 Jun 2024 15:36:51 INFO  Retrying request to /chat/completions in 0.836824 seconds
+Sun 02 Jun 2024 15:36:51 INFO  Retrying request to /chat/completions in 0.872860 seconds
+Sun 02 Jun 2024 15:36:54 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:54 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:54 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:54 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:54 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:54 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:54 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:54 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:54 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:54 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:54 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 15:36:54 INFO  Here are index from 170 to 180
+Sun 02 Jun 2024 15:36:54 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 15:36:54 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 15:36:54 INFO  Retrying request to /chat/completions in 0.860181 seconds
+Sun 02 Jun 2024 15:36:54 INFO  Retrying request to /chat/completions in 0.905721 seconds
+Sun 02 Jun 2024 15:36:54 INFO  Retrying request to /chat/completions in 0.938418 seconds
+Sun 02 Jun 2024 15:36:54 INFO  Retrying request to /chat/completions in 0.918157 seconds
+Sun 02 Jun 2024 15:36:54 INFO  Retrying request to /chat/completions in 0.905376 seconds
+Sun 02 Jun 2024 15:36:54 INFO  Retrying request to /chat/completions in 0.825710 seconds
+Sun 02 Jun 2024 15:36:54 INFO  Retrying request to /chat/completions in 0.909632 seconds
+Sun 02 Jun 2024 15:36:54 INFO  Retrying request to /chat/completions in 0.789705 seconds
+Sun 02 Jun 2024 15:36:54 INFO  Retrying request to /chat/completions in 0.887532 seconds
+Sun 02 Jun 2024 15:36:54 INFO  Retrying request to /chat/completions in 0.917011 seconds
+Sun 02 Jun 2024 15:36:57 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:57 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:57 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:57 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:57 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:57 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:58 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:58 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:59 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:59 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:36:59 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 15:36:59 INFO  Here are index from 180 to 190
+Sun 02 Jun 2024 15:36:59 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 15:36:59 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 15:36:59 INFO  Retrying request to /chat/completions in 0.992776 seconds
+Sun 02 Jun 2024 15:36:59 INFO  Retrying request to /chat/completions in 0.869970 seconds
+Sun 02 Jun 2024 15:36:59 INFO  Retrying request to /chat/completions in 0.845781 seconds
+Sun 02 Jun 2024 15:36:59 INFO  Retrying request to /chat/completions in 0.778979 seconds
+Sun 02 Jun 2024 15:36:59 INFO  Retrying request to /chat/completions in 0.884677 seconds
+Sun 02 Jun 2024 15:36:59 INFO  Retrying request to /chat/completions in 0.997516 seconds
+Sun 02 Jun 2024 15:36:59 INFO  Retrying request to /chat/completions in 0.864292 seconds
+Sun 02 Jun 2024 15:36:59 INFO  Retrying request to /chat/completions in 0.940782 seconds
+Sun 02 Jun 2024 15:36:59 INFO  Retrying request to /chat/completions in 0.785961 seconds
+Sun 02 Jun 2024 15:36:59 INFO  Retrying request to /chat/completions in 0.917588 seconds
+Sun 02 Jun 2024 15:37:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:37:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:37:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:37:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:37:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:37:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:37:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:37:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:37:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:37:03 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:37:03 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 15:37:03 INFO  Here are index from 190 to 200
+Sun 02 Jun 2024 15:37:03 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 15:37:03 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 15:37:03 INFO  Retrying request to /chat/completions in 0.965140 seconds
+Sun 02 Jun 2024 15:37:03 INFO  Retrying request to /chat/completions in 0.837633 seconds
+Sun 02 Jun 2024 15:37:03 INFO  Retrying request to /chat/completions in 0.874058 seconds
+Sun 02 Jun 2024 15:37:03 INFO  Retrying request to /chat/completions in 0.795679 seconds
+Sun 02 Jun 2024 15:37:03 INFO  Retrying request to /chat/completions in 0.834137 seconds
+Sun 02 Jun 2024 15:37:03 INFO  Retrying request to /chat/completions in 0.802115 seconds
+Sun 02 Jun 2024 15:37:03 INFO  Retrying request to /chat/completions in 0.758335 seconds
+Sun 02 Jun 2024 15:37:03 INFO  Retrying request to /chat/completions in 0.799089 seconds
+Sun 02 Jun 2024 15:37:03 INFO  Retrying request to /chat/completions in 0.851268 seconds
+Sun 02 Jun 2024 15:37:03 INFO  Retrying request to /chat/completions in 0.820970 seconds
+Sun 02 Jun 2024 15:37:05 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:37:05 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:37:06 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:37:06 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:37:06 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:37:06 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:37:06 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:37:06 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:37:06 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:37:07 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 15:37:07 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 15:37:07 INFO  SAVE DONE! Path: dataset/ml-1m/output_files/final11_gpt-3.5-turbo_ml-1m_RankZero_output_2020.json
+Sun 02 Jun 2024 15:37:07 INFO  recall@1 - 0.245	recall@5 - 0.635	recall@10 - 0.79	recall@20 - 0.985	recall@50 - 0.985	ndcg@1 - 0.245	ndcg@5 - 0.4484	ndcg@10 - 0.4983	ndcg@20 - 0.5471	ndcg@50 - 0.5471

@@ -1,0 +1,177 @@
+Sun 02 Jun 2024 14:15:23 INFO  
+General Hyper Parameters:
+gpu_id = 0
+use_gpu = True
+seed = 2020
+state = INFO
+reproducibility = True
+data_path = dataset/ml-1m
+checkpoint_dir = saved
+show_progress = True
+save_dataset = False
+dataset_save_path = None
+save_dataloaders = False
+dataloaders_save_path = None
+log_wandb = False
+
+Training Hyper Parameters:
+epochs = 300
+train_batch_size = 4096
+learner = adam
+learning_rate = 0.001
+train_neg_sample_args = {'distribution': 'none', 'sample_num': 'none', 'alpha': 'none', 'dynamic': False, 'candidate_num': 0}
+eval_step = 1
+stopping_step = 10
+clip_grad_norm = None
+weight_decay = 0.0
+loss_decimal_place = 4
+
+Evaluation Hyper Parameters:
+eval_args = {'split': {'LS': 'valid_and_test'}, 'order': 'TO', 'group_by': 'user', 'mode': {'valid': 'full', 'test': 'full'}}
+repeatable = True
+metrics = ['Recall', 'NDCG']
+topk = [1, 5, 10, 20, 50]
+valid_metric = NDCG@10
+valid_metric_bigger = True
+eval_batch_size = 100
+metric_decimal_place = 4
+
+Dataset Hyper Parameters:
+field_separator = 	
+seq_separator =  
+USER_ID_FIELD = user_id
+ITEM_ID_FIELD = item_id
+RATING_FIELD = rating
+TIME_FIELD = timestamp
+seq_len = None
+LABEL_FIELD = label
+threshold = None
+NEG_PREFIX = neg_
+load_col = {'inter': ['user_id', 'item_id', 'timestamp']}
+unload_col = None
+unused_col = None
+additional_feat_suffix = None
+rm_dup_inter = None
+val_interval = None
+filter_inter_by_user_or_item = True
+user_inter_num_interval = [0,inf)
+item_inter_num_interval = [0,inf)
+alias_of_user_id = None
+alias_of_item_id = None
+alias_of_entity_id = None
+alias_of_relation_id = None
+preload_weight = None
+normalize_field = None
+normalize_all = None
+ITEM_LIST_LENGTH_FIELD = item_length
+LIST_SUFFIX = _list
+MAX_ITEM_LIST_LENGTH = 50
+POSITION_FIELD = position_id
+HEAD_ENTITY_ID_FIELD = head_id
+TAIL_ENTITY_ID_FIELD = tail_id
+RELATION_ID_FIELD = relation_id
+ENTITY_ID_FIELD = entity_id
+benchmark_filename = None
+
+Other Hyper Parameters: 
+worker = 0
+wandb_project = recbole
+shuffle = True
+require_pow = False
+enable_amp = False
+enable_scaler = False
+transform = None
+numerical_features = []
+discretization = None
+kg_reverse_r = False
+entity_kg_num_interval = [0,inf)
+relation_kg_num_interval = [0,inf)
+MODEL_TYPE = ModelType.SEQUENTIAL
+max_tokens = 512
+api_batch = 5
+temperature = 0.0
+async_dispatch = True
+boots = 0
+max_his_len = 10
+loss_type = CE
+selected_user_suffix = random
+recall_budget = 20
+has_gt = True
+fix_pos = -1
+platform = gpt-3.5-turbo
+num_demo_int = 5
+num_demo_out = 1
+sim = multivector
+num_data = 10
+MODEL_INPUT_TYPE = InputType.POINTWISE
+eval_type = EvaluatorType.RANKING
+single_spec = True
+local_rank = 0
+device = cpu
+valid_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+test_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+
+
+Sun 02 Jun 2024 14:15:23 INFO  2020, reproducibility: True
+Sun 02 Jun 2024 14:15:25 INFO  ml-1m
+The number of users: 6041
+Average actions of users: 165.5975165562914
+The number of items: 3707
+Average actions of items: 269.88909875876953
+The number of inters: 1000209
+The sparsity of the dataset: 95.53358229599758%
+Remain Fields: ['user_id', 'item_id', 'timestamp']
+Sun 02 Jun 2024 14:15:30 INFO  [Training]: train_batch_size = [4096] train_neg_sample_args: [{'distribution': 'none', 'sample_num': 'none', 'alpha': 'none', 'dynamic': False, 'candidate_num': 0}]
+Sun 02 Jun 2024 14:15:30 INFO  [Evaluation]: eval_batch_size = [100] eval_args: [{'split': {'LS': 'valid_and_test'}, 'order': 'TO', 'group_by': 'user', 'mode': {'valid': 'full', 'test': 'full'}}]
+Sun 02 Jun 2024 14:15:30 INFO  Avg. t = 16.958996493121123
+Sun 02 Jun 2024 14:15:30 INFO  RankAggregated(
+  (fake_fn): Linear(in_features=1, out_features=1, bias=True)
+)
+Trainable parameters: 2
+Sun 02 Jun 2024 14:15:32 INFO  Has ground truth.
+Sun 02 Jun 2024 14:15:32 INFO  Shuffle ground truth
+Sun 02 Jun 2024 14:15:32 INFO  Here are index from 0 to 5
+Sun 02 Jun 2024 14:15:32 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 14:15:32 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 14:15:34 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:15:34 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:15:34 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:15:34 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:15:35 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:15:35 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 14:15:35 INFO  Here are index from 5 to 10
+Sun 02 Jun 2024 14:15:35 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 14:15:35 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 14:15:35 INFO  Retrying request to /chat/completions in 0.973754 seconds
+Sun 02 Jun 2024 14:15:35 INFO  Retrying request to /chat/completions in 0.832474 seconds
+Sun 02 Jun 2024 14:15:35 INFO  Retrying request to /chat/completions in 0.877216 seconds
+Sun 02 Jun 2024 14:15:35 INFO  Retrying request to /chat/completions in 0.781742 seconds
+Sun 02 Jun 2024 14:15:35 INFO  Retrying request to /chat/completions in 0.865637 seconds
+Sun 02 Jun 2024 14:15:37 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:15:37 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:15:38 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:15:38 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:15:38 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:15:38 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 14:15:38 INFO  Ground-truth [One False Move]: Ranks 8
+Sun 02 Jun 2024 14:15:38 INFO  Ranking List [['Just the Ticket', "There's Something About Mary", 'Victor/Victoria', 'Fantasia', 'Double Indemnity', 'Passion Fish', 'The Masque of the Red Death', "Love's Labour's Lost", 'One False Move', 'Eyes Without a Face', 'Muppets From Space', 'Friday the 13th Part VIII: Jason Takes Manhattan', 'Instinct', 'Heartburn', 'Kronos', 'Sweet Nothing', 'Beefcake', 'The Cowboy Way', 'Went to Coney Island on a Mission From God... Be Back by Five', 'Single Girl, A (La Fille Seule)']]
+Sun 02 Jun 2024 14:15:38 INFO  Ground-truth [Soylent Green]: Ranks 2
+Sun 02 Jun 2024 14:15:38 INFO  Ranking List [['The Killing Fields', 'Psycho', 'Soylent Green', 'Robin Hood: Prince of Thieves', 'Scream 2', 'Rounders', 'Broken Arrow', 'Excalibur', 'First Knight', 'Fatal Instinct', 'The Peacemaker', 'Virus', 'The Stars Fell on Henrietta', "Cat's Eye", 'Georgia', 'Barenaked in America', 'Passion of Mind', 'Overnight Delivery', 'That Darn Cat!', 'The Man from Down Under']]
+Sun 02 Jun 2024 14:15:38 INFO  Ground-truth [Alien]: Ranks 1
+Sun 02 Jun 2024 14:15:38 INFO  Ranking List [["One Flew Over the Cuckoo's Nest", 'Alien', "There's Something About Mary", 'Lethal Weapon', 'The Golden Voyage of Sinbad', 'Beavis and Butt-head Do America', 'The Mark of Zorro', 'The Messenger: The Story of Joan of Arc', 'Attack of the Killer Tomatoes!', 'D2: The Mighty Ducks', 'The Scarlet Letter', 'Withnail and I', "Prizzi's Honor", 'House', 'Live Flesh', 'Flirt', 'Kidnapped', 'On the Ropes', 'Tex', 'Silence of the Palace, The (Saimt el Qusur)']]
+Sun 02 Jun 2024 14:15:38 INFO  Ground-truth [10 Things I Hate About You]: Ranks 4
+Sun 02 Jun 2024 14:15:38 INFO  Ranking List [['Speed', 'Shallow Grave', 'Inspector Gadget', 'The Naked Man', '10 Things I Hate About You', 'Forces of Nature', 'The Original Kings of Comedy', 'My Fellow Americans', 'What Happened Was...', 'The Longest Day', 'Bad Company', 'Jerry Maguire', 'In & Out', 'Deterrence', 'Police Academy 3: Back in Training', 'Terminal Velocity', 'Communion (a.k.a. Alice, Sweet Alice/Holy Terror)', 'Species II', 'Police Story 4: Project S (Chao ji ji hua)', 'Five Easy Pieces']]
+Sun 02 Jun 2024 14:15:38 INFO  Ground-truth [My Best Friend's Wedding]: Ranks 0
+Sun 02 Jun 2024 14:15:38 INFO  Ranking List [["My Best Friend's Wedding", 'Beautiful Thing', 'Love & Sex', 'Mimic', 'Autumn in New York', 'Loaded Weapon 1', 'Father of the Bride Part II', 'The Falcon and the Snowman', 'Roman Holiday', 'The Jungle Book', 'Affliction', 'Audrey Rose', 'Velvet Goldmine', 'Down Periscope', 'Night of the Comet', 'In Search of the Castaways', 'Persuasion', 'Meet the Deedles', "Cat's Eye", 'It Conquered the World']]
+Sun 02 Jun 2024 14:15:38 INFO  Ground-truth [Timecop]: Ranks 2
+Sun 02 Jun 2024 14:15:38 INFO  Ranking List [['Naked Gun 33 1/3: The Final Insult', 'The Godfather', 'Timecop', 'Elizabeth', 'Play it to the Bone', 'The Crow: City of Angels', 'The Postman Always Rings Twice', 'Buena Vista Social Club', 'Live Flesh', 'Unhook the Stars', 'October Sky', 'SubUrbia', 'Tank Girl', 'Bring It On', 'The Watcher', 'Slaves to the Underground', 'Vampyros Lesbos (Las Vampiras)', "Kestrel's Eye (Falkens öga)", 'Heidi Fleiss: Hollywood Madam', 'The Slumber Party Massacre III']]
+Sun 02 Jun 2024 14:15:38 INFO  Ground-truth [Sleepers]: Ranks 0
+Sun 02 Jun 2024 14:15:38 INFO  Ranking List [['Sleepers', 'Face/Off', 'Boys on the Side', 'Evita', 'Mystery Men', 'And the Band Played On', 'Executive Decision', 'Orlando', 'The River', 'Interiors', 'Stars and Bars', 'Edge of Seventeen', 'Candyman: Farewell to the Flesh', 'Oxygen', 'Fever Pitch', 'Flipper', "Wend Kuuni (God's Gift)", 'When We Were Kings', 'Collectionneuse, La', 'The Stepford Wives']]
+Sun 02 Jun 2024 14:15:38 INFO  Ground-truth [Year of Living Dangerously]: Ranks 2
+Sun 02 Jun 2024 14:15:38 INFO  Ranking List [['The Lady Eve', 'Angels and Insects', 'Year of Living Dangerously', 'A Little Princess', 'Married to the Mob', 'Cry, the Beloved Country', 'Dracula', 'Rhyme & Reason', 'Until the End of the World (Bis ans Ende der Welt)', 'Metisse (Café au Lait)', 'Firelight', 'The Joy Luck Club', 'Sleeper', 'Suicide Kings', 'Tommy', 'Eyes Without a Face', 'Diamonds', 'Ten Benny', 'The Great Race', 'Angel on My Shoulder']]
+Sun 02 Jun 2024 14:15:38 INFO  Ground-truth [Surviving the Game]: Ranks 3
+Sun 02 Jun 2024 14:15:38 INFO  Ranking List [["Porky's II: The Next Day", 'Halloween: H20', 'Escape from New York', 'Surviving the Game', 'Grumpier Old Men', 'Quiz Show', 'Return of the Fly', 'French Twist (Gazon maudit)', 'Last of the High Kings, The (a.k.a. Summer Fling)', "Amityville 1992: It's About Time", 'Suicide Kings', 'Batman', 'Wonderland', 'Music From Another Room', 'Black Mask (Hak hap)', 'Second Best', 'The Suburbans', 'Temptress Moon (Feng Yue)', "Logan's Run", 'Make Them Die Slowly (Cannibal Ferox)']]
+Sun 02 Jun 2024 14:15:38 INFO  Ground-truth [The Contender]: Ranks 1
+Sun 02 Jun 2024 14:15:38 INFO  Ranking List [['The Princess Bride', 'The Contender', 'To Catch a Thief', 'Doctor Zhivago', 'Three Days of the Condor', "A Midsummer Night's Dream", 'The Hustler', 'American in Paris, An', 'The Faculty', 'Eyes Without a Face', 'Vampyros Lesbos (Las Vampiras)', 'Railroaded!', 'Man Facing Southeast (Hombre Mirando al Sudeste)', 'Twin Town', "I'll Never Forget What's 'is Name", 'Home Fries', 'Anatomy (Anatomie)', 'Othello', 'Fatal Instinct', "Don't Look in the Basement!"]]
+Sun 02 Jun 2024 14:15:38 INFO  SAVE DONE! Path: dataset/ml-1m/output_files/final11_gpt-3.5-turbo_ml-1m_RankAggregated_output_2020.json
+Sun 02 Jun 2024 14:15:38 INFO  recall@1 - 0.2	recall@5 - 0.9	recall@10 - 1.0	recall@20 - 1.0	recall@50 - 1.0	ndcg@1 - 0.2	ndcg@5 - 0.5579	ndcg@10 - 0.588	ndcg@20 - 0.588	ndcg@50 - 0.588

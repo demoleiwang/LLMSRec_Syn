@@ -1,0 +1,954 @@
+Sun 02 Jun 2024 14:18:42 INFO  
+General Hyper Parameters:
+gpu_id = 0
+use_gpu = True
+seed = 2020
+state = INFO
+reproducibility = True
+data_path = dataset/ml-1m
+checkpoint_dir = saved
+show_progress = True
+save_dataset = False
+dataset_save_path = None
+save_dataloaders = False
+dataloaders_save_path = None
+log_wandb = False
+
+Training Hyper Parameters:
+epochs = 300
+train_batch_size = 4096
+learner = adam
+learning_rate = 0.001
+train_neg_sample_args = {'distribution': 'none', 'sample_num': 'none', 'alpha': 'none', 'dynamic': False, 'candidate_num': 0}
+eval_step = 1
+stopping_step = 10
+clip_grad_norm = None
+weight_decay = 0.0
+loss_decimal_place = 4
+
+Evaluation Hyper Parameters:
+eval_args = {'split': {'LS': 'valid_and_test'}, 'order': 'TO', 'group_by': 'user', 'mode': {'valid': 'full', 'test': 'full'}}
+repeatable = True
+metrics = ['Recall', 'NDCG']
+topk = [1, 5, 10, 20, 50]
+valid_metric = NDCG@10
+valid_metric_bigger = True
+eval_batch_size = 100
+metric_decimal_place = 4
+
+Dataset Hyper Parameters:
+field_separator = 	
+seq_separator =  
+USER_ID_FIELD = user_id
+ITEM_ID_FIELD = item_id
+RATING_FIELD = rating
+TIME_FIELD = timestamp
+seq_len = None
+LABEL_FIELD = label
+threshold = None
+NEG_PREFIX = neg_
+load_col = {'inter': ['user_id', 'item_id', 'timestamp']}
+unload_col = None
+unused_col = None
+additional_feat_suffix = None
+rm_dup_inter = None
+val_interval = None
+filter_inter_by_user_or_item = True
+user_inter_num_interval = [0,inf)
+item_inter_num_interval = [0,inf)
+alias_of_user_id = None
+alias_of_item_id = None
+alias_of_entity_id = None
+alias_of_relation_id = None
+preload_weight = None
+normalize_field = None
+normalize_all = None
+ITEM_LIST_LENGTH_FIELD = item_length
+LIST_SUFFIX = _list
+MAX_ITEM_LIST_LENGTH = 50
+POSITION_FIELD = position_id
+HEAD_ENTITY_ID_FIELD = head_id
+TAIL_ENTITY_ID_FIELD = tail_id
+RELATION_ID_FIELD = relation_id
+ENTITY_ID_FIELD = entity_id
+benchmark_filename = None
+
+Other Hyper Parameters: 
+worker = 0
+wandb_project = recbole
+shuffle = True
+require_pow = False
+enable_amp = False
+enable_scaler = False
+transform = None
+numerical_features = []
+discretization = None
+kg_reverse_r = False
+entity_kg_num_interval = [0,inf)
+relation_kg_num_interval = [0,inf)
+MODEL_TYPE = ModelType.SEQUENTIAL
+max_tokens = 512
+api_batch = 20
+temperature = 0.0
+async_dispatch = True
+boots = 0
+max_his_len = 10
+loss_type = CE
+selected_user_suffix = random
+recall_budget = 20
+has_gt = True
+fix_pos = -1
+platform = gpt-3.5-turbo
+num_demo_int = 5
+num_demo_out = 1
+sim = multivector
+num_data = 200
+MODEL_INPUT_TYPE = InputType.POINTWISE
+eval_type = EvaluatorType.RANKING
+single_spec = True
+local_rank = 0
+device = cpu
+valid_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+test_neg_sample_args = {'distribution': 'uniform', 'sample_num': 'none'}
+
+
+Sun 02 Jun 2024 14:18:42 INFO  2020, reproducibility: True
+Sun 02 Jun 2024 14:18:43 INFO  ml-1m
+The number of users: 6041
+Average actions of users: 165.5975165562914
+The number of items: 3707
+Average actions of items: 269.88909875876953
+The number of inters: 1000209
+The sparsity of the dataset: 95.53358229599758%
+Remain Fields: ['user_id', 'item_id', 'timestamp']
+Sun 02 Jun 2024 14:18:49 INFO  [Training]: train_batch_size = [4096] train_neg_sample_args: [{'distribution': 'none', 'sample_num': 'none', 'alpha': 'none', 'dynamic': False, 'candidate_num': 0}]
+Sun 02 Jun 2024 14:18:49 INFO  [Evaluation]: eval_batch_size = [100] eval_args: [{'split': {'LS': 'valid_and_test'}, 'order': 'TO', 'group_by': 'user', 'mode': {'valid': 'full', 'test': 'full'}}]
+Sun 02 Jun 2024 14:18:49 INFO  Avg. t = 16.958996493121123
+Sun 02 Jun 2024 14:18:49 INFO  RankAggregated(
+  (fake_fn): Linear(in_features=1, out_features=1, bias=True)
+)
+Trainable parameters: 2
+Sun 02 Jun 2024 14:18:50 INFO  Has ground truth.
+Sun 02 Jun 2024 14:18:50 INFO  Shuffle ground truth
+Sun 02 Jun 2024 14:18:52 INFO  Here are index from 0 to 20
+Sun 02 Jun 2024 14:18:52 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 14:18:52 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 14:18:54 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:54 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:54 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:54 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:54 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:54 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:54 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:54 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:54 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:54 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:54 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:54 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:54 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:54 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:54 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:54 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:54 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:54 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:54 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:54 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:54 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 14:18:54 INFO  Here are index from 20 to 40
+Sun 02 Jun 2024 14:18:54 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 14:18:54 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 14:18:54 INFO  Retrying request to /chat/completions in 0.973754 seconds
+Sun 02 Jun 2024 14:18:54 INFO  Retrying request to /chat/completions in 0.832474 seconds
+Sun 02 Jun 2024 14:18:54 INFO  Retrying request to /chat/completions in 0.877216 seconds
+Sun 02 Jun 2024 14:18:54 INFO  Retrying request to /chat/completions in 0.781742 seconds
+Sun 02 Jun 2024 14:18:54 INFO  Retrying request to /chat/completions in 0.865637 seconds
+Sun 02 Jun 2024 14:18:54 INFO  Retrying request to /chat/completions in 0.881117 seconds
+Sun 02 Jun 2024 14:18:54 INFO  Retrying request to /chat/completions in 0.989787 seconds
+Sun 02 Jun 2024 14:18:54 INFO  Retrying request to /chat/completions in 0.987665 seconds
+Sun 02 Jun 2024 14:18:54 INFO  Retrying request to /chat/completions in 0.772392 seconds
+Sun 02 Jun 2024 14:18:54 INFO  Retrying request to /chat/completions in 0.768854 seconds
+Sun 02 Jun 2024 14:18:54 INFO  Retrying request to /chat/completions in 0.945747 seconds
+Sun 02 Jun 2024 14:18:54 INFO  Retrying request to /chat/completions in 0.789342 seconds
+Sun 02 Jun 2024 14:18:54 INFO  Retrying request to /chat/completions in 0.826863 seconds
+Sun 02 Jun 2024 14:18:54 INFO  Retrying request to /chat/completions in 0.976613 seconds
+Sun 02 Jun 2024 14:18:54 INFO  Retrying request to /chat/completions in 0.755536 seconds
+Sun 02 Jun 2024 14:18:54 INFO  Retrying request to /chat/completions in 0.934256 seconds
+Sun 02 Jun 2024 14:18:54 INFO  Retrying request to /chat/completions in 0.760573 seconds
+Sun 02 Jun 2024 14:18:54 INFO  Retrying request to /chat/completions in 0.993434 seconds
+Sun 02 Jun 2024 14:18:54 INFO  Retrying request to /chat/completions in 0.865234 seconds
+Sun 02 Jun 2024 14:18:54 INFO  Retrying request to /chat/completions in 0.884024 seconds
+Sun 02 Jun 2024 14:18:57 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:57 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:57 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:57 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:57 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:57 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:57 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:57 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:57 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:57 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:57 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:57 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:57 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:57 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:57 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:57 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:57 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:58 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:59 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:59 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:18:59 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 14:18:59 INFO  Here are index from 40 to 60
+Sun 02 Jun 2024 14:18:59 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 14:18:59 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 14:18:59 INFO  Retrying request to /chat/completions in 0.923211 seconds
+Sun 02 Jun 2024 14:18:59 INFO  Retrying request to /chat/completions in 0.839691 seconds
+Sun 02 Jun 2024 14:18:59 INFO  Retrying request to /chat/completions in 0.885048 seconds
+Sun 02 Jun 2024 14:18:59 INFO  Retrying request to /chat/completions in 0.871151 seconds
+Sun 02 Jun 2024 14:18:59 INFO  Retrying request to /chat/completions in 0.845903 seconds
+Sun 02 Jun 2024 14:18:59 INFO  Retrying request to /chat/completions in 0.869400 seconds
+Sun 02 Jun 2024 14:18:59 INFO  Retrying request to /chat/completions in 0.830879 seconds
+Sun 02 Jun 2024 14:18:59 INFO  Retrying request to /chat/completions in 0.816531 seconds
+Sun 02 Jun 2024 14:18:59 INFO  Retrying request to /chat/completions in 0.857718 seconds
+Sun 02 Jun 2024 14:18:59 INFO  Retrying request to /chat/completions in 0.780738 seconds
+Sun 02 Jun 2024 14:18:59 INFO  Retrying request to /chat/completions in 0.772227 seconds
+Sun 02 Jun 2024 14:18:59 INFO  Retrying request to /chat/completions in 0.789312 seconds
+Sun 02 Jun 2024 14:18:59 INFO  Retrying request to /chat/completions in 0.818638 seconds
+Sun 02 Jun 2024 14:18:59 INFO  Retrying request to /chat/completions in 0.894259 seconds
+Sun 02 Jun 2024 14:18:59 INFO  Retrying request to /chat/completions in 0.844773 seconds
+Sun 02 Jun 2024 14:18:59 INFO  Retrying request to /chat/completions in 0.796093 seconds
+Sun 02 Jun 2024 14:18:59 INFO  Retrying request to /chat/completions in 0.927455 seconds
+Sun 02 Jun 2024 14:18:59 INFO  Retrying request to /chat/completions in 0.822054 seconds
+Sun 02 Jun 2024 14:18:59 INFO  Retrying request to /chat/completions in 0.788754 seconds
+Sun 02 Jun 2024 14:18:59 INFO  Retrying request to /chat/completions in 0.842975 seconds
+Sun 02 Jun 2024 14:19:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:02 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:03 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:03 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:03 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 14:19:03 INFO  Here are index from 60 to 80
+Sun 02 Jun 2024 14:19:03 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 14:19:03 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 14:19:03 INFO  Retrying request to /chat/completions in 0.977774 seconds
+Sun 02 Jun 2024 14:19:03 INFO  Retrying request to /chat/completions in 0.941284 seconds
+Sun 02 Jun 2024 14:19:03 INFO  Retrying request to /chat/completions in 0.940076 seconds
+Sun 02 Jun 2024 14:19:03 INFO  Retrying request to /chat/completions in 0.757095 seconds
+Sun 02 Jun 2024 14:19:03 INFO  Retrying request to /chat/completions in 0.799907 seconds
+Sun 02 Jun 2024 14:19:03 INFO  Retrying request to /chat/completions in 0.774837 seconds
+Sun 02 Jun 2024 14:19:03 INFO  Retrying request to /chat/completions in 0.988739 seconds
+Sun 02 Jun 2024 14:19:03 INFO  Retrying request to /chat/completions in 0.975543 seconds
+Sun 02 Jun 2024 14:19:03 INFO  Retrying request to /chat/completions in 0.985529 seconds
+Sun 02 Jun 2024 14:19:03 INFO  Retrying request to /chat/completions in 0.911758 seconds
+Sun 02 Jun 2024 14:19:03 INFO  Retrying request to /chat/completions in 0.779937 seconds
+Sun 02 Jun 2024 14:19:03 INFO  Retrying request to /chat/completions in 0.754912 seconds
+Sun 02 Jun 2024 14:19:03 INFO  Retrying request to /chat/completions in 0.787102 seconds
+Sun 02 Jun 2024 14:19:03 INFO  Retrying request to /chat/completions in 0.974075 seconds
+Sun 02 Jun 2024 14:19:03 INFO  Retrying request to /chat/completions in 0.843455 seconds
+Sun 02 Jun 2024 14:19:03 INFO  Retrying request to /chat/completions in 0.782390 seconds
+Sun 02 Jun 2024 14:19:03 INFO  Retrying request to /chat/completions in 0.877248 seconds
+Sun 02 Jun 2024 14:19:03 INFO  Retrying request to /chat/completions in 0.797486 seconds
+Sun 02 Jun 2024 14:19:03 INFO  Retrying request to /chat/completions in 0.915107 seconds
+Sun 02 Jun 2024 14:19:03 INFO  Retrying request to /chat/completions in 0.889607 seconds
+Sun 02 Jun 2024 14:19:05 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:05 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:05 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:05 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:05 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:05 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:06 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:06 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:06 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:06 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:06 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:06 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:06 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:06 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:06 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:06 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:06 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:06 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:06 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:07 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:07 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 14:19:07 INFO  Here are index from 80 to 100
+Sun 02 Jun 2024 14:19:07 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 14:19:07 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 14:19:07 INFO  Retrying request to /chat/completions in 0.949426 seconds
+Sun 02 Jun 2024 14:19:07 INFO  Retrying request to /chat/completions in 0.913024 seconds
+Sun 02 Jun 2024 14:19:07 INFO  Retrying request to /chat/completions in 0.870064 seconds
+Sun 02 Jun 2024 14:19:07 INFO  Retrying request to /chat/completions in 0.849945 seconds
+Sun 02 Jun 2024 14:19:07 INFO  Retrying request to /chat/completions in 0.793020 seconds
+Sun 02 Jun 2024 14:19:07 INFO  Retrying request to /chat/completions in 0.799778 seconds
+Sun 02 Jun 2024 14:19:07 INFO  Retrying request to /chat/completions in 0.846200 seconds
+Sun 02 Jun 2024 14:19:07 INFO  Retrying request to /chat/completions in 0.851431 seconds
+Sun 02 Jun 2024 14:19:07 INFO  Retrying request to /chat/completions in 0.838494 seconds
+Sun 02 Jun 2024 14:19:07 INFO  Retrying request to /chat/completions in 0.810884 seconds
+Sun 02 Jun 2024 14:19:07 INFO  Retrying request to /chat/completions in 0.761708 seconds
+Sun 02 Jun 2024 14:19:07 INFO  Retrying request to /chat/completions in 0.835381 seconds
+Sun 02 Jun 2024 14:19:07 INFO  Retrying request to /chat/completions in 0.936705 seconds
+Sun 02 Jun 2024 14:19:07 INFO  Retrying request to /chat/completions in 0.821244 seconds
+Sun 02 Jun 2024 14:19:07 INFO  Retrying request to /chat/completions in 0.983253 seconds
+Sun 02 Jun 2024 14:19:07 INFO  Retrying request to /chat/completions in 0.972270 seconds
+Sun 02 Jun 2024 14:19:07 INFO  Retrying request to /chat/completions in 0.771742 seconds
+Sun 02 Jun 2024 14:19:07 INFO  Retrying request to /chat/completions in 0.777087 seconds
+Sun 02 Jun 2024 14:19:07 INFO  Retrying request to /chat/completions in 0.770024 seconds
+Sun 02 Jun 2024 14:19:07 INFO  Retrying request to /chat/completions in 0.866071 seconds
+Sun 02 Jun 2024 14:19:09 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:10 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:10 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:10 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:10 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:10 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:10 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:10 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:10 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:10 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:10 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:10 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:10 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:10 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:10 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:10 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:10 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:10 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:11 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:11 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:11 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 14:19:11 INFO  Here are index from 100 to 120
+Sun 02 Jun 2024 14:19:11 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 14:19:11 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 14:19:11 INFO  Retrying request to /chat/completions in 0.943308 seconds
+Sun 02 Jun 2024 14:19:11 INFO  Retrying request to /chat/completions in 0.814114 seconds
+Sun 02 Jun 2024 14:19:11 INFO  Retrying request to /chat/completions in 0.899505 seconds
+Sun 02 Jun 2024 14:19:11 INFO  Retrying request to /chat/completions in 0.833934 seconds
+Sun 02 Jun 2024 14:19:11 INFO  Retrying request to /chat/completions in 0.930613 seconds
+Sun 02 Jun 2024 14:19:11 INFO  Retrying request to /chat/completions in 0.917320 seconds
+Sun 02 Jun 2024 14:19:11 INFO  Retrying request to /chat/completions in 0.888515 seconds
+Sun 02 Jun 2024 14:19:11 INFO  Retrying request to /chat/completions in 0.977493 seconds
+Sun 02 Jun 2024 14:19:11 INFO  Retrying request to /chat/completions in 0.867387 seconds
+Sun 02 Jun 2024 14:19:11 INFO  Retrying request to /chat/completions in 0.786130 seconds
+Sun 02 Jun 2024 14:19:11 INFO  Retrying request to /chat/completions in 0.897044 seconds
+Sun 02 Jun 2024 14:19:11 INFO  Retrying request to /chat/completions in 0.996672 seconds
+Sun 02 Jun 2024 14:19:11 INFO  Retrying request to /chat/completions in 0.964830 seconds
+Sun 02 Jun 2024 14:19:11 INFO  Retrying request to /chat/completions in 0.866220 seconds
+Sun 02 Jun 2024 14:19:11 INFO  Retrying request to /chat/completions in 0.994144 seconds
+Sun 02 Jun 2024 14:19:11 INFO  Retrying request to /chat/completions in 0.775381 seconds
+Sun 02 Jun 2024 14:19:11 INFO  Retrying request to /chat/completions in 0.950077 seconds
+Sun 02 Jun 2024 14:19:11 INFO  Retrying request to /chat/completions in 0.930001 seconds
+Sun 02 Jun 2024 14:19:11 INFO  Retrying request to /chat/completions in 0.871862 seconds
+Sun 02 Jun 2024 14:19:11 INFO  Retrying request to /chat/completions in 0.936576 seconds
+Sun 02 Jun 2024 14:19:14 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:14 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:14 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:14 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:14 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:14 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:14 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:14 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:14 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:14 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:14 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:14 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:14 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:14 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:14 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:14 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:15 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:15 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:15 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:16 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:16 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 14:19:16 INFO  Here are index from 120 to 140
+Sun 02 Jun 2024 14:19:16 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 14:19:16 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 14:19:16 INFO  Retrying request to /chat/completions in 0.958516 seconds
+Sun 02 Jun 2024 14:19:16 INFO  Retrying request to /chat/completions in 0.806634 seconds
+Sun 02 Jun 2024 14:19:16 INFO  Retrying request to /chat/completions in 0.939784 seconds
+Sun 02 Jun 2024 14:19:16 INFO  Retrying request to /chat/completions in 0.757738 seconds
+Sun 02 Jun 2024 14:19:16 INFO  Retrying request to /chat/completions in 0.887271 seconds
+Sun 02 Jun 2024 14:19:16 INFO  Retrying request to /chat/completions in 0.912816 seconds
+Sun 02 Jun 2024 14:19:16 INFO  Retrying request to /chat/completions in 0.843817 seconds
+Sun 02 Jun 2024 14:19:16 INFO  Retrying request to /chat/completions in 0.816340 seconds
+Sun 02 Jun 2024 14:19:16 INFO  Retrying request to /chat/completions in 0.824949 seconds
+Sun 02 Jun 2024 14:19:16 INFO  Retrying request to /chat/completions in 0.890350 seconds
+Sun 02 Jun 2024 14:19:16 INFO  Retrying request to /chat/completions in 0.839242 seconds
+Sun 02 Jun 2024 14:19:16 INFO  Retrying request to /chat/completions in 0.850130 seconds
+Sun 02 Jun 2024 14:19:16 INFO  Retrying request to /chat/completions in 0.904262 seconds
+Sun 02 Jun 2024 14:19:16 INFO  Retrying request to /chat/completions in 0.900200 seconds
+Sun 02 Jun 2024 14:19:16 INFO  Retrying request to /chat/completions in 0.853233 seconds
+Sun 02 Jun 2024 14:19:16 INFO  Retrying request to /chat/completions in 0.879368 seconds
+Sun 02 Jun 2024 14:19:16 INFO  Retrying request to /chat/completions in 0.779332 seconds
+Sun 02 Jun 2024 14:19:16 INFO  Retrying request to /chat/completions in 0.943692 seconds
+Sun 02 Jun 2024 14:19:16 INFO  Retrying request to /chat/completions in 0.965132 seconds
+Sun 02 Jun 2024 14:19:16 INFO  Retrying request to /chat/completions in 0.984098 seconds
+Sun 02 Jun 2024 14:19:19 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:19 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:19 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:19 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:19 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:19 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:19 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:19 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:19 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:19 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:19 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:19 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:19 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:19 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:19 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:19 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:19 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:19 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:19 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:20 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:20 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 14:19:20 INFO  Here are index from 140 to 160
+Sun 02 Jun 2024 14:19:20 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 14:19:20 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 14:19:20 INFO  Retrying request to /chat/completions in 0.823103 seconds
+Sun 02 Jun 2024 14:19:20 INFO  Retrying request to /chat/completions in 0.901457 seconds
+Sun 02 Jun 2024 14:19:20 INFO  Retrying request to /chat/completions in 0.864133 seconds
+Sun 02 Jun 2024 14:19:20 INFO  Retrying request to /chat/completions in 0.783759 seconds
+Sun 02 Jun 2024 14:19:20 INFO  Retrying request to /chat/completions in 0.899640 seconds
+Sun 02 Jun 2024 14:19:20 INFO  Retrying request to /chat/completions in 0.818818 seconds
+Sun 02 Jun 2024 14:19:20 INFO  Retrying request to /chat/completions in 0.818348 seconds
+Sun 02 Jun 2024 14:19:20 INFO  Retrying request to /chat/completions in 0.759646 seconds
+Sun 02 Jun 2024 14:19:20 INFO  Retrying request to /chat/completions in 0.758980 seconds
+Sun 02 Jun 2024 14:19:20 INFO  Retrying request to /chat/completions in 0.798370 seconds
+Sun 02 Jun 2024 14:19:20 INFO  Retrying request to /chat/completions in 0.868097 seconds
+Sun 02 Jun 2024 14:19:20 INFO  Retrying request to /chat/completions in 0.919785 seconds
+Sun 02 Jun 2024 14:19:20 INFO  Retrying request to /chat/completions in 0.799113 seconds
+Sun 02 Jun 2024 14:19:20 INFO  Retrying request to /chat/completions in 0.906794 seconds
+Sun 02 Jun 2024 14:19:20 INFO  Retrying request to /chat/completions in 0.962816 seconds
+Sun 02 Jun 2024 14:19:20 INFO  Retrying request to /chat/completions in 0.890425 seconds
+Sun 02 Jun 2024 14:19:20 INFO  Retrying request to /chat/completions in 0.932259 seconds
+Sun 02 Jun 2024 14:19:20 INFO  Retrying request to /chat/completions in 0.898022 seconds
+Sun 02 Jun 2024 14:19:20 INFO  Retrying request to /chat/completions in 0.906804 seconds
+Sun 02 Jun 2024 14:19:20 INFO  Retrying request to /chat/completions in 0.881485 seconds
+Sun 02 Jun 2024 14:19:23 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:23 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:23 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:23 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:23 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:23 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:23 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:23 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:23 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:23 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:23 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:23 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:23 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:23 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:23 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:23 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:23 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:23 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:23 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:24 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:24 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 14:19:24 INFO  Here are index from 160 to 180
+Sun 02 Jun 2024 14:19:24 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 14:19:24 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 14:19:24 INFO  Retrying request to /chat/completions in 0.885932 seconds
+Sun 02 Jun 2024 14:19:24 INFO  Retrying request to /chat/completions in 0.908533 seconds
+Sun 02 Jun 2024 14:19:24 INFO  Retrying request to /chat/completions in 0.946561 seconds
+Sun 02 Jun 2024 14:19:24 INFO  Retrying request to /chat/completions in 0.795588 seconds
+Sun 02 Jun 2024 14:19:24 INFO  Retrying request to /chat/completions in 0.836824 seconds
+Sun 02 Jun 2024 14:19:24 INFO  Retrying request to /chat/completions in 0.872860 seconds
+Sun 02 Jun 2024 14:19:24 INFO  Retrying request to /chat/completions in 0.860181 seconds
+Sun 02 Jun 2024 14:19:24 INFO  Retrying request to /chat/completions in 0.905721 seconds
+Sun 02 Jun 2024 14:19:24 INFO  Retrying request to /chat/completions in 0.938418 seconds
+Sun 02 Jun 2024 14:19:24 INFO  Retrying request to /chat/completions in 0.918157 seconds
+Sun 02 Jun 2024 14:19:24 INFO  Retrying request to /chat/completions in 0.905376 seconds
+Sun 02 Jun 2024 14:19:24 INFO  Retrying request to /chat/completions in 0.825710 seconds
+Sun 02 Jun 2024 14:19:24 INFO  Retrying request to /chat/completions in 0.909632 seconds
+Sun 02 Jun 2024 14:19:24 INFO  Retrying request to /chat/completions in 0.789705 seconds
+Sun 02 Jun 2024 14:19:24 INFO  Retrying request to /chat/completions in 0.887532 seconds
+Sun 02 Jun 2024 14:19:24 INFO  Retrying request to /chat/completions in 0.917011 seconds
+Sun 02 Jun 2024 14:19:24 INFO  Retrying request to /chat/completions in 0.992776 seconds
+Sun 02 Jun 2024 14:19:24 INFO  Retrying request to /chat/completions in 0.869970 seconds
+Sun 02 Jun 2024 14:19:24 INFO  Retrying request to /chat/completions in 0.845781 seconds
+Sun 02 Jun 2024 14:19:24 INFO  Retrying request to /chat/completions in 0.778979 seconds
+Sun 02 Jun 2024 14:19:26 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:26 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:26 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:26 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:26 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:26 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:27 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:27 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:27 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:27 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:27 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:27 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:27 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:27 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:27 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:27 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:27 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:27 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:27 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:27 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:27 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 14:19:27 INFO  Here are index from 180 to 200
+Sun 02 Jun 2024 14:19:27 INFO  Launch OpenAI APIs
+Sun 02 Jun 2024 14:19:27 INFO  Asynchronous dispatching OpenAI API requests.
+Sun 02 Jun 2024 14:19:27 INFO  Retrying request to /chat/completions in 0.884677 seconds
+Sun 02 Jun 2024 14:19:27 INFO  Retrying request to /chat/completions in 0.997516 seconds
+Sun 02 Jun 2024 14:19:27 INFO  Retrying request to /chat/completions in 0.864292 seconds
+Sun 02 Jun 2024 14:19:27 INFO  Retrying request to /chat/completions in 0.940782 seconds
+Sun 02 Jun 2024 14:19:27 INFO  Retrying request to /chat/completions in 0.785961 seconds
+Sun 02 Jun 2024 14:19:27 INFO  Retrying request to /chat/completions in 0.917588 seconds
+Sun 02 Jun 2024 14:19:27 INFO  Retrying request to /chat/completions in 0.965140 seconds
+Sun 02 Jun 2024 14:19:27 INFO  Retrying request to /chat/completions in 0.837633 seconds
+Sun 02 Jun 2024 14:19:27 INFO  Retrying request to /chat/completions in 0.874058 seconds
+Sun 02 Jun 2024 14:19:27 INFO  Retrying request to /chat/completions in 0.795679 seconds
+Sun 02 Jun 2024 14:19:27 INFO  Retrying request to /chat/completions in 0.834137 seconds
+Sun 02 Jun 2024 14:19:27 INFO  Retrying request to /chat/completions in 0.802115 seconds
+Sun 02 Jun 2024 14:19:27 INFO  Retrying request to /chat/completions in 0.758335 seconds
+Sun 02 Jun 2024 14:19:27 INFO  Retrying request to /chat/completions in 0.799089 seconds
+Sun 02 Jun 2024 14:19:27 INFO  Retrying request to /chat/completions in 0.851268 seconds
+Sun 02 Jun 2024 14:19:27 INFO  Retrying request to /chat/completions in 0.820970 seconds
+Sun 02 Jun 2024 14:19:27 INFO  Retrying request to /chat/completions in 0.903544 seconds
+Sun 02 Jun 2024 14:19:27 INFO  Retrying request to /chat/completions in 0.815355 seconds
+Sun 02 Jun 2024 14:19:27 INFO  Retrying request to /chat/completions in 0.810030 seconds
+Sun 02 Jun 2024 14:19:27 INFO  Retrying request to /chat/completions in 0.857121 seconds
+Sun 02 Jun 2024 14:19:30 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:30 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:30 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:30 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:30 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:30 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:30 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:30 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:30 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:30 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:30 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:30 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:30 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:30 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:30 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:30 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:30 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:30 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:30 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:30 INFO  HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+Sun 02 Jun 2024 14:19:30 INFO  Received OpenAI Responses
+Sun 02 Jun 2024 14:19:30 INFO  Ground-truth [One False Move]: Ranks 8
+Sun 02 Jun 2024 14:19:30 INFO  Ranking List [['Just the Ticket', "There's Something About Mary", 'Victor/Victoria', 'Fantasia', 'Double Indemnity', 'Passion Fish', 'The Masque of the Red Death', "Love's Labour's Lost", 'One False Move', 'Eyes Without a Face', 'Muppets From Space', 'Friday the 13th Part VIII: Jason Takes Manhattan', 'Instinct', 'Heartburn', 'Kronos', 'Beefcake', 'Sweet Nothing', 'The Cowboy Way', 'Went to Coney Island on a Mission From God... Be Back by Five', 'Single Girl, A (La Fille Seule)']]
+Sun 02 Jun 2024 14:19:30 INFO  Ground-truth [Soylent Green]: Ranks 6
+Sun 02 Jun 2024 14:19:30 INFO  Ranking List [['Psycho', 'Scream 2', 'Broken Arrow', 'Rounders', 'The Killing Fields', 'Excalibur', 'Soylent Green', 'First Knight', 'The Peacemaker', 'Robin Hood: Prince of Thieves', 'Fatal Instinct', 'Virus', 'The Man from Down Under', 'Overnight Delivery', 'The Stars Fell on Henrietta', 'Passion of Mind', "Cat's Eye", 'Barenaked in America', 'That Darn Cat!', 'Georgia']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Alien]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [["One Flew Over the Cuckoo's Nest", 'Alien', "There's Something About Mary", 'Lethal Weapon', 'The Golden Voyage of Sinbad', 'Beavis and Butt-head Do America', 'The Mark of Zorro', 'The Messenger: The Story of Joan of Arc', 'Attack of the Killer Tomatoes!', 'The Scarlet Letter', 'D2: The Mighty Ducks', 'Withnail and I', "Prizzi's Honor", 'House', 'Live Flesh', 'Flirt', 'Kidnapped', 'On the Ropes', 'Tex', 'Silence of the Palace, The (Saimt el Qusur)']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [10 Things I Hate About You]: Ranks 5
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Speed', 'Shallow Grave', 'Inspector Gadget', 'The Longest Day', 'Jerry Maguire', '10 Things I Hate About You', 'Forces of Nature', 'My Fellow Americans', 'The Original Kings of Comedy', 'Bad Company', 'Five Easy Pieces', 'Police Story 4: Project S (Chao ji ji hua)', 'In & Out', 'Species II', 'Deterrence', 'Terminal Velocity', 'What Happened Was...', 'Police Academy 3: Back in Training', 'Communion (a.k.a. Alice, Sweet Alice/Holy Terror)', 'The Naked Man']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [My Best Friend's Wedding]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [["My Best Friend's Wedding", 'Beautiful Thing', 'Loaded Weapon 1', 'Father of the Bride Part II', 'Mimic', 'The Jungle Book', 'Down Periscope', 'Love & Sex', 'Velvet Goldmine', 'Affliction', 'Roman Holiday', 'In Search of the Castaways', 'Night of the Comet', 'Audrey Rose', 'Autumn in New York', 'Persuasion', 'Meet the Deedles', 'It Conquered the World', "Cat's Eye", 'The Falcon and the Snowman']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Timecop]: Ranks 2
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Naked Gun 33 1/3: The Final Insult', 'The Godfather', 'Timecop', 'Elizabeth', 'Play it to the Bone', 'The Crow: City of Angels', 'The Postman Always Rings Twice', 'Buena Vista Social Club', 'October Sky', 'Live Flesh', 'Unhook the Stars', 'SubUrbia', 'Tank Girl', 'Bring It On', 'The Watcher', 'Slaves to the Underground', "Kestrel's Eye (Falkens öga)", 'Vampyros Lesbos (Las Vampiras)', 'Heidi Fleiss: Hollywood Madam', 'The Slumber Party Massacre III']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Sleepers]: Ranks 3
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Boys on the Side', 'Evita', 'Face/Off', 'Sleepers', 'Mystery Men', 'Executive Decision', 'And the Band Played On', 'Orlando', 'The River', 'Interiors', 'Stars and Bars', 'Fever Pitch', 'The Stepford Wives', 'Oxygen', 'Edge of Seventeen', 'Collectionneuse, La', "Wend Kuuni (God's Gift)", 'Candyman: Farewell to the Flesh', 'When We Were Kings', 'Flipper']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Year of Living Dangerously]: Ranks 2
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Lady Eve', 'Angels and Insects', 'Year of Living Dangerously', 'A Little Princess', 'Married to the Mob', 'Cry, the Beloved Country', 'Dracula', 'Rhyme & Reason', 'Until the End of the World (Bis ans Ende der Welt)', 'Metisse (Café au Lait)', 'The Joy Luck Club', 'Firelight', 'Tommy', 'Suicide Kings', 'Sleeper', 'Eyes Without a Face', 'Diamonds', 'Ten Benny', 'Angel on My Shoulder', 'The Great Race']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Surviving the Game]: Ranks 3
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [["Porky's II: The Next Day", 'Halloween: H20', 'Escape from New York', 'Surviving the Game', 'Grumpier Old Men', 'Quiz Show', 'Return of the Fly', 'Last of the High Kings, The (a.k.a. Summer Fling)', 'Suicide Kings', 'French Twist (Gazon maudit)', "Amityville 1992: It's About Time", 'Black Mask (Hak hap)', 'Batman', 'Wonderland', 'Music From Another Room', 'Second Best', 'The Suburbans', 'Temptress Moon (Feng Yue)', "Logan's Run", 'Make Them Die Slowly (Cannibal Ferox)']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The Contender]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Princess Bride', 'The Contender', 'To Catch a Thief', 'Doctor Zhivago', 'Three Days of the Condor', 'The Hustler', "A Midsummer Night's Dream", 'American in Paris, An', 'The Faculty', 'Railroaded!', 'Eyes Without a Face', 'Man Facing Southeast (Hombre Mirando al Sudeste)', 'Vampyros Lesbos (Las Vampiras)', "I'll Never Forget What's 'is Name", 'Home Fries', 'Anatomy (Anatomie)', 'Twin Town', 'Othello', "Don't Look in the Basement!", 'Fatal Instinct']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Akira]: Ranks 3
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Stand by Me', 'Benny & Joon', 'The Virgin Suicides', 'Akira', 'A Fish Called Wanda', 'Dragonheart', 'Heavenly Creatures', 'Ordinary People', 'Malice', 'The Evening Star', 'An Unforgettable Summer', 'Lulu on the Bridge', 'On the Town', 'JLG/JLG - autoportrait de décembre', 'First Kid', 'A King in New York', 'Deceiver', 'Umbrellas of Cherbourg, The (Parapluies de Cherbourg, Les)', 'Overnight Delivery', 'Withnail and I']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Sliver]: Ranks 4
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Enchanted April', 'Stargate', 'The Believers', 'Mrs. Winterbourne', 'Sliver', 'The Cider House Rules', 'Polish Wedding', 'Chicken Run', 'Kiss Me, Guido', 'Take the Money and Run', "Kelly's Heroes", "Another Man's Poison", 'Adrenalin: Fear the Rush', 'Broken Vessels', 'New Rose Hotel', 'Trouble in Paradise', 'Mighty Peking Man (Hsing hsing wang)', 'Burglar', 'Sacco and Vanzetti (Sacco e Vanzetti)', 'Tommy']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [From Russia with Love]: Ranks 6
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Death Becomes Her', 'The Long Kiss Goodnight', 'Casino', 'The Conversation', 'The Running Man', 'Dreamscape', 'From Russia with Love', 'Event Horizon', 'The Mark of Zorro', 'Hook', 'Repulsion', 'Freeway', 'Once Upon a Time... When We Were Colored', "We're No Angels", 'A Damsel in Distress', 'Dumbo', 'The Long Walk Home', 'Coming Apart', 'Reds', 'Rebel Without a Cause']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Air Force One]: Ranks 2
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Story of Us', 'Sister Act', 'Air Force One', 'Eraser', 'Following', 'A Perfect Candidate', 'Flower of My Secret, The (La Flor de Mi Secreto)', 'Nénette et Boni', 'The Original Kings of Comedy', 'Man of the House', 'Convent, The (Convento, O)', 'Malcolm X', 'The Last Emperor', 'Legends of the Fall', 'Screwed', 'Home Alone 3', 'Killer, The (Die xue shuang xiong)', 'A Woman of Paris', "Child's Play 3", "Porky's Revenge"]]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The Thomas Crown Affair]: Ranks 5
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Lord of the Rings', 'Three Colors: White', 'Brazil', 'The African Queen', 'Career Girls', 'The Thomas Crown Affair', 'East-West (Est-ouest)', 'Playing by Heart', 'Woman in the Dunes (Suna no onna)', 'The Specials', 'Poison Ivy', 'Cabin Boy', 'The Jungle Book', 'Menace II Society', 'Fatal Beauty', "Eve's Bayou", 'Mildred Pierce', 'The Island of Dr. Moreau', 'Mighty Peking Man (Hsing hsing wang)', 'Hollow Man']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Open Your Eyes (Abre los ojos)]: Ranks 7
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Mrs. Brown (Her Majesty, Mrs. Brown)', 'The Straight Story', 'Pale Rider', 'Fanny and Alexander', 'One Night Stand', 'Mighty Joe Young', 'Stop Making Sense', 'Open Your Eyes (Abre los ojos)', 'Color of Night', 'And God Created Woman', 'Lonely Are the Brave', 'Twin Dragons (Shuang long hui)', 'Chain of Fools', 'Quatermass and the Pit', 'Niagara, Niagara', 'Armed and Dangerous', 'Bats', 'Holy Man', 'The Mosquito Coast', 'Single White Female']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The Outsiders]: Ranks 14
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [["Schindler's List", 'The Arrival', 'South Park: Bigger, Longer and Uncut', 'Star Trek IV: The Voyage Home', 'Badlands', 'Young Doctors in Love', 'The Boys from Brazil', 'Fantastic Voyage', 'Affliction', 'Strictly Ballroom', 'Urbania', 'Modulations', 'Hard-Boiled (Lashou shentan)', 'Happy, Texas', 'The Outsiders', 'Telling You', 'The Show', 'King Kong', 'The Van', 'Light Years']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Me, Myself and Irene]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Stigmata', 'Me, Myself and Irene', 'A Cry in the Dark', 'Evita', '8MM', 'The War of the Worlds', 'Amistad', 'Speechless', 'The Jungle Book', 'Licence to Kill', 'A Smile Like Yours', 'The Gods Must Be Crazy', 'Friday the 13th Part VI: Jason Lives', 'A King in New York', 'Zachariah', 'Frogs for Snakes', "A Dog's Life", 'Illuminata', 'Dave', 'Clockwatchers']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Casino]: Ranks 3
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Princess Mononoke, The (Mononoke Hime)', 'Chasing Amy', 'The Boondock Saints', 'Casino', 'Lethal Weapon 3', '...And Justice for All', 'Red Sorghum (Hong Gao Liang)', 'Flying Tigers', 'The General', 'The House on Haunted Hill', 'Second Best', 'Peanuts - Die Bank zahlt alles', 'The Incredibly True Adventure of Two Girls in Love', "Ed's Next Move", 'Get Carter', 'Baby Geniuses', 'The Baby', 'Poison Ivy: New Seduction', "Love's Labour's Lost", 'Chopping Mall (a.k.a. Killbots)']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The Peacemaker]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Prince of Tides', 'The Peacemaker', 'Total Eclipse', 'Immortal Beloved', 'Dangerous Ground', 'The General', 'Paris, Texas', 'The Third Man', 'Brief Encounter', 'Lolita', 'Cocoon', 'Toys', 'Death Wish II', 'The Big One', "I'm Not Rappaport", 'Coming Apart', 'Solo', "Where's Marlowe?", 'Blood In, Blood Out (a.k.a. Bound by Honor)', 'The Flying Saucer']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Gladiator]: Ranks 7
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Mystery Men', 'The Boondock Saints', 'The Last Days', 'The Toxic Avenger', 'Sunset Strip', 'Black Dog', 'Tigerland', 'Gladiator', 'Modern Times', 'Muppet Treasure Island', 'Ready to Rumble', 'In the Realm of the Senses (Ai no corrida)', 'All About My Mother (Todo Sobre Mi Madre)', 'Paris Was a Woman', 'The Portrait of a Lady', 'Hot Lead and Cold Feet', 'Slaughterhouse', 'Marnie', 'Three Amigos!', 'Hope Floats']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Star Wars: Episode I - The Phantom Menace]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Contact', 'Star Wars: Episode I - The Phantom Menace', 'The Exorcist', 'Robocop', 'The Godfather: Part III', 'Tombstone', 'Nell', 'The Joyriders', 'Beverly Hills Cop III', 'The Gingerbread Man', 'Up at the Villa', 'Make Mine Music', 'Black Sabbath (Tre Volti Della Paura, I)', 'Ran', 'A Woman of Paris', 'The Lost Weekend', 'Nosferatu (Nosferatu, eine Symphonie des Grauens)', 'Candleshoe', 'Palookaville', 'Halloween']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Flashdance]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Starship Troopers', 'Flashdance', 'The Nutty Professor', 'Casino', 'Murder in the First', 'Hook', 'Ruthless People', 'Lovers on the Bridge, The (Les Amants du Pont-Neuf)', 'Broken Vessels', 'The City', 'The Gold Rush', 'The Bat Whispers', 'Before and After', 'Rising Sun', 'Swamp Thing', 'The Waiting Game', 'Chushingura', 'The Secret Adventures of Tom Thumb', 'Terminal Velocity', 'That Old Feeling']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [X-Men]: Ranks 2
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Wedding Singer', 'Ronin', 'X-Men', 'Nixon', 'Grumpier Old Men', "Carlito's Way", 'Star Trek IV: The Voyage Home', 'The Goodbye Girl', 'Tampopo', 'The Five Senses', 'The Edge', 'Best Men', 'Force of Evil', 'Body Parts', 'Thunderball', 'Klute', 'Mephisto', 'Apple, The (Sib)', 'Meatballs 4', 'The Stupids']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [U-571]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Matrix', 'U-571', 'Back to the Future Part II', 'Urban Legend', 'The Adventures of Priscilla, Queen of the Desert', 'The Guns of Navarone', 'The Odd Couple II', 'Happy, Texas', 'The Paper Chase', 'A Place in the Sun', 'The Adventures of Pinocchio', 'Slam', 'Braindead', 'Madame Butterfly', 'Celebration, The (Festen)', 'Fast Times at Ridgemont High', 'The Pompatus of Love', 'Alice and Martin (Alice et Martin)', 'Shattered Image', 'Godzilla (Gojira)']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Congo]: Ranks 9
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Dead Man Walking', 'The Thin Red Line', 'King Kong', 'The Postman Always Rings Twice', 'The Third Man', 'Rear Window', 'Four Rooms', 'The Island of Dr. Moreau', 'Snake Eyes', 'Congo', 'First Kid', 'Live Virgin', 'The Designated Mourner', 'Held Up', "St. Elmo's Fire", 'Chain Reaction', 'The Allnighter', 'Poison Ivy: New Seduction', 'Voyage of the Damned', 'Passion Fish']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The Contender]: Ranks 5
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Presidio', 'From Here to Eternity', 'Melvin and Howard', 'Jules and Jim (Jules et Jim)', 'Sanjuro', 'The Contender', 'Wolf', '8 1/2 Women', 'The Paper Chase', 'F/X 2', 'Trial, The (Le Procès)', 'Orlando', 'Faithful', 'Shanghai Surprise', 'Belizaire the Cajun', 'Dear Jesse', 'Class Reunion', 'Against All Odds', "The Mummy's Hand", 'Irma la Douce']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Casino]: Ranks 3
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Vertigo', 'Glengarry Glen Ross', 'The Thomas Crown Affair', 'Casino', 'The Cradle Will Rock', 'Manon of the Spring (Manon des sources)', 'The Guardian', 'The Quiet Man', 'Blue Collar', "The General's Daughter", 'Loser', 'Race the Sun', 'Mighty Aphrodite', 'Larger Than Life', 'Trainspotting', 'Poltergeist III', 'Confessional, The (Le Confessionnal)', 'The Little Mermaid', 'Slam', 'Twin Peaks: Fire Walk with Me']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Pleasantville]: Ranks 8
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Predator', 'Rocky V', 'Back to the Future Part III', 'Nutty Professor II: The Klumps', 'Air Bud', 'The Third Man', 'A Night to Remember', 'Commandments', 'Pleasantville', 'Homeward Bound: The Incredible Journey', 'At First Sight', 'The Adventures of Elmo in Grouchland', 'Santa Fe Trail', 'Final Conflict, The (a.k.a. Omen III: The Final Conflict)', 'Time Tracers', 'Smashing Time', 'Body Heat', 'Naked', 'Bad Taste', 'Lifeforce']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Glengarry Glen Ross]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Rushmore', 'Glengarry Glen Ross', "The Devil's Advocate", 'Blade', 'The Quest', 'The Hustler', 'The Jewel of the Nile', 'House', 'Late August, Early September (Fin août, début septembre)', 'First Blood', 'Nick of Time', 'Cleo From 5 to 7 (Cléo de 5 à 7)', 'Robin Hood: Prince of Thieves', 'Days of Thunder', 'The Addiction', 'Diabolique', 'Back to School', 'Armed and Dangerous', 'Rough Night in Jericho']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Super Mario Bros.]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Island of Dr. Moreau', 'Super Mario Bros.', 'The End of the Affair', 'Invasion of the Body Snatchers', 'Ruby in Paradise', 'The Best Years of Our Lives', 'The Shop Around the Corner', 'The Life and Times of Hank Greenberg', 'Hoodlum', 'Only Angels Have Wings', 'Escape to Witch Mountain', 'Detroit Rock City', 'The Cure', 'Class', "Microcosmos (Microcosmos: Le peuple de l'herbe)", 'Mallrats', 'Angus', 'Trois', 'Roula', "Rosemary's Baby"]]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Running Scared]: Ranks 12
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Thelma & Louise', 'Sabrina', 'Indochine', 'The Mask', 'The Paper', 'The Broken Hearts Club', 'The Emerald Forest', 'European Vacation', 'Hilary and Jackie', 'The Big Carnival', 'Marlene Dietrich: Shadow and Light', 'Lolita', 'Running Scared', 'Executive Decision', "Cats Don't Dance", 'Piranha', 'The Ape', 'Lucie Aubrac', 'House of Dracula', 'The Garbage Pail Kids Movie']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Gladiator]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Gladiator', 'Angel Heart', 'The Truth About Cats & Dogs', "She's the One", 'For Whom the Bell Tolls', 'Once Upon a Time in America', 'The Pope of Greenwich Village', "A Hard Day's Night", 'Galaxy Quest', 'Three to Tango', 'Warriors of Virtue', 'For the Moment', 'Bait', 'Rain', 'Encino Man', 'Children of a Lesser God', 'The Abominable Snowman', 'Daylight', 'Heaven & Earth', 'I Married A Strange Person']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Artemisia]: Ranks 10
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Annie Hall', 'Singles', 'Mallrats', 'Rosencrantz and Guildenstern Are Dead', 'Sixteen Candles', 'A Nightmare on Elm Street', 'The Unbearable Lightness of Being', 'Clerks', 'Anna', 'The Fear', 'Artemisia', "The Draughtsman's Contract", 'All Dogs Go to Heaven', "Charlotte's Web", 'The Brandon Teena Story', 'Howling II: Your Sister Is a Werewolf', 'Herbie Goes to Monte Carlo', 'Mr. Magoo', 'Drop Zone', 'Light of Day']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Swimming with Sharks]: Ranks 18
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Men in Black', 'Robocop', 'Mortal Kombat', 'Major Payne', 'Blank Check', 'Hurricane Streets', 'Gung Ho', 'Arachnophobia', 'Party Girl', 'Love & Human Remains', 'In Dreams', 'They Made Me a Criminal', 'Angel Heart', 'Bitter Sugar (Azucar Amargo)', 'Vie est belle, La (Life is Rosey)', 'Talking About Sex', 'Meet John Doe', 'Bad Taste', 'Swimming with Sharks']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [What Lies Beneath]: Ranks 5
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Out of Sight', 'While You Were Sleeping', 'Blast from the Past', 'A Star Is Born', 'The Naked Gun 2 1/2: The Smell of Fear', 'What Lies Beneath', 'Dead Presidents', 'The Great Race', 'Sunset Blvd. (a.k.a. Sunset Boulevard)', "Brown's Requiem", 'The Man from Down Under', 'Sirens', 'If....', 'Experience Preferred... But Not Essential', 'See the Sea (Regarde la mer)', 'Wolf', 'Something for Everyone', 'Gaslight', "Puppet Master III: Toulon's Revenge", 'Blank Check']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Gladiator]: Ranks 2
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Misery', 'Dazed and Confused', 'Gladiator', 'How Stella Got Her Groove Back', "A Nightmare on Elm Street Part 2: Freddy's Revenge", 'Wild Reeds', 'Wonderful, Horrible Life of Leni Riefenstahl, The (Die Macht der Bilder)', 'Hoodlum', 'Light It Up', 'Trixie', 'Pushing Hands', 'Unzipped', 'Waking the Dead', 'Full Tilt Boogie', 'Police Academy 2: Their First Assignment', 'Barefoot in the Park', 'The Wizard of Oz', 'Kurt & Courtney', 'Bride of Frankenstein', "Killer's Kiss"]]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Christine]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Christine', 'Alien Nation', 'Blown Away', 'The Nutty Professor', 'The Rescuers', 'Tombstone', 'Scent of a Woman', 'Swingers', 'Impact', 'Mumford', 'Winnie the Pooh and the Blustery Day', 'Oliver & Company', 'Reckless', 'Beat the Devil', 'From Here to Eternity', "We're No Angels", 'Across the Sea of Time', 'Godzilla (Gojira)', 'The Raven', 'Honey, I Blew Up the Kid']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Leaving Las Vegas]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Leaving Las Vegas', 'Trainspotting', 'The Godfather', 'Circle of Friends', 'Austin Powers: International Man of Mystery', 'Lake Placid', 'The Man with the Golden Gun', 'The Wife', 'Clue', 'Lulu on the Bridge', 'Cat Ballou', 'Jamaica Inn', 'A Boy Called Hate', 'Tainted', 'The Good Mother', 'Shaft in Africa', 'Carnosaur 3: Primal Species', 'Henry: Portrait of a Serial Killer', 'Drop Dead Fred', 'Mighty Aphrodite']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Predator]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Rock', 'Predator', 'Casablanca', 'Annie Hall', 'Enchanted April', "Ulee's Gold", 'Just Cause', 'Shall We Dance? (Shall We Dansu?)', 'The Hudsucker Proxy', 'The Baby', 'Get Over It', "I Love You, Don't Touch Me!", 'Easy Money', 'Cobb', 'Trekkies', 'Wilde', 'Jimmy Hollywood', 'Shattered Image', 'Wrongfully Accused', 'The Mighty Ducks']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Big]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Lock, Stock & Two Smoking Barrels', 'Big', 'The Shadow', 'Seventh Seal, The (Sjunde inseglet, Det)', 'American Tail: Fievel Goes West, An', 'Orlando', 'Beat the Devil', 'The Emerald Forest', 'Hate (Haine, La)', 'Basquiat', 'Alice and Martin (Alice et Martin)', 'Disturbing Behavior', "I Can't Sleep (J'ai pas sommeil)", 'Kicked in the Head', "God Said 'Ha!'", 'Rent-a-Kid', 'The Gingerbread Man', 'Total Eclipse', 'Barefoot in the Park']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Child's Play 3]: Ranks 7
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Truce', 'Autumn in New York', 'Senseless', 'Onegin', 'The Cure', 'The Jungle Book', 'Some Folks Call It a Sling Blade', "Child's Play 3", "She's All That", 'Crime and Punishment in Suburbia', 'Boxing Helena', 'The Tigger Movie', 'Red Sonja', 'Babes in Toyland', 'Babyfever', 'Anatomy (Anatomie)', 'The Third Man', 'House on Haunted Hill', 'Firestorm', "The Mummy's Curse"]]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [World of Apu, The (Apur Sansar)]: Ranks 11
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Citizen Kane', 'The Breakfast Club', 'Grand Hotel', 'Manon of the Spring (Manon des sources)', 'Hamlet', 'Eddie', 'Dangerous Minds', 'Three Wishes', 'Hoop Dreams', 'Air Bud', 'The Prophecy', 'World of Apu, The (Apur Sansar)', 'Message to Love: The Isle of Wight Festival', 'Screamers', 'A Very Brady Sequel', '42 Up', 'Cliffhanger', 'Nekromantik', 'The Believers', 'Howling II: Your Sister Is a Werewolf']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Indiana Jones and the Temple of Doom]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Four Weddings and a Funeral', 'Indiana Jones and the Temple of Doom', 'Run Lola Run (Lola rennt)', 'Jack', 'Gandhi', "Bram Stoker's Dracula", 'Young Frankenstein', 'Grand Canyon', 'Bad Boys', 'Room at the Top', 'The NeverEnding Story III', 'Pale Rider', 'Mad Max Beyond Thunderdome', 'Jefferson in Paris', 'Running Scared', 'The Apple Dumpling Gang Rides Again', 'Tom & Viv', 'Rambo: First Blood Part II', 'F/X', "A Soldier's Daughter Never Cries"]]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Stand by Me]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Stand by Me', 'Shakespeare in Love', 'Message in a Bottle', 'Little Voice', 'Great Expectations', 'Criminal Lovers (Les Amants Criminels)', 'Rent-A-Cop', 'Two Thousand Maniacs!', 'Steal This Movie!', '...And Justice for All', 'The Shooter', '28 Days', 'The Snows of Kilimanjaro', 'Molly', 'Even Cowgirls Get the Blues', 'The Allnighter', 'Hello Mary Lou: Prom Night II', 'Nueba Yol', 'Firelight', 'Angela']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Lone Star]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Lone Star', 'Scream 2', 'The Taking of Pelham One Two Three', 'The Amazing Panda Adventure', 'Deterrence', 'Solas', 'It Came from Beneath the Sea', 'A Very Natural Thing', 'Hana-bi', 'Zachariah', 'The Shooter', 'Blood Beach', "The Mummy's Ghost", 'Lost & Found', 'Home Page', 'Bonfire of the Vanities', 'Babe: Pig in the City', "We're Back! A Dinosaur's Story", 'Jaws 3-D', 'Dancemaker']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Gladiator]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Gladiator', 'Apocalypse Now', 'The Godfather: Part II', 'This Is Spinal Tap', 'A League of Their Own', 'Maverick', 'Funny Face', 'Raise the Red Lantern', 'Cube', 'Hell in the Pacific', 'Duets', 'Prince of the City', 'Dance with Me', 'The Trigger Effect', 'Red Firecracker, Green Firecracker', 'Queens Logic', 'Blame It on Rio', 'From the Hip', 'Son of Flubber', 'The Tomb of Ligeia']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Exorcist II: The Heretic]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Haunting', 'Exorcist II: The Heretic', 'Shine', 'Apocalypse Now', 'Richard III', 'Fearless', 'Problem Child 2', 'Rules of Engagement', 'Kiss Me, Guido', 'House Party 3', "Gulliver's Travels", 'Tin Drum, The (Blechtrommel, Die)', 'Make Them Die Slowly (Cannibal Ferox)', 'Stag', 'Romeo Is Bleeding', 'Angel Baby', 'X: The Unknown', 'Go Now', 'Roustabout', 'The Decline of Western Civilization']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [True Romance]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['True Romance', 'Grosse Pointe Blank', 'The Frighteners', 'Platoon', 'Star Trek: Insurrection', 'Airheads', 'Three Seasons', 'Marty', 'Love & Sex', 'Shopping', 'The Minus Man', 'Rocky III', "Things to Do in Denver when You're Dead", 'Stop! Or My Mom Will Shoot', 'Where Eagles Dare', 'Beneath the Planet of the Apes', "Billy's Holiday", 'Splash', 'Bad Taste', 'The Devil and Max Devlin']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [I Dreamed of Africa]: Ranks 11
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Blues Brothers', 'Phenomenon', 'Hook', 'Belle de jour', 'Mulholland Falls', 'Urban Legend', 'Money Train', 'Just Cause', 'Inferno', 'Two Bits', 'Lightning Jack', 'I Dreamed of Africa', 'Mortal Thoughts', 'Night Falls on Manhattan', 'Thomas and the Magic Railroad', "St. Elmo's Fire", 'Elstree Calling', 'Target', 'Benji the Hunted', 'The Grapes of Wrath']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [A Streetcar Named Desire]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['A Streetcar Named Desire', 'The Producers', 'Washington Square', 'The Love Bug', 'The Running Man', 'For a Few Dollars More', 'Teenage Mutant Ninja Turtles II: The Secret of the Ooze', 'Flubber', 'The Peacemaker', 'Waiting to Exhale', 'The Land Girls', 'JLG/JLG - autoportrait de décembre', 'Killer, The (Die xue shuang xiong)', 'Executive Decision', 'Unstrung Heroes', 'Schlafes Bruder (Brother of Sleep)', 'Red Rock West', 'Operation Condor 2 (Longxiong hudi)', "Airport '77", 'Going My Way']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [White Men Can't Jump]: Ranks 16
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Mystery Men', 'Hollow Man', 'The Nightmare Before Christmas', 'House on Haunted Hill', "Things to Do in Denver when You're Dead", 'The Muppet Movie', 'Poison Ivy: New Seduction', 'The In Crowd', 'Barcelona', 'Bedrooms & Hallways', 'The Stepford Wives', 'Black and White', 'The Three Ages', 'The Perfect Storm', 'Play it to the Bone', 'Tender Mercies', "White Men Can't Jump", 'Two Thousand Maniacs!', 'Pit and the Pendulum']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Dogma]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Dogma', 'G.I. Jane', 'The Wings of the Dove', 'To Catch a Thief', 'Being There', 'Near Dark', 'Very Bad Things', 'The Searchers', 'Street Fighter', 'Alligator', 'Message in a Bottle', 'Wag the Dog', 'I, Worst of All (Yo, la peor de todas)', 'Fall Time', 'Collectionneuse, La', 'Creepshow 2', 'Candyman: Farewell to the Flesh', 'The Seventh Sign', 'Double Team', 'Gung Ho']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Shakespeare in Love]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Last Night', 'Shakespeare in Love', 'Natural Born Killers', 'Perfect Blue', 'Broadcast News', 'The Peacemaker', 'Action Jackson', 'Seventh Heaven (Le Septième ciel)', 'Germinal', 'Dracula', 'Under Suspicion', 'The Specialist', 'Nadja', 'Rain', 'Pump Up the Volume', 'Sonic Outlaws', 'Oscar and Lucinda (a.k.a. Oscar & Lucinda)', 'Time Tracers', 'The Sugarland Express', 'Nothing But Trouble']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Girlfight]: Ranks 19
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Instinct', 'Return to Paradise', 'Dead Poets Society', 'The Thin Blue Line', 'Tender Mercies', 'Defending Your Life', 'If....', 'House of Dracula', 'Violets Are Blue...', 'The Low Life', 'Foxfire', 'Tin Men', 'My Family', 'Digging to China', 'The Hi-Lo Country', 'Black Tar Heroin: The Dark End of the Street', "A Brother's Kiss", 'Meatballs 4', 'Beefcake', 'Girlfight']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Saving Grace]: Ranks 9
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['A Clockwork Orange', 'Maximum Overdrive', 'Carnival of Souls', 'All Quiet on the Western Front', 'Return to Oz', 'Father of the Bride Part II', 'Diebinnen', 'The Brady Bunch Movie', 'Notorious', 'Saving Grace', 'Peanuts - Die Bank zahlt alles', 'The Quiet Room', 'Tommy', 'Railroaded!', 'Bikini Beach', 'Coma', "Where's Marlowe?", 'Mighty Morphin Power Rangers: The Movie', 'Up at the Villa', "We're No Angels"]]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Swamp Thing]: Ranks 19
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Saving Private Ryan', 'A Life Less Ordinary', 'Benny & Joon', 'The Faculty', 'The Howling', 'Arsenic and Old Lace', 'The Other Sister', 'Fletch', 'Night Porter, The (Il Portiere di notte)', 'House on Haunted Hill', 'Gypsy', 'American in Paris, An', 'The Impostors', 'S.F.W.', 'Kurt & Courtney', 'Urbania', 'Battle for the Planet of the Apes', 'Time Masters (Les Maîtres du Temps)', 'Flesh and Bone', 'Swamp Thing']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Scary Movie]: Ranks 14
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Alien', 'A Christmas Story', 'Heartbreak Ridge', 'Maverick', 'Go', 'Love! Valour! Compassion!', 'Picture Perfect', 'Fear of a Black Hat', 'Harriet the Spy', 'Boys and Girls', 'Tie Me Up! Tie Me Down!', 'Chariots of Fire', 'Frogs for Snakes', 'Come See the Paradise', 'Scary Movie', 'Fever Pitch', 'Avalanche', 'Tampopo', 'Halloween III: Season of the Witch', "A Nightmare on Elm Street Part 2: Freddy's Revenge"]]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The Thomas Crown Affair]: Ranks 2
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Requiem for a Dream', 'The Fugitive', 'The Thomas Crown Affair', 'Army of Darkness', 'Dance with Me', 'The Castle', 'Mother Night', 'Benji', 'Operation Condor 2 (Longxiong hudi)', 'Tom Jones', 'Miami Rhapsody', 'Gold Diggers: The Secret of Bear Mountain', 'Carpool', 'Judgment Night', 'Mascara', '24 7: Twenty Four Seven', 'The Watcher', 'I Saw What You Did', 'Mrs. Doubtfire', 'Big Daddy']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The Paper Chase]: Ranks 19
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Portrait of a Lady', 'Aliens', 'Yojimbo', 'Something for Everyone', 'Addams Family Values', 'Holy Smoke', 'A Zed & Two Noughts', 'Sarafina!', 'All the Vermeers in New York', 'Seven Days in May', 'Fletch Lives', 'Public Access', 'Jeanne and the Perfect Guy (Jeanne et le garçon formidable)', 'It Could Happen to You', 'Meatballs', 'Flubber', 'Highlander III: The Sorcerer', 'Red Sonja', 'Ruthless People', 'The Paper Chase']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The Devil's Brigade]: Ranks 10
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The African Queen', 'The Secret of Roan Inish', 'The Paradine Case', 'The Brandon Teena Story', 'Run Silent, Run Deep', 'The Yards', 'Broken English', 'Run Lola Run (Lola rennt)', 'The Myth of Fingerprints', 'Red Sorghum (Hong Gao Liang)', "The Devil's Brigade", 'Canadian Bacon', "The Rich Man's Wife", 'Top Hat', 'Sliding Doors', 'Nosferatu (Nosferatu, eine Symphonie des Grauens)', 'Unzipped', 'The Last Temptation of Christ', "Porky's", 'Dracula']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Mary Poppins]: Ranks 2
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Dancer in the Dark', 'Cinema Paradiso', 'Mary Poppins', 'The Adventures of Robin Hood', 'Lost Horizon', 'Alien', 'Terms of Endearment', 'The Saint of Fort Washington', 'The NeverEnding Story III', 'Soul Food', 'Marcello Mastroianni: I Remember Yes, I Remember', 'Daylight', 'L.A. Story', 'On the Ropes', 'Junior', 'Take the Money and Run', 'Stranger in the House', 'Talking About Sex', 'Bio-Dome', 'Halloween: The Curse of Michael Myers']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Lovers on the Bridge, The (Les Amants du Pont-Neuf)]: Ranks 7
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Shakespeare in Love', 'Rush Hour', 'Spaceballs', 'Interview with the Vampire', 'Women on the Verge of a Nervous Breakdown', 'The Arrival', 'Nights of Cabiria (Le Notti di Cabiria)', 'Lovers on the Bridge, The (Les Amants du Pont-Neuf)', 'Sunset Blvd. (a.k.a. Sunset Boulevard)', 'White Sands', 'In the Company of Men', 'The Crow: City of Angels', 'Shall We Dance?', 'Blood Spattered Bride, The (La Novia Ensangrentada)', 'Hugo Pool', 'Hav Plenty', 'The Saltmen of Tibet', 'Wings of Courage', 'Dingo', 'Callejón de los milagros, El']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Death Becomes Her]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Pleasantville', 'Death Becomes Her', 'Go', 'Forrest Gump', 'Modern Times', 'Hell in the Pacific', 'Extremities', 'Murder, My Sweet', 'The Slipper and the Rose', 'Metisse (Café au Lait)', 'Committed', 'A Thin Line Between Love and Hate', 'Bambi', "Who's Afraid of Virginia Woolf?", 'Shakes the Clown', 'Baby... Secret of the Lost Legend', 'Police Academy 5: Assignment: Miami Beach', "The Brain That Wouldn't Die", 'Bull Durham', 'Solar Crisis']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The Champ]: Ranks 13
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Sixth Sense', 'Much Ado About Nothing', 'Jules and Jim (Jules et Jim)', 'Grosse Pointe Blank', "Rosemary's Baby", 'The Mummy', 'The Stepford Wives', 'Belizaire the Cajun', "Sullivan's Travels", 'A Fistful of Dollars', 'Ride with the Devil', 'Your Friends and Neighbors', 'Love Serenade', 'The Champ', 'Gun Shy', 'Lotto Land', 'Dear Diary (Caro Diario)', 'Beach Party', 'Jackie Brown', 'The Opposite of Sex']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The Absent Minded Professor]: Ranks 15
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Good Morning, Vietnam', 'The Abyss', 'The Rocketeer', 'Michael Collins', 'The War at Home', 'Romeo and Juliet', 'The Computer Wore Tennis Shoes', 'Funny Face', 'Santa Claus: The Movie', 'Magnum Force', 'Eternity and a Day (Mia eoniotita ke mia mera )', 'Visitors, The (Les Visiteurs)', 'Teaching Mrs. Tingle', 'One Little Indian', 'Boxing Helena', 'The Absent Minded Professor', 'Tarzan the Fearless', 'Fall Time', 'Godzilla 2000 (Gojira ni-sen mireniamu)', 'Winnie the Pooh and the Blustery Day']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Deuce Bigalow: Male Gigolo]: Ranks 6
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Never Been Kissed', 'The Sum of Us', 'Soft Fruit', 'Double Life of Veronique, The (La Double Vie de Véronique)', 'Small Time Crooks', 'Midnight Express', 'Deuce Bigalow: Male Gigolo', 'Days of Thunder', 'Tin Men', 'Lost Horizon', 'Universal Soldier', 'Poison Ivy: New Seduction', 'Pandora and the Flying Dutchman', 'Stop Making Sense', 'The Muppet Christmas Carol', 'Normal Life', 'Alvarez Kelly', 'Lone Star', "Pete's Dragon", 'Death Wish II']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Rules of Engagement]: Ranks 6
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Pulp Fiction', 'Three Kings', 'Sling Blade', "The General's Daughter", 'Raiders of the Lost Ark', 'Amadeus', 'Rules of Engagement', 'The King and I', 'Against All Odds', 'The Innocents', 'Night on Earth', 'The Battle of the Sexes', 'A Merry War', 'Romeo Must Die', 'The Hidden', 'Death and the Maiden', 'The Effect of Gamma Rays on Man-in-the-Moon Marigolds', 'Striking Distance', 'The Glass Bottom Boat', 'Snowriders']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Crimson Tide]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Grifters', 'Crimson Tide', 'Die Hard 2', 'Soldier', 'Ransom', 'Amos & Andrew', 'Sarafina!', 'Audrey Rose', 'Tequila Sunrise', 'Withnail and I', "A Midsummer Night's Dream", 'The Man from Laramie', 'Heaven & Earth', 'One Night Stand', 'Christmas Vacation', 'Jaws', "Brown's Requiem", 'The Outlaw', 'Once Upon a Time... When We Were Colored', 'Pinocchio']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The Mask]: Ranks 8
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Graduate', 'French Kiss', 'To Catch a Thief', 'Big Night', 'Bedrooms & Hallways', 'The Eyes of Tammy Faye', 'Psycho', 'Tombstone', 'The Mask', 'Varsity Blues', 'Runaway', 'Heaven & Earth', 'Father of the Bride Part II', 'No Way Out', "Miller's Crossing", 'Marlene Dietrich: Shadow and Light', 'Payback', 'The Big One', 'T-Men', 'Dragonheart']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Babe]: Ranks 19
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Manhattan Murder Mystery', 'Sex, Lies, and Videotape', 'Dancer, Texas Pop. 81', 'Witness', 'The Pelican Brief', 'Better Than Chocolate', 'Among Giants', 'Wide Awake', 'The Slipper and the Rose', 'Rules of Engagement', 'Night of the Comet', 'Suture', 'All Dogs Go to Heaven 2', 'Julien Donkey-Boy', 'Sorority House Massacre II', 'The Closer You Get', 'Star Trek: Insurrection', 'Trial, The (Le Procès)', 'Halloween: The Curse of Michael Myers', 'Babe']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The Contender]: Ranks 2
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Secret Garden', 'The City of Lost Children', 'The Contender', 'Hope Floats', 'Hearts and Minds', 'American Gigolo', 'The Sweet Hereafter', 'Licence to Kill', 'Friday', 'Heaven & Earth', 'Black Sunday (La Maschera Del Demonio)', 'Cold Comfort Farm', 'Anna', 'Caligula', 'Baby... Secret of the Lost Legend', 'Two if by Sea', 'The Brady Bunch Movie', 'Eight Days a Week', "Porky's II: The Next Day", "Wooden Man's Bride, The (Wu Kui)"]]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Six Degrees of Separation]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [["Carlito's Way", 'Six Degrees of Separation', 'Star Wars: Episode I - The Phantom Menace', 'Blazing Saddles', 'The King and I', 'Love Is a Many-Splendored Thing', 'The Muppet Movie', 'Ready to Wear (Pret-A-Porter)', 'The Phantom of the Opera', 'Lovers on the Bridge, The (Les Amants du Pont-Neuf)', 'Blood, Guts, Bullets and Octane', 'The Endless Summer 2', 'Perfect Blue', 'Monument Ave.', 'Across the Sea of Time', 'Bad Company', 'Ilsa, She Wolf of the SS', 'Niagara', 'Solo', 'Bird on a Wire']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Rising Sun]: Ranks 17
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['GoldenEye', 'The Matrix', 'Cape Fear', 'Titanic', 'Pleasantville', 'Police Academy 6: City Under Siege', 'Girlfight', 'Heavyweights', 'Nelly & Monsieur Arnaud', 'Lovers of the Arctic Circle, The (Los Amantes del Círculo Polar)', 'Once Upon a Time... When We Were Colored', 'Rosie', 'Live Virgin', 'Saragossa Manuscript, The (Rekopis znaleziony w Saragossie)', 'Body Shots', 'Pie in the Sky', 'Arthur', 'Rising Sun', 'The Shadow']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The Champ]: Ranks 9
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Dazed and Confused', 'Ace Ventura: Pet Detective', 'Red Dawn', 'Species', 'Screamers', 'Sense and Sensibility', 'North', 'Indochine', 'The Glass Shield', 'The Champ', 'Rhyme & Reason', 'Conquest of the Planet of the Apes', 'Kama Sutra: A Tale of Love', 'Full Speed', 'Raise the Red Lantern', 'Eight Days a Week', 'Land Before Time III: The Time of the Great Giving', 'Vibes', 'Killer: A Journal of Murder', 'Torso (Corpi Presentano Tracce di Violenza Carnale)']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Almost Famous]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Almost Famous', 'The Minus Man', 'Fatal Attraction', 'A Little Princess', 'Alphaville', 'Losing Isaiah', 'Dracula', 'The Land Girls', 'Jude', 'On Any Sunday', 'Dark Command', 'The Lawnmower Man', 'Blue Angel, The (Blaue Engel, Der)', 'Alligator', 'Gung Ho', 'Son of Flubber', 'With Friends Like These...', 'Major League: Back to the Minors', "Doug's 1st Movie", 'Small Wonders']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Star Wars: Episode VI - Return of the Jedi]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Apocalypse Now', 'Star Wars: Episode VI - Return of the Jedi', 'The Jungle Book', 'Gods and Monsters', 'The Man Without a Face', 'The Broken Hearts Club', 'Just the Ticket', "You've Got Mail", 'The Asphalt Jungle', 'The War Zone', 'Girlfight', 'Duets', "The 'burbs", 'One Fine Day', 'Shiloh', 'A Good Man in Africa', 'Homeward Bound II: Lost in San Francisco', 'Elstree Calling', 'Halloween: The Curse of Michael Myers']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Magnolia]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Vertigo', 'Magnolia', 'The Game', 'End of Days', 'The Mod Squad', 'Blade', 'Teenage Mutant Ninja Turtles II: The Secret of the Ooze', 'The Swan Princess', 'He Got Game', 'Tumbleweeds', 'Cold Fever (Á köldum klaka)', 'Matewan', 'The NeverEnding Story II: The Next Chapter', 'Spy Hard', 'Fall Time', 'Bent', 'Meatballs 4', 'Little Odessa', 'Senseless', 'Blown Away']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Wild Wild West]: Ranks 18
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['High Fidelity', 'The Shining', 'Parasite', 'Face/Off', 'Saving Private Ryan', 'Scream', 'Moonraker', 'Police Academy', "Child's Play", 'Maximum Overdrive', 'Outrageous Fortune', 'He Got Game', 'Cinderella', 'Flawless', 'Heart Condition', 'Help!', 'The Palm Beach Story', 'Red Dwarf, The (Le Nain rouge)', 'Wild Wild West', 'Blood Spattered Bride, The (La Novia Ensangrentada)']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [JFK]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['JFK', 'Mission: Impossible 2', 'Indiana Jones and the Temple of Doom', 'The Haunting', 'The Saint', 'The Searchers', 'The Prophecy', 'The Pagemaster', 'Son of Frankenstein', 'The Low Life', 'The Saltmen of Tibet', 'Crash', "Don't Look in the Basement!", "Puppet Master III: Toulon's Revenge", 'When a Man Loves a Woman', "Roseanna's Grave (For Roseanna)", 'Tango', 'Toys']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Feeling Minnesota]: Ranks 8
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Runaway Bride', 'The Peacemaker', 'The War', 'The Paper Chase', 'Last Night', 'A Night to Remember', 'Multiplicity', 'Swimming with Sharks', 'Feeling Minnesota', 'The Band Wagon', 'The Taking of Pelham One Two Three', "I'm Not Rappaport", "It's My Party", 'Sinbad and the Eye of the Tiger', 'The Glass Bottom Boat', 'Elstree Calling', 'Coyote Ugly', 'Herbie Goes Bananas', "Billy's Hollywood Screen Kiss", 'Tommy']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [U-571]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['U-571', 'The Fly', 'Star Trek VI: The Undiscovered Country', 'Meet the Parents', 'Up Close and Personal', 'Death Wish', 'Nurse Betty', 'Fantastic Planet, The (La Planète sauvage)', 'Poetic Justice', 'Drive Me Crazy', 'The Insider', 'Bent', 'Big Trouble in Little China', '8 Seconds', "Shaft's Big Score!", 'Bicycle Thief, The (Ladri di biciclette)', 'For Ever Mozart', 'Blow-Out (La Grande Bouffe)', 'Hillbillys in a Haunted House', 'The Right Stuff']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Gremlins]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Big Lebowski', 'Gremlins', 'Three Days of the Condor', 'For Your Eyes Only', 'Miracle on 34th Street', 'Fear', 'Die Hard 2', 'Best Man, The (Il Testimone dello sposo)', 'With Honors', 'Fatal Beauty', 'Prince of the City', 'House of Dracula', 'Blood on the Sun', 'Meet Wally Sparks', 'On the Ropes', 'The Nutty Professor', "I'm the One That I Want", 'One Little Indian', 'Down to You', 'The War Zone']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The Thomas Crown Affair]: Ranks 2
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Princess Bride', 'The French Connection', 'The Thomas Crown Affair', 'Ladyhawke', 'Speed', 'The Karate Kid, Part II', 'In the Name of the Father', 'Freaky Friday', 'Love Is the Devil', 'Higher Learning', 'Living Out Loud', 'Moonlight Murder', 'Crumb', 'From the Hip', 'Cyclo', 'Boys and Girls', 'How to Stuff a Wild Bikini', 'And Now for Something Completely Different', "Who's Afraid of Virginia Woolf?", 'The Gate of Heavenly Peace']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [St. Elmo's Fire]: Ranks 18
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Maybe, Maybe Not (Bewegte Mann, Der)', 'Walking and Talking', 'Mrs. Winterbourne', 'Delicatessen', 'City Lights', 'Pale Rider', 'Pather Panchali', 'Return with Honor', 'The Battle of the Sexes', 'Window to Paris', 'The Phantom of the Opera', 'Phantasm II', 'Street Fighter', 'Ghostbusters II', 'Ace Ventura: When Nature Calls', 'Children of the Corn III', 'Executive Decision', 'That Darn Cat!', "St. Elmo's Fire", 'Hoosiers']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [F/X]: Ranks 8
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Bottle Rocket', 'Everyone Says I Love You', 'Shanghai Noon', 'Love and Basketball', 'Six Days Seven Nights', 'Robocop 3', 'The Cruise', 'Sunset Strip', 'F/X', 'The Greatest Show on Earth', 'Harry and the Hendersons', 'Smoke', 'Time of the Gypsies (Dom za vesanje)', 'Stigmata', 'Commandments', "School of Flesh, The (L' École de la chair)", 'Fatal Beauty', 'The Hidden', 'Silence of the Palace, The (Saimt el Qusur)', 'Johns']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The Perfect Storm]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Perfect Storm', 'Urban Legend', 'West Side Story', 'Sneakers', 'Open Your Eyes (Abre los ojos)', 'Committed', 'Marked for Death', 'Restoration', 'Cup, The (Phörpa)', 'A Great Day in Harlem', 'Light of Day', 'Madame Sousatzka', 'Othello', 'Lost Horizon', 'Peeping Tom', "Porky's II: The Next Day", 'Friday', "Pot O' Gold", 'The Adventures of Robin Hood', 'Losing Isaiah']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The Sixth Sense]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Pulp Fiction', 'The Sixth Sense', 'A Bronx Tale', 'The Ref', 'Funny Face', 'When We Were Kings', 'Mulan', 'Bachelor Party', 'Heavy', 'Soft Toilet Seats', 'Bitter Moon', 'The Search for One-eye Jimmy', 'Eat Drink Man Woman', 'Spellbound', 'The NeverEnding Story II: The Next Chapter', 'Choices', 'F/X', 'Short Cuts', 'Irma la Douce', 'Mildred Pierce']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The Rugrats Movie]: Ranks 2
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Nightmare Before Christmas', 'Stuart Little', 'The Rugrats Movie', 'Pitch Black', 'The Last Picture Show', 'The Adventures of Sebastian Cole', 'True Grit', "The Devil's Advocate", 'Everything You Always Wanted to Know About Sex', 'Open Your Eyes (Abre los ojos)', 'Just Cause', 'The Brady Bunch Movie', 'What Ever Happened to Baby Jane?', 'Homegrown', 'The Substance of Fire', 'Ten Benny', 'The Killing of Sister George', 'Unzipped', "Mike's Murder", 'Back to School']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Lethal Weapon]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Lethal Weapon', 'Lost Highway', 'The Crying Game', 'Rob Roy', 'The Nutty Professor', 'Original Gangstas', 'Force 10 from Navarone', 'Iron Eagle II', 'The Emerald Forest', 'Just Cause', 'Boys Life', 'The Broken Hearts Club', 'Bowfinger', 'Anastasia', "Isn't She Great?", 'Love Walked In', 'The Wedding Gift', 'Dying Young', 'European Vacation', 'Celtic Pride']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The Apple Dumpling Gang]: Ranks 8
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Shine', 'The Fifth Element', 'Sneakers', 'High Fidelity', 'The City of Lost Children', 'Metropolitan', 'Casper', 'Autumn Sonata (Höstsonaten )', 'The Apple Dumpling Gang', 'In the Heat of the Night', 'The Machine', 'My Crazy Life (Mi vida loca)', 'The Quiet Room', 'Twin Falls Idaho', 'Rent-A-Cop', 'Jagged Edge', 'Last of the High Kings, The (a.k.a. Summer Fling)', 'A Woman of Paris', 'Do the Right Thing', "Blood For Dracula (Andy Warhol's Dracula)"]]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Ladyhawke]: Ranks 7
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Raiders of the Lost Ark', 'Chasing Amy', 'Elizabeth', 'Yojimbo', 'Paths of Glory', 'Beauty and the Beast', 'The Mummy', 'Ladyhawke', 'Weird Science', 'The Impostors', 'Man of the House', 'Sid and Nancy', 'In the Bleak Midwinter', 'Violets Are Blue...', 'Star Maps', 'Sgt. Bilko', 'Alvarez Kelly', 'Railroaded!', 'Peanuts - Die Bank zahlt alles', 'Scorta, La']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Awakenings]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Awakenings', 'For a Few Dollars More', 'Jean de Florette', 'He Got Game', 'Detroit 9000', 'Chuck & Buck', 'Re-Animator', 'Lost & Found', 'Better Living Through Circuitry', 'The Shooter', 'All the Vermeers in New York', 'Happy Go Lovely', 'Private School', 'Shampoo', 'A Low Down Dirty Shame', 'Steal Big, Steal Little', 'Tommy', 'I Know What You Did Last Summer', "Puppet Master III: Toulon's Revenge", 'Pumpkinhead']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [In the Line of Fire]: Ranks 2
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Lost World: Jurassic Park', 'Rounders', 'In the Line of Fire', 'The Boondock Saints', 'The Man in the Iron Mask', 'The Program', 'Belle de jour', 'Heaven Can Wait', 'A Fistful of Dollars', 'West Side Story', 'Dolores Claiborne', 'French Kiss', 'The Prophecy', 'Blue in the Face', 'So I Married an Axe Murderer', 'Scary Movie', 'S.F.W.', 'X: The Unknown', 'The Allnighter', 'Fantasia']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Total Recall]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Total Recall', 'The Invisible Man', 'Teenage Mutant Ninja Turtles II: The Secret of the Ooze', 'A Little Princess', 'D2: The Mighty Ducks', 'Wild Man Blues', 'A Close Shave', 'Day of the Beast, The (El Día de la bestia)', 'Being There', 'Rosewood', 'The Fury', 'He Walked by Night', "Shaft's Big Score!", 'Bhaji on the Beach', 'Hamlet', 'Sugar Town', 'The Hand That Rocks the Cradle', 'Tie Me Up! Tie Me Down!', 'American Pop', "Eve's Bayou"]]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The Silence of the Lambs]: Ranks 11
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Independence Day (ID4)', 'The Sting', 'Thunderbolt and Lightfoot', 'Crocodile Dundee II', 'Return with Honor', 'Star Trek IV: The Voyage Home', 'Land Before Time III: The Time of the Great Giving', 'Hellraiser III: Hell on Earth', 'The Return of the Pink Panther', 'High Art', 'Eat Drink Man Woman', 'The Silence of the Lambs', 'Deceiver', 'Night on Earth', 'Railroaded!', 'Sesame Street Presents Follow That Bird', 'Confessional, The (Le Confessionnal)', 'Son of Frankenstein', "I'll Be Home For Christmas", 'Ilsa, She Wolf of the SS']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Beyond the Mat]: Ranks 19
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Commitments', 'Mighty Aphrodite', 'The 13th Warrior', 'The Life and Times of Hank Greenberg', "Ferris Bueller's Day Off", 'Twin Dragons (Shuang long hui)', 'The Getaway', 'The Road to Wellville', 'Mortal Kombat: Annihilation', 'Black Dog', 'Pal Joey', 'Tango', 'Herbie Goes Bananas', 'Exit to Eden', 'Target', 'Yankee Zulu', 'Diebinnen', 'The Secret Agent', 'I Got the Hook Up', 'Beyond the Mat']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Batman]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['My Cousin Vinny', 'Batman', 'What About Bob?', 'The Breakfast Club', 'Outbreak', 'Tin Men', 'Fanny and Alexander', 'Ideal Husband, An', 'European Vacation', 'Cop Land', 'Sunset Park', 'Animal House', 'Swamp Thing', 'I Shot Andy Warhol', 'Battle for the Planet of the Apes', "Darby O'Gill and the Little People", 'Monster, The (Il Mostro)', 'American Strays', 'Secret Agent', 'The Slumber Party Massacre III']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [High Noon]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['High Noon', 'Solaris (Solyaris)', 'The General', 'Othello', 'The Basketball Diaries', 'Pitch Black', 'When We Were Kings', 'Cool as Ice', 'The Journey of August King', 'Native Son', 'The Big Kahuna', 'A Modern Affair', 'Trust', 'Crimson Tide', 'Guys and Dolls', 'Death and the Maiden', 'Uninvited Guest, An', 'Curdled', 'Black Sunday (La Maschera Del Demonio)', 'Sorority House Massacre']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Blowup]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Great Escape', 'Blowup', 'Frenzy', 'The Karate Kid, Part II', 'Gang Related', 'The Wolf Man', 'Duck Soup', 'The X-Files: Fight the Future', 'Roommates', 'The Omega Man', 'Carrington', 'Even Cowgirls Get the Blues', "Ed's Next Move", 'Nueba Yol', 'Single Girl, A (La Fille Seule)', 'T-Men', 'Death Wish 4: The Crackdown', 'Supergirl', 'Airport', 'The Gate of Heavenly Peace']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The Sting]: Ranks 2
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Right Stuff', 'Bull Durham', 'The Sting', 'My Own Private Idaho', 'A Christmas Story', 'Girl, Interrupted', 'Scream 3', 'The Jewel of the Nile', 'Night of the Living Dead', 'Silence of the Palace, The (Saimt el Qusur)', 'Pushing Hands', "Pee-wee's Big Adventure", 'Final Conflict, The (a.k.a. Omen III: The Final Conflict)', 'Macao', "Blood For Dracula (Andy Warhol's Dracula)", 'Boys', "Pete's Dragon", 'Amityville II: The Possession', "Big Momma's House", 'The Scarlet Letter']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Mallrats]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Mallrats', 'Shallow Grave', 'Brassed Off', 'Hercules', '101 Dalmatians', 'Mission: Impossible 2', 'The Iron Giant', 'Aliens', 'Titus', 'Welcome To Sarajevo', 'Bless the Child', 'A Boy Called Hate', 'The 7th Voyage of Sinbad', "On Her Majesty's Secret Service", 'Pit and the Pendulum', 'Bulworth', '42 Up', 'Atlantic City', 'Sirens', 'Little Big League']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Don Juan DeMarco]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['My Left Foot', 'Don Juan DeMarco', 'The Cell', 'The Man with the Golden Gun', 'The Great Santini', 'True Crime', "The Devil's Own", 'This Is Spinal Tap', "But I'm a Cheerleader", "The Brain That Wouldn't Die", 'The Mating Habits of the Earthbound Human', 'Albino Alligator', 'Falling Down', 'Committed', 'Chariots of Fire', 'Phantasm II', 'Phantasm IV: Oblivion', 'Phat Beach', "Porky's Revenge"]]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Dune]: Ranks 7
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Santa Clause', 'Mallrats', 'Small Time Crooks', 'Brazil', 'The Dead Zone', "Muriel's Wedding", 'Cool Hand Luke', 'Dune', 'Purple Noon', 'Crime and Punishment in Suburbia', 'Bound', 'Snow Falling on Cedars', 'Parasite', 'The Assignment', 'Hilary and Jackie', 'Amityville: Dollhouse', 'Butterfly Kiss', 'Hud', 'In Love and War', 'The Shaggy D.A.']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Shadowlands]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [["Sophie's Choice", 'Shadowlands', 'The Addams Family', 'The Joy Luck Club', 'Airplane!', 'The Champ', 'Home Alone', 'Apocalypse Now', 'Big Trouble in Little China', 'The Closer You Get', 'Hoodlum', 'Red Dwarf, The (Le Nain rouge)', 'Mortal Kombat: Annihilation', 'Willow', 'Cup, The (Phörpa)', "Killer's Kiss", "Hang 'em High", 'Alien Escape', 'Tarzan the Fearless', 'Renaissance Man']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Double Life of Veronique, The (La Double Vie de Véronique)]: Ranks 2
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Trouble with Harry', 'A Walk on the Moon', 'Double Life of Veronique, The (La Double Vie de Véronique)', 'Smoke Signals', 'Affair of Love, An (Une Liaison Pornographique)', 'Madonna: Truth or Dare', 'Dreamlife of Angels, The (La Vie rêvée des anges)', 'Grosse Fatigue', 'Fletch Lives', 'The Acid House', 'A Hungarian Fairy Tale', 'Death Wish 3', 'The Next Karate Kid', "In God's Hands", 'Scream', 'Bloodsport', 'Hot Lead and Cold Feet', 'Gandhi', 'Clean Slate', 'The Long Goodbye']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Muppet Treasure Island]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Muppet Treasure Island', 'The Slipper and the Rose', "Monty Python's Life of Brian", 'Contact', 'Anna and the King', 'The Object of My Affection', 'The Third Miracle', 'Snow Falling on Cedars', 'Eyes Wide Shut', 'The Asphalt Jungle', 'So I Married an Axe Murderer', 'The Getaway', 'Affair of Love, An (Une Liaison Pornographique)', 'Gothic', 'Clue', 'Poison Ivy', 'Blackmail', 'The Low Life', 'Sprung', 'Beefcake']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [South Park: Bigger, Longer and Uncut]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Rounders', 'South Park: Bigger, Longer and Uncut', 'Psycho', 'The Odd Couple', 'McCabe & Mrs. Miller', 'Westworld', 'Braindead', 'Gigi', 'Meteor', 'Six Days Seven Nights', 'The Boys of St. Vincent', 'Beneath the Planet of the Apes', 'Kundun', 'Broadway Damage', 'Regret to Inform', 'Class', 'Foolish', 'Bronco Billy', 'Windows']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The Little Mermaid]: Ranks 17
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Batman Returns', 'The Thing', 'Nutty Professor II: The Klumps', 'Almost Heroes', 'Boys', 'Pandora and the Flying Dutchman', 'American in Paris, An', 'Dinosaur', 'Manny & Lo', 'Phantoms', 'The Good Earth', 'Other Side of Sunday, The (Søndagsengler)', 'Clockwatchers', 'Goldfinger', 'Candleshoe', 'Jamaica Inn', 'Parenthood', 'The Little Mermaid', "Greaser's Palace"]]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Darby O'Gill and the Little People]: Ranks 18
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Three Colors: White', 'Crimes and Misdemeanors', 'The Net', 'Professional, The (a.k.a. Leon: The Professional)', 'Misérables, Les', 'Midaq Alley (Callejón de los milagros, El)', 'Marlene Dietrich: Shadow and Light', 'Force of Evil', 'A Dog of Flanders', 'Baby Geniuses', 'Alligator', "Another Man's Poison", 'Fatal Instinct', 'Braddock: Missing in Action III', 'Blood and Sand (Sangre y Arena)', 'Timecop', 'Pushing Hands', 'My Favorite Season', "Darby O'Gill and the Little People", 'Gung Ho']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [American Pie]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['American Pie', 'The Rainmaker', 'The Nightmare Before Christmas', 'A Place in the Sun', 'A Cool Dry Place', '2 Days in the Valley', 'The General', 'Loser', 'Chicken Run', 'Nine 1/2 Weeks', 'The Sugarland Express', 'Mickey Blue Eyes', 'Home for the Holidays', 'Palookaville', 'I Saw What You Did', "Blackbeard's Ghost", 'Nemesis 2: Nebula', 'Choices', 'Diner', 'Male and Female']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The Big Lebowski]: Ranks 3
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Fisher King', 'The Rock', 'Star Wars: Episode IV - A New Hope', 'The Big Lebowski', 'Mouse Hunt', 'High Plains Drifter', 'Bed of Roses', 'Cotton Mary', 'Ace Ventura: When Nature Calls', 'If....', 'Gung Ho', 'Melody Time', "The 'burbs", '1-900', 'Convent, The (Convento, O)', 'Angel and the Badman', 'Max Dugan Returns', 'Dear Jesse', 'JLG/JLG - autoportrait de décembre', "You Can't Take It With You"]]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The King and I]: Ranks 19
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['GoodFellas', 'The Elephant Man', 'The Talented Mr. Ripley', 'A Face in the Crowd', 'Star Trek VI: The Undiscovered Country', 'Toys', 'Fear and Loathing in Las Vegas', 'Go', 'Night Flier', 'Manny & Lo', 'Foreign Correspondent', "Gentleman's Agreement", 'Encino Man', 'Cavalcade', 'Solar Crisis', 'That Darn Cat!', 'Wings of Courage', 'Heavyweights', 'Hav Plenty', 'The King and I']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Barb Wire]: Ranks 17
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Apollo 13', 'Life Is Beautiful (La Vita è bella)', 'Fanny and Alexander', 'Simply Irresistible', 'Best in Show', 'It Could Happen to You', 'Boys', 'The Odessa File', 'For Love or Money', 'Any Given Sunday', 'The Taming of the Shrew', 'Born Yesterday', 'Beauty', 'No Looking Back', 'The Pompatus of Love', 'Saludos Amigos', 'Damien: Omen II', 'Barb Wire', 'Blackmail', 'Diebinnen']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Magnolia]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Elephant Man', 'Magnolia', 'The Sting', 'Cape Fear', 'The Color of Money', 'A Little Princess', 'Bad Lieutenant', 'American Pop', 'Smashing Time', 'Back to the Future Part II', 'Band of the Hand', 'Ciao, Professore! (Io speriamo che me la cavo )', 'Delta of Venus', 'The Last Time I Saw Paris', 'Bedknobs and Broomsticks', 'To Have, or Not', 'Jeffrey', 'Flashdance', 'The Brandon Teena Story', "We're No Angels"]]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Airplane!]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Airplane!', 'The Crow', 'Arlington Road', 'The Commitments', 'Patriot Games', 'The Postman Always Rings Twice', 'Lovers of the Arctic Circle, The (Los Amantes del Círculo Polar)', 'Cop Land', 'Another Stakeout', 'Happy, Texas', 'Shanghai Surprise', 'Modulations', 'Johnny 100 Pesos', 'Federal Hill', 'Pokémon the Movie 2000', 'Arguing the World', 'Sorority House Massacre', 'Prom Night', 'The Prophecy II', 'The Inkwell']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Mission to Mars]: Ranks 2
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Sting', "Monty Python's Life of Brian", 'Mission to Mars', 'The Treasure of the Sierra Madre', "April Fool's Day", 'Killer: A Journal of Murder', 'Wonderland', 'Little Men', 'Bad Girls', 'Mighty Peking Man (Hsing hsing wang)', 'Under the Rainbow', 'It Takes Two', 'The Theory of Flight', 'Broadway Damage', 'Frankie Starlight', 'The Flintstones', 'Return to Me', "Kestrel's Eye (Falkens öga)", "Ferris Bueller's Day Off", "Shaft's Big Score!"]]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [G.I. Jane]: Ranks 3
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Psycho', 'Star Trek: First Contact', 'Strangers on a Train', 'G.I. Jane', 'Much Ado About Nothing', 'Music of the Heart', 'Three Days of the Condor', 'Delta of Venus', 'Century', 'Nightmares', 'Mifune (Mifunes sidste sang)', 'Permanent Midnight', 'With Byrd at the South Pole', 'Time Tracers', 'Ripe', 'It Came from Beneath the Sea', 'Baby... Secret of the Lost Legend', 'Born to Win', 'Foxfire', 'Tron']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Steam: The Turkish Bath (Hamam)]: Ranks 10
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Three Kings', 'The Whole Wide World', 'Wonderland', 'The Fiendish Plot of Dr. Fu Manchu', 'Red Corner', 'Hoosiers', 'Secret Agent', 'The Gods Must Be Crazy II', 'Topaz', 'Two Thousand Maniacs!', 'Steam: The Turkish Bath (Hamam)', "Swept Away (Travolti da un insolito destino nell'azzurro mare d'Agosto)", "White Men Can't Jump", 'Killing Zoe', 'Sudden Manhattan', 'Cool as Ice', '101 Dalmatians', 'Sliding Doors', 'Hot Lead and Cold Feet', 'Three to Tango']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [What Planet Are You From?]: Ranks 17
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['True Romance', 'A Perfect World', 'Paths of Glory', 'Star Trek VI: The Undiscovered Country', 'For a Few Dollars More', 'Oliver!', 'Blue Sky', 'Mother Night', 'The Third Miracle', 'Happy, Texas', 'With Friends Like These...', "Gulliver's Travels", 'Universal Soldier: The Return', 'Orlando', 'Cops and Robbersons', "Amityville 1992: It's About Time", '42 Up', 'What Planet Are You From?', 'Spawn', 'Blood Spattered Bride, The (La Novia Ensangrentada)']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Me, Myself and Irene]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Love! Valour! Compassion!', 'Me, Myself and Irene', 'The New Age', 'Your Friends and Neighbors', 'Deuce Bigalow: Male Gigolo', 'Crocodile Dundee II', 'Two Bits', 'The War Room', 'Callejón de los milagros, El', 'Love Serenade', 'Suspicion', 'Alice and Martin (Alice et Martin)', 'The Aristocats', 'Juno and Paycock', 'Down to You', 'I Love You, I Love You Not', 'Voyage to the Beginning of the World', 'Ponette', 'The Chambermaid on the Titanic', 'Cobra']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Hot Shots! Part Deux]: Ranks 5
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Negotiator', 'Go', 'Beautiful Thing', 'Music of the Heart', 'Meet the Parents', 'Hot Shots! Part Deux', 'Up at the Villa', 'Murder!', 'Blue Hawaii', 'The Transformers: The Movie', 'The Getaway', 'Run Silent, Run Deep', 'Beverly Hills Ninja', 'Halloween 5: The Revenge of Michael Myers', 'The Fury', '3 Ninjas: High Noon On Mega Mountain', "Barney's Great Adventure", 'Oxygen', 'Down by Law']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [When a Man Loves a Woman]: Ranks 7
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['American Beauty', 'A Simple Plan', 'Dances with Wolves', 'Limbo', 'Love! Valour! Compassion!', 'Better Than Chocolate', 'Color of Paradise, The (Rang-e Khoda)', 'When a Man Loves a Woman', 'This Is My Father', 'Gambler, The (A Játékos)', 'Exorcist II: The Heretic', 'Johnny Mnemonic', 'Buffy the Vampire Slayer', 'Puppet Master 5: The Final Chapter', 'Vampyros Lesbos (Las Vampiras)', 'Chasers', 'Death Wish 3', 'On Our Merry Way', 'The Waiting Game', 'From Russia with Love']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Species]: Ranks 2
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Fifth Element', 'Under Siege 2: Dark Territory', 'Species', 'Tomorrow Never Dies', 'Hot Shots! Part Deux', "Guess Who's Coming to Dinner", 'Boiling Point', 'The Journey of Natty Gann', 'Time of the Gypsies (Dom za vesanje)', 'New Rose Hotel', 'Federal Hill', 'Roadside Prophets', 'Born Yesterday', 'The Man Who Knew Too Much', 'For Your Eyes Only', 'Tales from the Crypt Presents: Bordello of Blood', 'Braddock: Missing in Action III', 'Nosferatu a Venezia', 'Joe the King']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Autumn in New York]: Ranks 5
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['American Beauty', 'Fantasia 2000', 'The Great Muppet Caper', 'Ace Ventura: When Nature Calls', 'Gone with the Wind', 'Autumn in New York', 'The Wife', 'Frenzy', 'Night of the Creeps', "Dead Men Don't Wear Plaid", 'Anna Karenina', 'The Crew', 'Native Son', 'Oliver!', "A Brother's Kiss", 'JLG/JLG - autoportrait de décembre', 'Ripe', "All the Rage (a.k.a. It's the Rage)", 'Tie Me Up! Tie Me Down!', 'Alien Nation']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Babe]: Ranks 15
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Glengarry Glen Ross', 'The Hand That Rocks the Cradle', 'U-571', 'Showgirls', 'Timecop', 'Village of the Damned', 'The Ninth Gate', 'White Christmas', 'The Loss of Sexual Innocence', 'The Browning Version', 'Sudden Manhattan', 'Foreign Correspondent', 'The Computer Wore Tennis Shoes', 'Arsenic and Old Lace', 'Smoking/No Smoking', 'Babe', 'Allan Quartermain and the Lost City of Gold', "Relax... It's Just Sex", 'The Cat from Outer Space', 'Sliding Doors']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The Perfect Storm]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Perfect Storm', 'Psycho', 'Mephisto', 'The NeverEnding Story', 'My Family', 'Lulu on the Bridge', "Besieged (L' Assedio)", 'Head On', 'Bandit Queen', 'The Joyriders', 'Bound for Glory', 'In the Line of Duty 2', 'The Gingerbread Man', 'My Life So Far', 'Once Upon a Time... When We Were Colored', "Coogan's Bluff", 'Digimon: The Movie', 'Disclosure', 'Bad Moon', "We're Back! A Dinosaur's Story"]]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Time Bandits]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Time Bandits', 'In & Out', 'Nashville', 'The Thirteenth Floor', 'Sleepers', 'A Civil Action', 'The Winslow Boy', 'Mortal Kombat: Annihilation', 'The Thin Blue Line', 'Here on Earth', 'Rich and Strange', 'Running Scared', 'Drop Dead Gorgeous', 'Free Willy 3: The Rescue', 'Lifeboat', 'Nothing to Lose', 'Daughters of the Dust', 'I Married A Strange Person', 'One Magic Christmas', 'The Scout']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Fight Club]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Almost Famous', 'Fight Club', 'Jumanji', 'Miracle on 34th Street', 'Lost Highway', 'Batman: Mask of the Phantasm', 'Gabbeh', 'The Saint', 'Cat Ballou', 'Dead Presidents', 'Parasite', 'The Ghost and Mrs. Muir', 'Sabrina', 'Foxfire', 'I Went Down', 'Highlander III: The Sorcerer', 'The Corruptor', 'A Far Off Place', 'Temptress Moon (Feng Yue)', 'Molly']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Last Action Hero]: Ranks 3
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['My Cousin Vinny', 'The Verdict', 'Bull Durham', 'Last Action Hero', 'Father of the Bride', 'Urban Legend', 'For Richer or Poorer', 'Remember the Titans', 'Freaky Friday', 'Larger Than Life', 'Santa Claus: The Movie', 'Silence of the Palace, The (Saimt el Qusur)', 'Awfully Big Adventure, An', 'Grace of My Heart', 'Condition Red', 'I Confess', 'Robin Hood', 'The Scout', 'Spanking the Monkey', 'Mother Night']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Black Sheep]: Ranks 11
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Matilda', 'Dazed and Confused', 'Scream 3', 'Rebel Without a Cause', 'Random Hearts', 'Trust', 'Losing Chase', 'American Movie', 'The Secret Agent', 'The Secret Adventures of Tom Thumb', 'Horseman on the Roof, The (Hussard sur le toit, Le)', 'Black Sheep', 'Second Best', 'Four Days in September', 'The Seventh Sign', 'The Ghost of Frankenstein', 'A Paralyzing Fear: The Story of Polio in America', 'Song of the South', 'Halloween III: Season of the Witch', 'Manon of the Spring (Manon des sources)']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Dance with Me]: Ranks 10
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Big Trouble in Little China', 'South Park: Bigger, Longer and Uncut', 'The Man from Laramie', 'Young Sherlock Holmes', "The General's Daughter", 'Needful Things', 'Crimes of the Heart', 'Mister Roberts', 'Deceiver', 'High School High', 'Dance with Me', "Felicia's Journey", 'Turn It Up', 'My Giant', 'Free Enterprise', 'F/X', 'The Postman Always Rings Twice', 'Roman Holiday', "Microcosmos (Microcosmos: Le peuple de l'herbe)", 'Big Blue, The (Le Grand Bleu)']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [How Stella Got Her Groove Back]: Ranks 10
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Primal Fear', 'The Usual Suspects', 'Young Frankenstein', 'His Girl Friday', 'Moonstruck', 'The Secret of NIMH', 'Beautiful Girls', 'Trouble in Paradise', 'The Myth of Fingerprints', 'Night Tide', 'How Stella Got Her Groove Back', 'The Presidio', 'Swamp Thing', 'Santitos', 'My Science Project', 'Eaten Alive', 'Tank Girl', 'Thunderball', 'The Paradine Case', 'Mother Night']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Notting Hill]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Notting Hill', 'Love Is a Many-Splendored Thing', 'Three Colors: Blue', 'Dead Calm', "Widows' Peak", 'The Mod Squad', 'The Island of Dr. Moreau', 'Hideous Kinky', 'Love Affair', 'Prick Up Your Ears', 'Captives', 'Young Guns', 'Blazing Saddles', 'Hate (Haine, La)', 'Topaz', 'Nine 1/2 Weeks', 'Creepshow 2', 'Koyaanisqatsi', 'Communion', 'The Proposition']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Misery]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Face/Off', 'Misery', 'The Unbearable Lightness of Being', 'Prick Up Your Ears', 'The Siege', 'What Happened Was...', 'The Second Jungle Book: Mowgli & Baloo', 'Bay of Blood (Reazione a catena)', 'Pushing Tin', 'A Room with a View', 'Rich and Strange', 'Flower of My Secret, The (La Flor de Mi Secreto)', 'Sabotage', 'Number Seventeen', 'Godzilla (Gojira)', "Cutter's Way", 'Tank Girl', 'From the Journals of Jean Seberg', "The Concorde: Airport '79", "My Boyfriend's Back"]]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Basic Instinct]: Ranks 2
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['A Simple Plan', 'The Abyss', 'Basic Instinct', 'Jawbreaker', 'Sister Act 2: Back in the Habit', 'Barenaked in America', 'Ready to Rumble', 'A Month by the Lake', 'The Substance of Fire', 'Cold Fever (Á köldum klaka)', "It's My Party", 'A Christmas Carol', 'Monkey Shines', 'Bent', 'The Tingler', 'Puppet Master II', 'JLG/JLG - autoportrait de décembre', 'Children of the Corn III', 'Deadtime Stories', "Bustin' Loose"]]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Six Degrees of Separation]: Ranks 19
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Zero Effect', 'Terminator 2: Judgment Day', 'Swingers', 'Selena', 'Jules and Jim (Jules et Jim)', 'Lord of the Flies', 'Cat Ballou', 'Mad City', 'Children of Heaven, The (Bacheha-Ye Aseman)', 'Judgment Night', 'Shopping', 'Power 98', "The Devil's Brigade", 'Looking for Richard', 'Carried Away', 'Parenthood', "Kelly's Heroes", 'Friday the 13th: The Final Chapter', 'Predator 2', 'Six Degrees of Separation']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Bats]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Thing', 'Bats', 'Assassins', 'The Mask of Zorro', 'Terminal Velocity', 'Full Speed', 'Addams Family Values', 'Lord of Illusions', 'Black Sabbath (Tre Volti Della Paura, I)', 'One Tough Cop', 'Holiday Inn', 'Everyone Says I Love You', 'Juno and Paycock', 'Jeffrey', 'Children of a Lesser God', 'Bonheur, Le', 'Head On', 'The Gnome-Mobile', 'Fatal Attraction', 'The Terminator']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The Terminator]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Wings of Desire (Der Himmel über Berlin)', 'The Terminator', 'Boys on the Side', 'True Crime', 'All About My Mother (Todo Sobre Mi Madre)', 'Paris Is Burning', "Dead Men Don't Wear Plaid", 'Judge Dredd', 'Clay Pigeons', 'Flesh and Bone', 'Mr. Saturday Night', 'Practical Magic', 'A Simple Twist of Fate', 'The Newton Boys', 'Number Seventeen', 'Rough Magic', 'The Story of Us', 'Children of the Corn', 'Amateur']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The General's Daughter]: Ranks 2
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Donnie Brasco', 'Patriot Games', "The General's Daughter", 'Dangerous Liaisons', 'A Star Is Born', 'Sphere', "The Draughtsman's Contract", 'Rosencrantz and Guildenstern Are Dead', 'Romeo and Juliet', 'Federal Hill', 'Black and White', 'Slaughterhouse 2', 'Anywhere But Here', 'The House of Yes', 'Otello', 'Volcano', 'Peter Pan', 'Army of Darkness', 'The Scarlet Letter', 'Faster Pussycat! Kill! Kill!']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Urban Legends: Final Cut]: Ranks 8
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Pretty Woman', "Can't Hardly Wait", "Big Momma's House", 'Parenthood', 'The Kid', 'Shane', 'Walkabout', 'The Battle of the Sexes', 'Urban Legends: Final Cut', 'The Real Blonde', 'Blind Date', 'The Rage: Carrie 2', 'House of Frankenstein', "It's My Party", "Killer's Kiss", 'Windows', 'Scorta, La', 'Maximum Overdrive', 'Amateur', 'Gun Shy']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The Muppet Movie]: Ranks 19
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Groundhog Day', 'Clear and Present Danger', 'Speed', 'The Mummy', 'Boys on the Side', 'Autumn in New York', 'The Englishman Who Went Up a Hill, But Came Down a Mountain', 'All Dogs Go to Heaven', 'Picnic at Hanging Rock', 'Final Destination', 'Firelight', 'The Trip to Bountiful', 'Kids', 'Alvarez Kelly', 'Under Capricorn', 'Major League: Back to the Minors', 'Blue Angel, The (Blaue Engel, Der)', 'From the Hip', 'No Mercy', 'The Muppet Movie']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Grosse Pointe Blank]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Grosse Pointe Blank', 'Girl on the Bridge, The (La Fille sur le Pont)', 'Hate (Haine, La)', 'Dumb & Dumber', 'Return to Me', 'In Too Deep', 'Naked Gun 33 1/3: The Final Insult', 'Jeffrey', 'Dangerous Game', 'Grace of My Heart', 'Two Bits', 'Go Fish', 'The Land Girls', 'Puppet Master', 'A Map of the World', 'The Tao of Steve', 'Turn It Up', '20 Dates', 'Kazaam', 'Renaissance Man']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The Sword in the Stone]: Ranks 2
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Lady and the Tramp', 'Dumbo', 'The Sword in the Stone', 'Heavenly Creatures', 'Vampyros Lesbos (Las Vampiras)', 'The Saltmen of Tibet', 'Wing Commander', 'Mafia!', 'That Darn Cat!', 'A Thousand Acres', 'Simon Sez', 'Skipped Parts', 'Glory Daze', 'The Loves of Carmen', 'A Low Down Dirty Shame', 'Underground', "Killer's Kiss", "Star Maker, The (Uomo delle stelle, L')", 'Relative Fear', 'Tommy Boy']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Dangerous Beauty]: Ranks 2
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Being John Malkovich', 'Indiana Jones and the Temple of Doom', 'Dangerous Beauty', 'The Next Best Thing', 'The Next Karate Kid', 'Little Odessa', 'Jagged Edge', 'The Truce', 'Passion of Mind', 'Bliss', 'The Run of the Country', 'Death in Brunswick', 'Railroaded!', 'Larger Than Life', 'Showgirls', 'Living in Oblivion', "Billy's Hollywood Screen Kiss", '3 Ninjas: High Noon On Mega Mountain', "Doug's 1st Movie", 'Patton']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Friday]: Ranks 3
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Ed Wood', 'GoodFellas', 'Toy Story', 'Friday', 'The Full Monty', 'Return to Paradise', 'A Life Less Ordinary', 'Risky Business', 'Sid and Nancy', 'Runaway Train', 'The Journey of Natty Gann', 'Orlando', 'Stay Tuned', 'Assassination', 'The Lawnmower Man', 'Shadow of a Doubt', 'Slingshot, The (Kådisbellan )', 'Return of the Fly', 'Fun and Fancy Free', "A Soldier's Daughter Never Cries"]]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Psycho]: Ranks 18
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['A Room with a View', 'The Long Goodbye', 'The End of the Affair', 'Paradise Road', 'Some Kind of Wonderful', 'The Secret of NIMH', 'The Killing', 'Shanghai Noon', 'The Barefoot Executive', 'Where Eagles Dare', 'Hard-Boiled (Lashou shentan)', 'Children of the Corn', 'The Sword in the Stone', 'Assassination', 'Supergirl', 'Ready to Rumble', 'Sudden Manhattan', "Hang 'em High", 'Psycho']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Space Jam]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Nightmare Before Christmas', 'Space Jam', 'Alien', 'Live and Let Die', 'French Twist (Gazon maudit)', 'Above the Rim', 'Last of the High Kings, The (a.k.a. Summer Fling)', 'Butterfly (La Lengua de las Mariposas)', 'Bell, Book and Candle', 'Come See the Paradise', 'Music of the Heart', 'Fall', 'Dream Man', 'Time Code', 'Airplane II: The Sequel', "I'm Not Rappaport", 'Tall Tale', 'Live Nude Girls', 'Stag', 'Beyond Rangoon']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Robocop]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Robocop', 'Mad Max', 'Universal Soldier: The Return', 'The Basketball Diaries', 'Forbidden Planet', 'Up Close and Personal', 'Hocus Pocus', 'Like Water for Chocolate (Como agua para chocolate)', 'The Crossing Guard', 'Friday the 13th Part VIII: Jason Takes Manhattan', 'Top Hat', 'Phantasm II', 'Little Boy Blue', "The Brain That Wouldn't Die", 'Digging to China', 'Unzipped', 'Living Out Loud', 'Communion', 'Crumb', 'Bride of Re-Animator']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Mission: Impossible 2]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Siege', 'Mission: Impossible 2', 'The Bridge on the River Kwai', 'Man of the Year', 'The Towering Inferno', 'The Good, The Bad and The Ugly', 'Cyrano de Bergerac', 'Apt Pupil', 'The Sheltering Sky', "Monty Python's Life of Brian", 'Year of the Horse', 'Indecent Proposal', 'The Quiet Room', 'Color of Night', 'Molly', 'Blue in the Face', 'Turtle Diary', 'The Indian in the Cupboard', 'Pie in the Sky', 'Alligator']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The Color of Money]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Color of Money', 'From Here to Eternity', 'Chinatown', 'Amistad', 'Out of Sight', 'Crocodile Dundee', 'The Wedding Singer', 'Stanley & Iris', 'Men With Guns', 'The Blue Lagoon', 'The Omega Man', 'A Perfect Candidate', "Smilla's Sense of Snow", 'Germinal', 'All Over Me', 'The Ghost of Frankenstein', 'Song of Freedom', 'Outside Providence', 'The Big Tease', 'Whipped']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Where the Heart Is]: Ranks 13
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Wings of the Dove', 'The Negotiator', 'The King and I', 'The Inspector General', 'Back to the Future Part II', 'Hairspray', 'Metroland', 'Out of the Past', 'Buena Vista Social Club', 'The Secret of Roan Inish', 'Teaching Mrs. Tingle', 'Pit and the Pendulum', 'Runaway Train', 'Where the Heart Is', 'Big Trouble in Little China', 'Pandora and the Flying Dutchman', 'Roula', 'Head On', 'Inheritors, The (Die Siebtelbauern)', 'Blank Check']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Me, Myself and Irene]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Me, Myself and Irene', 'Rules of Engagement', 'Titanic', 'Tequila Sunrise', 'Last Dance', 'Ideal Husband, An', 'The Tao of Steve', 'Lulu on the Bridge', 'Black Dog', 'The Island of Dr. Moreau', 'Critical Care', 'Open Season', 'Around the World in 80 Days', 'Farewell My Concubine', 'Celebration, The (Festen)', 'Love Serenade', 'Telling You', 'Poison Ivy II', 'The Toxic Avenger, Part II', "Class of Nuke 'Em High"]]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Deliverance]: Ranks 3
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Risky Business', 'Passion Fish', 'Ghost', 'Deliverance', 'Lethal Weapon 3', 'The Net', 'A Very Brady Sequel', 'Mommie Dearest', 'Metro', 'It Could Happen to You', 'Jar, The (Khomreh)', 'Keys to Tulsa', 'All Dogs Go to Heaven 2', 'The Brandon Teena Story', 'Leather Jacket Love Story', 'Tango', 'Fantasia', 'Drop Zone', 'The Bat', 'Plan 9 from Outer Space']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Requiem for a Dream]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Requiem for a Dream', 'Sling Blade', 'Liar Liar', 'The Boys from Brazil', 'Addams Family Values', 'The Mighty Ducks', 'Hana-bi', 'East is East', 'Monsieur Verdoux', 'The Killing', 'Hoop Dreams', 'For Ever Mozart', 'Winnie the Pooh and the Blustery Day', 'Illtown', 'Miss Julie', 'Kull the Conqueror', 'They Made Me a Criminal', 'The Reluctant Debutante', 'Mighty Peking Man (Hsing hsing wang)', 'Friday']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Meet the Parents]: Ranks 2
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Good Morning, Vietnam', 'The Replacements', 'Meet the Parents', 'The Crucible', 'Miracle on 34th Street', 'Against All Odds', 'In the Name of the Father', 'A Chef in Love', 'Rocket Man', 'Braindead', "I'm Not Rappaport", 'Turbulence', 'Stealing Home', "Heaven's Burning", 'Saturn 3', 'Drop Zone', 'Illuminata', 'Renaissance Man', 'I Saw What You Did', 'For All Mankind']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Life Is Beautiful (La Vita è bella)]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Life Is Beautiful (La Vita è bella)', 'Indiana Jones and the Last Crusade', 'Groundhog Day', 'Star Trek: The Wrath of Khan', "Miller's Crossing", 'Young Guns II', 'Diva', 'The General', 'Stop Making Sense', 'Heavy', 'The Specials', 'Criminal Lovers (Les Amants Criminels)', 'Slingshot, The (Kådisbellan )', 'Across the Sea of Time', 'Graveyard Shift', 'Shadow Conspiracy', 'Black Beauty', 'Beneath the Planet of the Apes', 'Bastard Out of Carolina', "My Life and Times With Antonin Artaud (En compagnie d'Antonin Artaud)"]]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Everest]: Ranks 15
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Silence of the Lambs', 'Die Hard 2', 'A River Runs Through It', 'Mighty Joe Young', 'Return to Oz', 'Happy Gilmore', 'Life', 'Six-String Samurai', 'Passion in the Desert', 'Billy Madison', 'Where the Heart Is', 'Dick Tracy', 'Moonstruck', 'Play it to the Bone', 'Colonel Chabert, Le', 'Everest', 'Stealing Beauty', 'The Omega Man', 'Big Bully', 'Sleepover']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Dead Poets Society]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Dead Poets Society', 'A Room with a View', 'With Honors', 'Rob Roy', 'Maurice', 'Fly Away Home', 'Blade Runner', 'A Nightmare on Elm Street 3: Dream Warriors', 'Dumbo', "Kelly's Heroes", 'Braindead', 'Big Daddy', 'A Raisin in the Sun', '1-900', 'Frogs for Snakes', 'Digimon: The Movie', 'Blues Brothers 2000', 'Dry Cleaning (Nettoyage à sec)', 'You So Crazy']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Nosferatu (Nosferatu, eine Symphonie des Grauens)]: Ranks 9
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Requiem for a Dream', 'A Grand Day Out', 'The Rocketeer', 'Rear Window', 'The Truth About Cats & Dogs', 'Liberty Heights', 'Color of Night', 'Out of the Past', 'Children of the Damned', 'Nosferatu (Nosferatu, eine Symphonie des Grauens)', 'Relative Fear', 'Shanghai Surprise', 'Bob Roberts', 'Sleeping Beauty', 'The Last Klezmer: Leopold Kozlowski, His Life and Music', 'Children of the Corn IV: The Gathering', 'Naked', 'It Conquered the World', 'A Life Less Ordinary', 'The Prophecy II']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Grosse Pointe Blank]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Grosse Pointe Blank', 'The Secret Agent', 'Plunkett & MaCleane', 'The Newton Boys', 'Far From Home: The Adventures of Yellow Dog', 'Inspector Gadget', 'The Man with Two Brains', 'Black Cat, White Cat (Crna macka, beli macor)', 'The Wild Bunch', 'Little Shop of Horrors', 'The Toxic Avenger', 'Original Gangstas', 'Ed', 'Violets Are Blue...', 'The NeverEnding Story III', 'Splendor in the Grass', '...And Justice for All', "Robert A. Heinlein's The Puppet Masters", 'Stranger in the House', 'Trial, The (Le Procès)']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Best in Show]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Best in Show', 'The Basketball Diaries', 'The Cable Guy', 'The Palm Beach Story', 'The Haunting', 'The Third Miracle', 'The Fighting Seabees', 'Everest', 'When Night Is Falling', 'To Gillian on Her 37th Birthday', 'Circus', 'Lady of Burlesque', 'Mystery Train', 'Promise, The (Versprechen, Das)', 'Son of Dracula', 'Night Tide', "On Her Majesty's Secret Service", "McHale's Navy", 'Duel in the Sun', 'Spiders, The (Die Spinnen, 1. Teil: Der Goldene See)']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Serpico]: Ranks 6
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Almost Famous', 'The Shining', 'It Happened One Night', 'Who Framed Roger Rabbit?', 'Misérables, Les', 'The Postman Always Rings Twice', 'Serpico', 'Runaway Bride', 'Harriet the Spy', 'Knightriders', 'On the Ropes', "St. Elmo's Fire", 'Spartacus', 'With Byrd at the South Pole', 'Unzipped', 'Asylum', 'The Hippie Revolution', 'Denise Calls Up', 'Bent', 'He Walked by Night']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Titanic]: Ranks 10
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Frequency', "Carlito's Way", 'Rising Sun', 'Mars Attacks!', 'Fantasia 2000', 'Tea with Mussolini', 'Naked in New York', 'Rich and Strange', 'Graveyard Shift', 'Party Girl', 'Titanic', 'Stranger in the House', 'Late Bloomers', '24-hour Woman', 'Windows', 'Stanley & Iris', "McHale's Navy", 'Freaky Friday', 'Murder at 1600', 'Barbarella']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Anchors Aweigh]: Ranks 14
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Gattaca', 'The Basketball Diaries', 'Scream', 'King Kong', 'The Last Temptation of Christ', 'Room at the Top', 'Mrs. Parker and the Vicious Circle', 'Psycho III', 'The Producers', 'Burnt By the Sun (Utomlyonnye solntsem)', 'No Looking Back', 'Eyes of Laura Mars', 'Destination Moon', 'Solo', 'Anchors Aweigh', 'My Life So Far', "Heaven's Burning", 'Bride of Re-Animator', 'Drop Dead Fred', 'Nashville']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Welcome to the Dollhouse]: Ranks 7
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Silence of the Lambs', 'Character (Karakter)', 'Key Largo', 'Picture Bride', 'Time Masters (Les Maîtres du Temps)', 'Clue', 'The Basketball Diaries', 'Welcome to the Dollhouse', 'What Happened Was...', 'Dangerous Ground', 'Rough Night in Jericho', 'A King in New York', 'Heavy Metal', 'Herbie Rides Again', 'Herbie Goes Bananas', 'White Christmas', 'Getting Even with Dad', 'Keys to Tulsa', 'Dick Tracy', 'The Outsiders']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Liar Liar]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Liar Liar', 'Ghost in the Shell (Kokaku kidotai)', 'Rebel Without a Cause', 'The Sting', 'A Clockwork Orange', 'Back to the Future Part III', 'Bullets Over Broadway', 'Boys on the Side', 'Murder at 1600', 'Better Than Chocolate', 'Hellraiser: Bloodline', 'Flashdance', 'Breaker Morant', 'Melody Time', 'Milk Money', 'Puppet Master II', 'In the Mouth of Madness', 'Poison Ivy', 'The Newton Boys', 'Grateful Dead']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [A Bug's Life]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [["A Bug's Life", 'Wallace & Gromit: The Best of Aardman Animation', 'The Slums of Beverly Hills', 'No Small Affair', 'The Goodbye Girl', 'Possession', 'The Sixth Man', 'Cujo', 'Thirty-Two Short Films About Glenn Gould', 'Seven Chances', 'Winnie the Pooh and the Blustery Day', 'Pandora and the Flying Dutchman', 'Creature Comforts', 'Color Me Blood Red', 'The Closer You Get', 'Tarzan the Fearless', 'Seven Days in May', 'Smiling Fish and Goat on Fire', 'Belly', 'A Nightmare on Elm Street 3: Dream Warriors']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The Hudsucker Proxy]: Ranks 2
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['A League of Their Own', 'Dead Again', 'The Hudsucker Proxy', 'When Harry Met Sally...', 'Golden Earrings', 'Real Genius', 'A King in New York', 'Before the Rain (Pred dozhdot)', 'Dangerous Beauty', 'Center Stage', 'Velvet Goldmine', 'Crocodile Dundee', 'Fear of a Black Hat', 'Honeymoon in Vegas', "A Soldier's Story", 'The Man Without a Face', 'Sorority House Massacre', 'Mr. Saturday Night', 'Reindeer Games', 'Native Son']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Crazy in Alabama]: Ranks 14
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Mystery Science Theater 3000: The Movie', 'Ace Ventura: When Nature Calls', 'The Nutty Professor', 'Virtuosity', 'Set It Off', 'Bird on a Wire', 'Rough Night in Jericho', 'Jonah Who Will Be 25 in the Year 2000', 'Kaspar Hauser', 'Twice Upon a Yesterday', 'Drunken Master (Zui quan)', 'Rope', 'Hush', 'Solar Crisis', 'Crazy in Alabama', 'Yojimbo', 'Eaten Alive', 'The Adventures of Elmo in Grouchland', 'Drugstore Cowboy', 'Mystery, Alaska']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Reality Bites]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Lone Star', 'Reality Bites', 'Addicted to Love', 'The Substitute', 'Star Trek III: The Search for Spock', 'Palmetto', '2 Days in the Valley', 'Shaft', 'The Greatest Show on Earth', 'Delta of Venus', 'Aiqing wansui', 'Jar, The (Khomreh)', 'Under Capricorn', 'Spy Hard', 'Tokyo Fist', 'Kolya', 'My Giant', "Who's Harry Crumb?", 'Surf Nazis Must Die', 'Psycho II']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [A Few Good Men]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Three Days of the Condor', 'A Few Good Men', 'Jaws', 'The Story of G.I. Joe', 'The Mask', 'Star Trek: The Motion Picture', 'Lawn Dogs', 'The Decline of Western Civilization Part II: The Metal Years', 'It Came from Beneath the Sea', 'American Buffalo', 'The Odd Couple II', 'Chuck & Buck', 'Rosencrantz and Guildenstern Are Dead', 'Fast, Cheap & Out of Control', 'That Darn Cat!', 'Slaughterhouse', 'All the Vermeers in New York', 'I Shot Andy Warhol', 'Lassie', 'The Beans of Egypt, Maine']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb]: Ranks 19
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['City Lights', 'American in Paris, An', 'Ruby in Paradise', 'The Cable Guy', 'Anne Frank Remembered', 'That Thing You Do!', 'Star Trek V: The Final Frontier', 'Three to Tango', "The Butcher's Wife", 'Cross of Iron', 'Dancing at Lughnasa', 'Me Myself I', 'Cujo', 'Best Man, The (Il Testimone dello sposo)', 'Small Soldiers', "Child's Play 3", 'Amityville 3-D', 'The Invisible Man', "The 'burbs", 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Judge Dredd]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Judge Dredd', 'Lethal Weapon 2', 'Beverly Hills Cop III', 'The Right Stuff', "William Shakespeare's Romeo and Juliet", 'The Mirror Has Two Faces', 'Auntie Mame', 'Carrington', 'Love Bewitched, A (El Amor Brujo)', 'Dream Man', 'Jeanne and the Perfect Guy (Jeanne et le garçon formidable)', 'Copycat', 'Sonic Outlaws', 'Blue in the Face', 'On the Ropes', 'The Raven', 'Foolish', 'Bye-Bye', 'Carrie', 'Fallen']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Remember the Titans]: Ranks 3
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Back to the Future Part III', 'Psycho', "Singin' in the Rain", 'Remember the Titans', 'City of Angels', 'The Long Goodbye', 'Varsity Blues', 'Afterglow', 'The Great Mouse Detective', 'Black Mask (Hak hap)', 'Payback', 'Get Real', 'Loser', 'Otello', 'Last Dance', 'Coming Apart', 'Seven Beauties (Pasqualino Settebellezze)', 'Love Walked In', 'Whatever Happened to Aunt Alice?']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Beyond Silence]: Ranks 12
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Talented Mr. Ripley', 'The Fifth Element', 'Miracle on 34th Street', 'The MatchMaker', 'A Price Above Rubies', "Wes Craven's New Nightmare", 'The Cutting Edge', 'Anna and the King', 'Tampopo', 'The Third Miracle', 'That Old Feeling', 'Golden Earrings', 'Beyond Silence', 'The Fear', 'Turn It Up', 'Hideaway', 'Missing in Action', 'Blank Check', "Shaft's Big Score!"]]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Jury Duty]: Ranks 18
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['To Die For', 'Beautiful Girls', 'Crash', 'The Last Detail', 'Wonder Boys', 'Double Indemnity', 'Smoke', 'Sister Act', 'My Best Fiend (Mein liebster Feind)', 'The Mummy', 'Lassie', 'Return of Martin Guerre, The (Retour de Martin Guerre, Le)', 'Raining Stones', 'Devil Girl From Mars', "A Brother's Kiss", "Porky's II: The Next Day", 'Hollow Man', 'Blood Feast', 'Jury Duty', 'Hamlet']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Super Mario Bros.]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [["There's Something About Mary", 'Super Mario Bros.', 'Goldfinger', 'The Last September', 'Date with an Angel', 'Tea with Mussolini', 'Women on the Verge of a Nervous Breakdown', 'The Love Letter', 'Born Yesterday', 'Tales of Terror', 'Castle Freak', 'Daylight', 'Schizopolis', 'The War Room', 'Field of Dreams', 'Shattered Image', 'Tender Mercies', 'Kingpin', 'Superman II']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Even Cowgirls Get the Blues]: Ranks 16
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Virgin Suicides', 'Absolute Power', 'Nutty Professor II: The Klumps', 'Godzilla 2000 (Gojira ni-sen mireniamu)', 'Star Maps', 'Brother Minister: The Assassination of Malcolm X', 'Fitzcarraldo', 'Twice Upon a Yesterday', 'Leather Jacket Love Story', 'Edge of Seventeen', 'Roger & Me', 'Other Side of Sunday, The (Søndagsengler)', 'Judy Berlin', 'Desert Blue', 'Georgia', 'Slaves to the Underground', 'Even Cowgirls Get the Blues', 'Tin Men', 'Citizen Ruth', 'The Pest']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Caddyshack]: Ranks 7
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Fight Club', 'Good Morning, Vietnam', 'Face/Off', 'Alien: Resurrection', 'The Natural', "There's Something About Mary", 'Casper', 'Caddyshack', 'Soft Fruit', 'Holy Man', 'Saragossa Manuscript, The (Rekopis znaleziony w Saragossie)', 'Death Wish', 'Late Bloomers', "I'll Be Home For Christmas", 'The Adventures of Milo and Otis', "Who's Harry Crumb?", 'Maya Lin: A Strong Clear Vision', 'The Client', 'Cat People', 'Slam']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The Patriot]: Ranks 3
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Phenomenon', 'Chasing Amy', 'The Terminator', 'The Patriot', 'The Great Dictator', 'The Muppets Take Manhattan', 'The Believers', "She's the One", 'Ulysses (Ulisse)', 'Mildred Pierce', 'Gun Shy', 'The Hollywood Knights', 'Down to You', 'The Gay Divorcee', 'Farewell My Concubine', 'Getting Away With Murder', 'Running Free', 'Unzipped', "Gone Fishin'", 'The Velocity of Gary']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Gone in 60 Seconds]: Ranks 2
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Conversation', 'The Last Time I Committed Suicide', 'Gone in 60 Seconds', 'eXistenZ', 'The Best Man', 'Xiu Xiu: The Sent-Down Girl (Tian yu)', 'Nights of Cabiria (Le Notti di Cabiria)', 'After Life', 'The Body Snatcher', "A Midsummer Night's Dream", 'Melody Time', 'No Escape', 'Cool as Ice', 'Hairspray', 'Meet Me in St. Louis', 'Tarantula', 'The Loss of Sexual Innocence', 'Stars and Bars', 'Death Wish 3', 'Pink Flamingos']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Men in Black]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Men in Black', 'Jackie Brown', 'Chicken Run', 'Happy Gilmore', 'The Next Best Thing', 'Deceiver', 'First Knight', 'Black Sabbath (Tre Volti Della Paura, I)', 'The Slumber Party Massacre II', 'The Devil and Max Devlin', 'Grand Canyon', 'A Face in the Crowd', 'Larger Than Life', 'Planet of the Apes', 'The Amazing Panda Adventure', 'Captain Horatio Hornblower', 'Stage Fright', 'Deterrence', 'The Stupids', 'Dorado, El']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [If Lucy Fell]: Ranks 13
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Nineteen Eighty-Four', 'Arlington Road', 'The Fan', 'Batman', 'Mickey Blue Eyes', 'I Still Know What You Did Last Summer', 'Snow Falling on Cedars', 'Music of the Heart', 'Guinevere', 'The Prophecy II', 'Beverly Hills Cop III', 'A Perfect Candidate', 'Marie Baie Des Anges', 'If Lucy Fell', 'Home Fries', 'Tinseltown', 'Bachelor Party', 'On the Ropes', 'The Messenger: The Story of Joan of Arc']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Dead Presidents]: Ranks 14
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Mighty Aphrodite', 'I Know What You Did Last Summer', "White Men Can't Jump", 'Witness', 'Star Trek VI: The Undiscovered Country', 'Ordinary People', 'The Slums of Beverly Hills', 'Nine Months', 'Free Willy 3: The Rescue', 'Golden Earrings', 'Up at the Villa', 'Hush', 'Bootmen', 'The Specials', 'Dead Presidents', 'Little City', 'The Killing', 'Infinity', 'Young and Innocent']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The Thin Man]: Ranks 5
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Monty Python and the Holy Grail', 'Lock, Stock & Two Smoking Barrels', 'The Graduate', 'Mystery Science Theater 3000: The Movie', 'Armageddon', 'The Thin Man', 'The Devil and Max Devlin', 'A Night to Remember', 'The Odd Couple II', 'A Damsel in Distress', 'Inherit the Wind', 'The Haunting', 'Private Benjamin', 'The Glass Bottom Boat', 'Brenda Starr', 'Aiqing wansui', 'Kama Sutra: A Tale of Love', 'Heart Condition', 'Judy Berlin']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Hamlet]: Ranks 19
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Rush Hour', 'U-571', 'Contact', 'Backdraft', 'A Fistful of Dollars', 'Deliverance', 'Bloodsport 2', 'Misérables, Les', 'To Die For', 'The Secret Garden', 'When the Cats Away (Chacun cherche son chat)', 'Peter Pan', 'Children of the Damned', 'Sister Act', 'The Scout', 'Apt Pupil', 'New Jersey Drive', 'I Got the Hook Up', 'Stuart Saves His Family', 'Hamlet']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Invasion of the Body Snatchers]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Invasion of the Body Snatchers', 'Deep Impact', 'The Killing', 'Heavenly Creatures', 'The Wrong Trousers', 'City of the Living Dead (Paura nella città dei morti viventi)', "A Pyromaniac's Love Story", 'Chasing Amy', 'Trust', 'Among Giants', "Kelly's Heroes", 'Eddie', 'Funny Farm', "The Preacher's Wife", 'Crooklyn', 'Fletch Lives', 'Friday the 13th Part 3: 3D', 'Chairman of the Board', 'Twilight', 'Davy Crockett, King of the Wild Frontier']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Trading Places]: Ranks 13
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['A Time to Kill', 'Batman', 'U-571', 'Bring It On', 'The General', 'Jackie Brown', 'Withnail and I', 'American Pop', 'Man of the Century', 'The Jackal', 'Welcome to Woop-Woop', 'Oxygen', 'Loser', 'Trading Places', 'Lassie', 'Normal Life', 'The Apartment', 'Elstree Calling', 'Wisdom of Crocodiles, The (a.k.a. Immortality)', 'And God Created Woman (Et Dieu&#8230;Créa la Femme)']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Best in Show]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Big Chill', 'Best in Show', "It's a Wonderful Life", 'Annie Hall', 'Marnie', 'Spy Hard', 'Hush', 'White Sands', 'The Crossing Guard', 'Light It Up', 'Graveyard Shift', 'Dirty Work', 'The Champ', 'Torso (Corpi Presentano Tracce di Violenza Carnale)', 'Five Wives, Three Secretaries and Me', 'Amityville II: The Possession', 'Illuminata', 'Carnosaur 3: Primal Species', 'The Slumber Party Massacre', "Barney's Great Adventure"]]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The Princess Bride]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Princess Bride', 'Predator', 'The Untouchables', 'Contact', 'My Fair Lady', 'Two Girls and a Guy', 'Children of a Lesser God', 'Operation Condor (Feiying gaiwak)', 'White Balloon, The (Badkonake Sefid )', 'French Twist (Gazon maudit)', 'Year of the Horse', "She's So Lovely", 'The End of Violence', 'Niagara, Niagara', 'Savage Nights (Nuits fauves, Les)', 'Beneath the Planet of the Apes', 'Daddy Long Legs', 'Harlem', 'The Line King: Al Hirschfeld', 'The Fly II']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [The Ipcress File]: Ranks 6
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Black and White', 'The Fly II', "Mary Shelley's Frankenstein", 'Montana', 'Heartbreak Ridge', 'Force 10 from Navarone', 'The Ipcress File', 'Ballad of Narayama, The (Narayama Bushiko)', 'True Crime', 'Peggy Sue Got Married', 'Outrageous Fortune', 'Matewan', 'Conceiving Ada', 'Macao', 'Love Stinks', '8 1/2 Women', 'Wings of Courage', 'Action Jackson', 'Guilty as Sin', 'Red Firecracker, Green Firecracker']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Mr. Holland's Opus]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [["Mr. Holland's Opus", 'The Piano', 'For Love of the Game', 'Wag the Dog', 'The General', 'A Cry in the Dark', 'The Saint', 'Cube', 'Death Wish', 'Quest for Camelot', 'Moonlight and Valentino', 'In the Line of Fire', 'Maximum Risk', 'A Merry War', "Peter's Friends", 'D3: The Mighty Ducks', 'The Candidate', 'North', 'Drive Me Crazy', 'Tron']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Back to the Future Part II]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Back to the Future Part II', 'Starman', 'Licence to Kill', 'Ghost Dog: The Way of the Samurai', 'Exotica', 'Addicted to Love', 'Grease', 'Payback', 'Bastard Out of Carolina', 'Trouble in Paradise', 'Grosse Fatigue', 'Death Wish', 'Color of Paradise, The (Rang-e Khoda)', 'Broadway Damage', 'White Boys', 'Going My Way', 'Black Beauty', "Gentleman's Agreement", 'Glory Daze', 'Trial by Jury']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Tin Cup]: Ranks 2
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Labyrinth', 'The Hour of the Pig', 'Tin Cup', 'French Twist (Gazon maudit)', 'Dracula', 'I Still Know What You Did Last Summer', 'Prince Valiant', 'Déjà Vu', 'Mina Tannenbaum', 'Cat Ballou', 'Bed of Roses', 'Go West', 'The Creature From the Black Lagoon', 'Fletch', 'Room at the Top', 'Blood on the Sun', 'S.F.W.', 'Get on the Bus', 'Superman IV: The Quest for Peace', 'Scorta, La']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Star Trek V: The Final Frontier]: Ranks 18
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Back to the Future', 'Willow', 'Flatliners', 'The Prince of Tides', 'Dolores Claiborne', 'The Shop Around the Corner', 'Single White Female', 'To Kill a Mockingbird', 'Children of a Lesser God', 'My Favorite Year', 'The Endless Summer 2', 'Kurt & Courtney', 'Legal Deceit', 'Big Bully', 'Denise Calls Up', 'Glory Daze', 'Unstrung Heroes', 'The Clan of the Cave Bear', 'Star Trek V: The Final Frontier', 'Bogus']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Touch of Evil]: Ranks 1
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Purple Rose of Cairo', 'Touch of Evil', 'Westworld', 'Toy Story 2', 'Arsenic and Old Lace', 'Picture Perfect', 'The Outsiders', 'House Party', 'The Virgin Suicides', 'U2: Rattle and Hum', "Star Maker, The (Uomo delle stelle, L')", 'Steel', 'Spiders, The (Die Spinnen, 1. Teil: Der Goldene See)', 'Bitter Sugar (Azucar Amargo)', 'Penitentiary II', 'The Deep End of the Ocean', 'Kim', "Citizen's Band (a.k.a. Handle with Care)", 'Switchblade Sisters', 'Jar, The (Khomreh)']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Battlefield Earth]: Ranks 17
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['The Jungle Book', 'Three Amigos!', 'Air Force One', 'The Birds', 'The Straight Story', 'Red Violin, The (Le Violon rouge)', 'On Golden Pond', 'Trust', 'Safe Passage', 'Woman in the Dunes (Suna no onna)', 'Just Cause', 'The Quiet Room', 'Dingo', 'Ménage (Tenue de soirée)', 'Wedding Bell Blues', 'Death Wish II', "Puppet Master III: Toulon's Revenge", 'Battlefield Earth', 'Eraserhead', 'The Sticky Fingers of Time']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Sleepaway Camp]: Ranks 18
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Three Colors: Blue', 'The English Patient', 'Close Encounters of the Third Kind', 'The Philadelphia Story', 'American Psycho', 'Misérables, Les', "The Astronaut's Wife", 'Separation, The (La Séparation)', 'Dream for an Insomniac', 'Repossessed', 'Daens', 'Tarzan', 'Rollercoaster', 'Sugar Town', "Things to Do in Denver when You're Dead", 'A Simple Twist of Fate', 'The Adventures of Rocky and Bullwinkle', 'H.O.T.S.', 'Sleepaway Camp', 'Shattered Image']]
+Sun 02 Jun 2024 14:19:31 INFO  Ground-truth [Dark City]: Ranks 0
+Sun 02 Jun 2024 14:19:31 INFO  Ranking List [['Dark City', 'Three Kings', 'Unforgiven', 'The Remains of the Day', 'Modern Times', 'The Quiet Man', "A Bug's Life", 'The Bank Dick', 'Johnny Mnemonic', 'Hurlyburly', 'Power 98', 'Agnes Browne', 'Dear Jesse', 'Rocket Man', 'The Flintstones in Viva Rock Vegas', 'Murder, My Sweet', 'Cobb', 'Boxing Helena', 'High Art', 'Children of the Corn']]
+Sun 02 Jun 2024 14:19:31 INFO  SAVE DONE! Path: dataset/ml-1m/output_files/final11_gpt-3.5-turbo_ml-1m_RankAggregated_output_2020.json
+Sun 02 Jun 2024 14:19:31 INFO  recall@1 - 0.215	recall@5 - 0.59	recall@10 - 0.755	recall@20 - 1.0	recall@50 - 1.0	ndcg@1 - 0.215	ndcg@5 - 0.4233	ndcg@10 - 0.4763	ndcg@20 - 0.5366	ndcg@50 - 0.5366
