@@ -1,0 +1,8 @@
+# OpenAI API
+max_tokens: 512
+api_batch: 10
+temperature: 0.
+async_dispatch: True
+boots: 0
+# Others
+max_his_len: 10

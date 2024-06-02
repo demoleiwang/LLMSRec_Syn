@@ -51,7 +51,7 @@ class SelectedUserTrainer(Trainer):
 
     @torch.no_grad()
     def evaluate(
-        self, eval_data, load_best_model=True, model_file=None, show_progress=False
+        self, eval_data, valid_data, load_best_model=True, model_file=None, show_progress=False
     ):
         self.model.eval()
         if self.config["eval_type"] == EvaluatorType.RANKING:
@@ -69,19 +69,34 @@ class SelectedUserTrainer(Trainer):
         )
         unsorted_selected_interactions = []
         unsorted_selected_pos_i = []
+        unsorted_selected_user_seqs = []
+        unsorted_selected_uids = []
         for batch_idx, batched_data in enumerate(iter_data):
             interaction, history_index, positive_u, positive_i = batched_data
             for i in range(len(interaction)):
                 if interaction['user_id'][i].item() in self.selected_uids:
                     pr = self.selected_uids.index(interaction['user_id'][i].item())
+                    # print (f"pr: {pr}")
                     unsorted_selected_interactions.append((interaction[i], pr))
                     unsorted_selected_pos_i.append((positive_i[i], pr))
+                    unsorted_selected_uids.append((interaction['user_id'][i].item(), pr))
+
+                    test_item_seq = interaction[self.ITEM_SEQ][i]#.detach().cpu().tolist()
+                    test_item_seq_len = interaction[self.ITEM_SEQ_LEN][i]
+                    test_real_len = min(self.config['max_his_len'], test_item_seq_len.item())
+                    unsorted_selected_user_seqs.append((test_item_seq.detach().cpu().tolist()[:test_real_len], pr))
         unsorted_selected_interactions.sort(key=lambda t: t[1])
         unsorted_selected_pos_i.sort(key=lambda t: t[1])
+        unsorted_selected_user_seqs.sort(key=lambda t: t[1])
+        unsorted_selected_uids.sort(key=lambda t: t[1])
         selected_interactions = [_[0] for _ in unsorted_selected_interactions]
         selected_pos_i = [_[0] for _ in unsorted_selected_pos_i]
+        selected_user_seqs = [_[0] for _ in unsorted_selected_user_seqs]
+        selected_uidsx = [_[0] for _ in unsorted_selected_uids]
+
         new_inter = {
-            col: torch.stack([inter[col] for inter in selected_interactions]) for col in selected_interactions[0].columns
+            col: torch.stack([inter[col] for inter in selected_interactions]) for col in
+            selected_interactions[0].columns
         }
         selected_interactions = Interaction(new_inter)
         selected_pos_i = torch.stack(selected_pos_i)
@@ -112,9 +127,9 @@ class SelectedUserTrainer(Trainer):
         if self.fix_pos == -1: # should be -1
             self.logger.info('Shuffle ground truth')
             for i in range(idxs.shape[0]):
-                np.random.shuffle(idxs[i])
-       
-        scores = self.model.predict_on_subsets(selected_interactions.to(self.device), idxs)
+                np.random.shuffle(idxs[i])       
+
+        scores = self.model.predict_on_subsets(selected_interactions.to(self.device), idxs, valid_data, self.selected_uids)
         scores = scores.view(-1, self.tot_item_num)
         scores[:, 0] = -np.inf
         self.eval_collector.eval_batch_collect(
@@ -126,13 +141,42 @@ class SelectedUserTrainer(Trainer):
         self.wandblogger.log_eval_metrics(result, head="eval")
         return result
 
-    @torch.no_grad()
-    def evaluatex(
-            self, eval_data, load_best_model=True, model_file=None, show_progress=False
-    ):
-        self.model.eval()
+    def get_emb_multivector(self, train_data, valid_data, eval_data, load_best_model=True, model_file=None, show_progress=False):
+        self.model.eval() 
+        item_text = self.model.item_text
+
         if self.config["eval_type"] == EvaluatorType.RANKING:
             self.tot_item_num = eval_data._dataset.item_num
+
+        train_iter_data = (
+            tqdm(
+                valid_data,
+                total=len(valid_data),
+                ncols=100,
+                desc=set_color(f"Train   ", "pink"),
+            )
+            if show_progress
+            else valid_data
+        )
+        training_user_seqs = []
+        training_user_pos_items = []
+        training_user_ids = []
+        for batch_idx, batched_data in enumerate(train_iter_data):
+            interaction, history_index, positive_u, positive_i = batched_data
+            pos_items = interaction[self.POS_ITEM_ID]
+            item_seq_lens = interaction[self.ITEM_SEQ_LEN]
+            item_seqs = interaction[self.ITEM_SEQ]
+
+            user_ids = interaction['user_id']
+            training_user_ids.extend(user_ids.tolist())
+
+            training_user_pos_items.extend(pos_items)
+            for train_i in range(len(item_seqs)):
+                train_real_len = min(self.config['max_his_len'], item_seq_lens[train_i].item())
+                # if train_real_len<10:
+                #     continue
+                training_user_seqs.append(item_seqs[train_i].detach().cpu().tolist()[:train_real_len])
+            # break
 
         iter_data = (
             tqdm(
@@ -144,9 +188,9 @@ class SelectedUserTrainer(Trainer):
             if show_progress
             else eval_data
         )
-        eval_func = self._full_sort_batch_eval
         unsorted_selected_interactions = []
         unsorted_selected_pos_i = []
+        unsorted_selected_user_seqs = []
         for batch_idx, batched_data in enumerate(iter_data):
             interaction, history_index, positive_u, positive_i = batched_data
             for i in range(len(interaction)):
@@ -154,61 +198,22 @@ class SelectedUserTrainer(Trainer):
                     pr = self.selected_uids.index(interaction['user_id'][i].item())
                     unsorted_selected_interactions.append((interaction[i], pr))
                     unsorted_selected_pos_i.append((positive_i[i], pr))
+
+                    test_item_seq = interaction[self.ITEM_SEQ][i]  # .detach().cpu().tolist()
+                    test_item_seq_len = interaction[self.ITEM_SEQ_LEN][i]
+                    test_real_len = min(self.config['max_his_len'], test_item_seq_len.item())
+                    unsorted_selected_user_seqs.append((test_item_seq.detach().cpu().tolist()[:test_real_len], pr))
         unsorted_selected_interactions.sort(key=lambda t: t[1])
         unsorted_selected_pos_i.sort(key=lambda t: t[1])
+        unsorted_selected_user_seqs.sort(key=lambda t: t[1])
         selected_interactions = [_[0] for _ in unsorted_selected_interactions]
         selected_pos_i = [_[0] for _ in unsorted_selected_pos_i]
-        new_inter = {
-            col: torch.stack([inter[col] for inter in selected_interactions]) for col in
-            selected_interactions[0].columns
-        }
-        selected_interactions = Interaction(new_inter)
-        selected_pos_i = torch.stack(selected_pos_i)
-        selected_pos_u = torch.arange(selected_pos_i.shape[0])
+        selected_user_seqs = [_[0] for _ in unsorted_selected_user_seqs]
 
-        if self.config['has_gt']:
-            self.logger.info('Has ground truth.')
-            idxs = torch.LongTensor(self.sampled_items)
-            for i in range(idxs.shape[0]):
-                if selected_pos_i[i] in idxs[i]:
-                    pr = idxs[i].numpy().tolist().index(selected_pos_i[i].item())
-                    idxs[i][pr:-1] = torch.clone(idxs[i][pr + 1:])
+        # user_matrix_aug_sim = self.multi_hot_similarity(selected_user_seqs, training_user_seqs)
 
-            idxs = idxs[:, :self.recall_budget - 1]
-            if self.fix_pos == -1 or self.fix_pos == self.recall_budget - 1:
-                idxs = torch.cat([idxs, selected_pos_i.unsqueeze(-1)], dim=-1).numpy()
-            elif self.fix_pos == 0:
-                idxs = torch.cat([selected_pos_i.unsqueeze(-1), idxs], dim=-1).numpy()
-            else:
-                idxs_a, idxs_b = torch.split(idxs, (self.fix_pos, self.recall_budget - 1 - self.fix_pos), dim=-1)
-                idxs = torch.cat([idxs_a, selected_pos_i.unsqueeze(-1), idxs_b], dim=-1).numpy()
-        else:
-            self.logger.info('Does not have ground truth.')
-            idxs = torch.LongTensor(self.sampled_items)
-            idxs = idxs[:, :self.recall_budget]
-            idxs = idxs.numpy()
-
-        if self.fix_pos == -1:
-            self.logger.info('Shuffle ground truth')
-            for i in range(idxs.shape[0]):
-                np.random.shuffle(idxs[i])
-        
-        scores = self.model.full_sort_predict(selected_interactions.to(self.device))
-        scores = scores.view(-1, self.tot_item_num)
-        scores[:, 0] = -np.inf
-        self.eval_collector.eval_batch_collect(
-            scores, selected_interactions, selected_pos_u, selected_pos_i
-        )
-        self.eval_collector.model_collect(self.model)
-        struct = self.eval_collector.get_data_struct()
-        result = self.evaluator.evaluate(struct)
-        self.wandblogger.log_eval_metrics(result, head="eval")
-        return result
-
-    def multi_hot_similarity(self, test_list_x, train_list_x):
-        item_text = self.model.item_text
-        file_ = os.path.join(self.config['data_path'], "user_matrix_aug_sim.npy")
-        print (file_, os.path.exists(file_))
+        test_list_x = selected_user_seqs[:]
+        train_list_x = training_user_seqs[:]
 
 
         test_user_list = []
@@ -229,70 +234,14 @@ class SelectedUserTrainer(Trainer):
         train_user_matrix = np.array(train_user_list)
         normalized_train_user_matrix = train_user_matrix  # / np.sum(train_user_matrix, axis=1)[:, np.newaxis]
 
-        if os.path.exists(file_):
-            user_matrix_aug_sim = np.load(file_)
-            print (f"loading {file_}")
-        else:
-             #/ np.sum(test_user_matrix, axis=1)[:, np.newaxis]
+        if not os.path.exists(os.path.join(self.config['data_path'], "output_files")):
+            os.makedirs(os.path.join(self.config['data_path'], "output_files"))
 
-            print ("cosine_similarity...")
-            user_matrix_aug_sim = cosine_similarity(normalized_test_user_matrix, normalized_train_user_matrix)
+        train_emb_file = os.path.join(self.config['data_path'], "output_files", f"train_multivector_emb.npy")
+        test_emb_file = os.path.join(self.config['data_path'], "output_files", f"test_multivector_emb.npy")
+        train_emb = normalized_train_user_matrix
+        test_emb = normalized_test_user_matrix
 
-            np.save(file_, user_matrix_aug_sim)
-            print ('saved')
-        
-        return user_matrix_aug_sim, normalized_test_user_matrix, normalized_train_user_matrix
-
-    @torch.no_grad()
-    def pop_method(
-            self, train_data, show_progress=False
-    ):
-        self.model.eval()
-        item_text = self.model.item_text
-        if self.config["eval_type"] == EvaluatorType.RANKING:
-            self.tot_item_num = train_data._dataset.item_num
-
-        train_iter_data = (
-            tqdm(
-                train_data,
-                total=len(train_data),
-                ncols=100,
-                desc=set_color(f"Train   ", "pink"),
-            )
-            if show_progress
-            else train_data
-        )
-        training_user_seqs = []
-        training_user_pos_items = []
-        pop_item_feq = {}
-        total_items = 0
-        for batch_idx, interaction in enumerate(train_iter_data):
-            # interaction, history_index, positive_u, positive_i = batched_data
-            pos_items = interaction[self.POS_ITEM_ID]
-            item_seq_lens = interaction[self.ITEM_SEQ_LEN]
-            item_seqs = interaction[self.ITEM_SEQ]
-            # training_user_seqs.extend(item_seqs)
-            training_user_pos_items.extend(pos_items)
-            for train_i in range(len(item_seqs)):
-                # train_real_len = min(self.config['max_his_len'], item_seq_lens[train_i].item())
-                # if train_real_len<10:
-                #     continue
-                # training_user_seqs.append(item_seqs[train_i].detach().cpu().tolist()[:train_real_len])
-                item_seq_text = [item_text[item_x] for item_x in item_seqs[train_i].detach().cpu().tolist()[:50]]
-                for item_string in item_seq_text:
-                    if item_string in pop_item_feq:
-                        pop_item_feq[item_string] +=1
-                    else:
-                        pop_item_feq[item_string] = 1
-                    total_items+=1
-                training_user_seqs.append(item_seq_text)
-                # print (item_seq_text)
-        pop_item_feq_sorted_list = sorted(list(pop_item_feq.items()), key=lambda x:x[1], reverse=True)
-        print (pop_item_feq_sorted_list[:100])
-        pop_list_file = os.path.join(self.config['data_path'], f'{self.config["dataset"]}.popular_list.json')
-        with open(pop_list_file, 'w') as f:
-            json.dump(pop_item_feq_sorted_list, f)
-        # pop_item_feq_sorted_list
-        # assert 1==0
-        print ("pop_list_file save done!")
-
+        np.save(train_emb_file, train_emb)
+        np.save(test_emb_file, test_emb)
+        print("saving@@@saseec", train_emb_file)

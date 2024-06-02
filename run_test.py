@@ -7,10 +7,9 @@ from recbole.data.dataset.sequential_dataset import SequentialDataset
 from recbole.utils import init_seed, init_logger, get_trainer, set_color
 from utils import get_model
 from trainer import SelectedUserTrainer
-from openai_parallel_toolkit import ParallelToolkit, Prompt
 
 
-def evaluate(model_name, dataset_name, pretrained_file, rep_num, num_data, platform, random_seed, **kwargs):
+def evaluate(model_name, dataset_name, pretrained_file, rep_num, num_data, **kwargs):
     # configurations initialization
     props = [f'props/{model_name}.yaml', f'props/{dataset_name}.yaml', 'props/overall.yaml']
     print(props)
@@ -18,7 +17,7 @@ def evaluate(model_name, dataset_name, pretrained_file, rep_num, num_data, platf
 
     # configurations initialization
     config = Config(model=model_class, dataset=dataset_name, config_file_list=props, config_dict=kwargs)
-    config['seed'] = random_seed
+    
     init_seed(config['seed'], config['reproducibility'])
     # logger initialization
     init_logger(config)
@@ -33,7 +32,6 @@ def evaluate(model_name, dataset_name, pretrained_file, rep_num, num_data, platf
     train_data, valid_data, test_data = data_preparation(config, dataset)
 
     # model loading and initialization
-    config['platform'] = platform
     model = model_class(config, train_data.dataset).to(config['device'])
 
     # Load pre-trained model
@@ -48,16 +46,13 @@ def evaluate(model_name, dataset_name, pretrained_file, rep_num, num_data, platf
 
     logger.info(model)
 
-    # trainer loading and initialization
     config['num_data'] = num_data
 
     trainer = SelectedUserTrainer(config, model, dataset)
 
-    ##### for zero-shot, acl 2024 short.
-    if model_name in ["SASRec", "GRU4Rec", "BERT4Rec", "Pop"]:
-        test_result = trainer.evaluatex(test_data, load_best_model=False, show_progress=config['show_progress'])
-    else:
-        test_result = trainer.evaluate(test_data, load_best_model=False, show_progress=config['show_progress'])
+    trainer.get_emb_multivector(train_data, valid_data, test_data, load_best_model=False, show_progress=config['show_progress'])
+
+    test_result = trainer.evaluate(test_data, valid_data, load_best_model=False, show_progress=config['show_progress'])
 
     # init_logger(config)
     # logger = getLogger()
@@ -83,10 +78,19 @@ if __name__ == '__main__':
     parser.add_argument('-r', type=str, default='0', help='repeat number')
     parser.add_argument('-n', type=int, default=5000, help='repeat number')
 
-    parser.add_argument('-pl', type=str, default="gpt-4o", help='openai engine') # [gpt-4o, gpt-3.5-turbo]
+    parser.add_argument('-pl', type=str, default="gpt-3.5-turbo", help='openai engine') # [gpt-4o, gpt-3.5-turbo]
+    # parser.add_argument('-key', type=str, default="", help='openai key') # [
     parser.add_argument('-sd', type=int, default=2020, help='')
 
     args, unparsed = parser.parse_known_args()
     print(args)
 
-    evaluate(args.m, args.d, pretrained_file=args.p, rep_num=args.r, num_data=args.n, platform=args.pl, random_seed=args.sd)
+    config_dict = {
+        "platform": args.pl,
+        "seed": args.sd,
+        'num_demo_int': 5,
+        'num_demo_out': 1,
+        'sim': "multivector", # openaiemb
+    }
+
+    evaluate(args.m, args.d, pretrained_file=args.p, rep_num=args.r, num_data=args.n, **config_dict)
