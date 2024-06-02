@@ -14,7 +14,8 @@ Code for Our NAACL Findings 2024 paper "The Whole is Better than the Sum: Using 
     ```bash
     pip install -r requirements.txt
     ```
-4. Evaluate OpenAI GPT (GPT-3.5-turbo)'s ranking abilities on ml-1m (Games/lastfm) dataset.
+4. Insert your OpenAI key on line 20 of ./model/rank.py.
+5. Evaluate OpenAI GPT (GPT-3.5-turbo)'s ranking abilities on ml-1m (Games/lastfm) dataset.
     ```bash
     cd LLMSRec_Syn/
     python evaluate.py -m RankAggregated(ours)/RankNearest(baseline)/RankFiexed(baseline) -d ml-1m
