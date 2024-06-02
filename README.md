@@ -1,4 +1,4 @@
-# LLMSRec_Syn (Updating)
+# LLMSRec_Syn
 Code for Our NAACL Findings 2024 paper "The Whole is Better than the Sum: Using Aggregated Demonstrations in In-Context Learning for Sequential Recommendation"
 
 ## 🚀 Quick Start
@@ -29,6 +29,7 @@ INFO  SAVE DONE! Path: dataset/ml-1m/output_files/final11_gpt-3.5-turbo_ml-1m_Ra
 INFO  
 recall@1 - 0.265  recall@5 - 0.6  recall@10 - 0.775       recall@20 - 1.0 recall@50 - 1.0 
 ndcg@1 - 0.265  ndcg@5 - 0.4424 ndcg@10 - 0.4988    ndcg@20 - 0.5549        ndcg@50 - 0.5549```
+```
 
 RankNearest
 ```bash
